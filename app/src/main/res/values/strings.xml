@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Details -->
+    <string name="app_name">FilterSaathi</string>
+    <string name="tagline">Every drop, verified.</string>
+    <string name="jal_jeevan_mission_tag">Jal Jeevan Mission Partner</string>
+
+    <!-- Language Toggle -->
+    <string name="btn_lang_toggle">ಕನ್ನಡ</string>
+    <string name="lang_current">EN</string>
+
+    <!-- Header -->
+    <string name="default_location">Hosahalli Gram Panchayat</string>
+    <string name="notifications_badge">3</string>
+
+    <!-- Hero Card -->
+    <string name="health_score_title">Filter Health Score</string>
+    <string name="health_score_status_good">Good</string>
+    <string name="health_score_status_watch">Attention Needed</string>
+    <string name="health_score_status_critical">Critical</string>
+    <string name="health_score_delta_positive">+4% since last month</string>
+    <string name="health_score_delta_negative">-6% since last month</string>
+
+    <!-- Alert Banner -->
+    <string name="alert_dismiss">Dismiss</string>
+    <string name="alert_fix_now">Fix Now</string>
+    <string name="alert_urgent_title">Urgent Action Required</string>
+    <string name="alert_sample_message">Anganwadi RO-2 membrane blocked. Flow rate &lt; 20%.</string>
+
+    <!-- Quick Actions -->
+    <string name="quick_actions_title">Quick Actions</string>
+    <string name="action_start_check">Start Check</string>
+    <string name="action_start_check_desc">Photo checklist</string>
+    <string name="action_scan_strip">Scan Strip</string>
+    <string name="action_scan_strip_desc">Camera test</string>
+    <string name="action_report_fault">Report Fault</string>
+    <string name="action_report_fault_desc">Log breakdown</string>
+    <string name="action_request_sump">Request Sump</string>
+    <string name="action_request_sump_desc">IoT monitoring</string>
+
+    <!-- Impact Stats -->
+    <string name="impact_stats_title">Community Impact</string>
+    <string name="stat_working_filters">Working Filters</string>
+    <string name="stat_working_filters_val">14 / 16</string>
+    <string name="stat_safe_water">Safe Litres</string>
+    <string name="stat_safe_water_val">42,500 L</string>
+    <string name="stat_avg_downtime">Avg Downtime</string>
+    <string name="stat_avg_downtime_val">1.8 hrs</string>
+    <string name="stat_unsafe_readings">Unsafe Tests</string>
+    <string name="stat_unsafe_readings_val">0 this week</string>
+
+    <!-- Sump Monitoring Device -->
+    <string name="sump_card_title">Sump Monitoring Device</string>
+    <string name="sump_card_desc">Install an IoT sensor in your village sump for 24/7 water purity alerts.</string>
+    <string name="sump_step_1">1. Request</string>
+    <string name="sump_step_2">2. Tech Visit</string>
+    <string name="sump_step_3">3. Live Purity</string>
+    <string name="sump_status_chip">Scheduled: Oct 8</string>
+    <string name="sump_btn_request">Request Installation</string>
+    <string name="sump_btn_track">Track Device</string>
+
+    <!-- Upcoming Maintenance -->
+    <string name="maintenance_title">Upcoming Maintenance</string>
+    <string name="item_cartridge">Sediment Cartridge</string>
+    <string name="item_cartridge_days">4 days left</string>
+    <string name="item_uv_lamp">UV Lamp</string>
+    <string name="item_uv_lamp_days">18 days left</string>
+    <string name="item_membrane">RO Membrane</string>
+    <string name="item_membrane_days">42 days left</string>
+
+    <!-- Latest Water Test -->
+    <string name="latest_test_title">Latest Water Test</string>
+    <string name="test_timestamp">Today, 09:30 AM • Primary Health Centre</string>
+    <string name="param_tds">TDS</string>
+    <string name="param_tds_val">142 ppm</string>
+    <string name="param_ph">pH</string>
+    <string name="param_ph_val">7.2</string>
+    <string name="param_chlorine">Chlorine</string>
+    <string name="param_chlorine_val">0.4 mg/L</string>
+    <string name="param_nitrate">Nitrate</string>
+    <string name="param_nitrate_val">12 mg/L</string>
+    <string name="status_safe">Safe</string>
+    <string name="status_watch">Watch</string>
+    <string name="status_unsafe">Unsafe</string>
+
+    <!-- Reports -->
+    <string name="reports_title">Monthly Water Audit</string>
+    <string name="report_current_name">September 2026 Audit Report</string>
+    <string name="report_current_size">PDF • 1.4 MB • Certified</string>
+    <string name="btn_open_pdf">Open PDF</string>
+    <string name="btn_share_whatsapp">Share WhatsApp</string>
+    <string name="btn_generate_report">Generate New Report</string>
+
+    <!-- Help Strip -->
+    <string name="help_call_helpline">Helpline 1800-JJ-WATER</string>
+    <string name="help_voice_assist">Voice Help (ಧ್ವನಿ ಸಹಾಯ)</string>
+
+    <!-- Offline & Sync -->
+    <string name="banner_offline">Saved offline. Will sync when connected.</string>
+    <string name="banner_synced">All records up to date.</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_filters">Filters</string>
+    <string name="nav_check">Check</string>
+    <string name="nav_test">Test</string>
+    <string name="nav_reports">Reports</string>
+
+    <!-- Roles -->
+    <string name="role_caretaker">Caretaker Mode</string>
+    <string name="role_officer">Officer Summary</string>
+    <string name="role_engineer">PHC/BWSSB Engineer</string>
+
+    <!-- Accessibility Descriptions -->
+    <string name="cd_logo">FilterSaathi Logo - Verified water filter companion</string>
+    <string name="cd_health_ring">Filter Health Score gauge</string>
+    <string name="cd_lang_toggle">Switch application language to Kannada</string>
+    <string name="cd_notification_bell">Notifications list</string>
+    <string name="cd_location">Selected Gram Panchayat location</string>
+</resources>

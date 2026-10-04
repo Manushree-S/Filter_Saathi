@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Details -->
+    <string name="app_name">ಫಿಲ್ಟರ್‌ ಸಾಥಿ</string>
+    <string name="tagline">ಪ್ರತಿ ಹನಿ, ಸುರಕ್ಷಿತ.</string>
+    <string name="jal_jeevan_mission_tag">ಜಲ ಜೀವನ್ ಮಿಷನ್ ಸಹಯೋಗಿ</string>
+
+    <!-- Language Toggle -->
+    <string name="btn_lang_toggle">English</string>
+    <string name="lang_current">ಕನ್ನಡ</string>
+
+    <!-- Header -->
+    <string name="default_location">ಹೊಸಹಳ್ಳಿ ಗ್ರಾಮ ಪಂಚಾಯಿತಿ</string>
+    <string name="notifications_badge">೩</string>
+
+    <!-- Hero Card -->
+    <string name="health_score_title">ಫಿಲ್ಟರ್ ಆರೋಗ್ಯ ಸೂಚ್ಯಂಕ</string>
+    <string name="health_score_status_good">ಉತ್ತಮ</string>
+    <string name="health_score_status_watch">ಗಮನ ಅಗತ್ಯವಿದೆ</string>
+    <string name="health_score_status_critical">ತುರ್ತು</string>
+    <string name="health_score_delta_positive">ಕಳೆದ ತಿಂಗಳಿಗಿಂತ +೪% ಸುಧಾರಣೆ</string>
+    <string name="health_score_delta_negative">ಕಳೆದ ತಿಂಗಳಿಗಿಂತ -೬% ಇಳಿಕೆ</string>
+
+    <!-- Alert Banner -->
+    <string name="alert_dismiss">ಮುಚ್ಚಿ</string>
+    <string name="alert_fix_now">ಈಗಲೇ ಸರಿಪಡಿಸಿ</string>
+    <string name="alert_urgent_title">ತುರ್ತು ಕ್ರಮ ಅಗತ್ಯವಿದೆ</string>
+    <string name="alert_sample_message">ಅಂಗನವಾಡಿ RO-2 ಮೆಂಬ್ರೇನ್ ಬ್ಲಾಕ್ ಆಗಿದೆ. ನೀರಿನ ಹರಿವು &lt; 20%.</string>
+
+    <!-- Quick Actions -->
+    <string name="quick_actions_title">ತ್ವರಿತ ಕಾರ್ಯಗಳು</string>
+    <string name="action_start_check">ಪರಿಶೀಲನೆ</string>
+    <string name="action_start_check_desc">ಫೋಟೋ ತಪಾಸಣೆ</string>
+    <string name="action_scan_strip">ಸ್ಟ್ರಿಪ್ ಸ್ಕ್ಯಾನ್</string>
+    <string name="action_scan_strip_desc">ಕ್ಯಾಮೆರಾ ಪರೀಕ್ಷೆ</string>
+    <string name="action_report_fault">ದೋಷ ವರದಿ</string>
+    <string name="action_report_fault_desc">ಸಮಸ್ಯೆ ದಾಖಲಿಸಿ</string>
+    <string name="action_request_sump">ಸಂಪ್ ಸಾಧನ</string>
+    <string name="action_request_sump_desc">IoT ನಿಗಾ ಸಾಧನ</string>
+
+    <!-- Impact Stats -->
+    <string name="impact_stats_title">ಸಮುದಾಯದ ಪ್ರಭಾವ</string>
+    <string name="stat_working_filters">ಚಾಲನೆಯಲ್ಲಿರುವ ಘಟಕಗಳು</string>
+    <string name="stat_working_filters_val">೧೪ / ೧೬</string>
+    <string name="stat_safe_water">ಶುದ್ಧ ನೀರು</string>
+    <string name="stat_safe_water_val">೪೨,೫೦೦ ಲೀಟರ್</string>
+    <string name="stat_avg_downtime">ಸರಾಸರಿ ರಿಪೇರಿ ಸಮಯ</string>
+    <string name="stat_avg_downtime_val">೧.೮ ಗಂಟೆಗಳು</string>
+    <string name="stat_unsafe_readings">ಅಸುರಕ್ಷಿತ ಪರೀಕ್ಷೆಗಳು</string>
+    <string name="stat_unsafe_readings_val">ಈ ವಾರ ೦</string>
+
+    <!-- Sump Monitoring Device -->
+    <string name="sump_card_title">ಸಂಪ್ ನಿಗಾ ಸಾಧನ</string>
+    <string name="sump_card_desc">೨೪/೭ ನೀರಿನ ಗುಣಮಟ್ಟ ತಿಳಿಯಲು ನಿಮ್ಮ ಗ್ರಾಮದ ಸಂಪ್‌ಗೆ IoT ಸೆನ್ಸರ್ ಅಳವಡಿಸಿ.</string>
+    <string name="sump_step_1">೧. ವಿನಂತಿ</string>
+    <string name="sump_step_2">೨. ತಜ್ಞರ ಭೇಟಿ</string>
+    <string name="sump_step_3">೩. ನೇರ ವರದಿ</string>
+    <string name="sump_status_chip">ನಿಗದಿಯಾಗಿದೆ: ಅಕ್ಟೋಬರ್ ೮</string>
+    <string name="sump_btn_request">ಅಳವಡಿಕೆಗೆ ವಿನಂತಿಸಿ</string>
+    <string name="sump_btn_track">ಸ್ಥಿತಿ ಪರಿಶೀಲಿಸಿ</string>
+
+    <!-- Upcoming Maintenance -->
+    <string name="maintenance_title">ಮುಂದಿನ ನಿರ್ವಹಣೆ</string>
+    <string name="item_cartridge">ಸೆಡಿಮೆಂಟ್ ಕಾರ್ಟ್ರಿಡ್ಜ್</string>
+    <string name="item_cartridge_days">೪ ದಿನ ಬಾಕಿ</string>
+    <string name="item_uv_lamp">ಯುವಿ ಲ್ಯಾಂಪ್</string>
+    <string name="item_uv_lamp_days">೧೮ ದಿನ ಬಾಕಿ</string>
+    <string name="item_membrane">RO ಮೆಂಬ್ರೇನ್</string>
+    <string name="item_membrane_days">೪೨ ದಿನ ಬಾಕಿ</string>
+
+    <!-- Latest Water Test -->
+    <string name="latest_test_title">ಇತ್ತೀಚಿನ ನೀರಿನ ಪರೀಕ್ಷೆ</string>
+    <string name="test_timestamp">ಇಂದು, ಬೆಳಿಗ್ಗೆ ೦೯:೩೦ • ಪ್ರಾಥಮಿಕ ಆರೋಗ್ಯ ಕೇಂದ್ರ</string>
+    <string name="param_tds">ಟಿ.ಡಿ.ಎಸ್ (TDS)</string>
+    <string name="param_tds_val">೧೪೨ ppm</string>
+    <string name="param_ph">ಪಿ.ಎಚ್ (pH)</string>
+    <string name="param_ph_val">೭.೨</string>
+    <string name="param_chlorine">ಕ್ಲೋರಿನ್</string>
+    <string name="param_chlorine_val">೦.೪ mg/L</string>
+    <string name="param_nitrate">ನೈಟ್ರೇಟ್</string>
+    <string name="param_nitrate_val">೧೨ mg/L</string>
+    <string name="status_safe">ಸುರಕ್ಷಿತ</string>
+    <string name="status_watch">ಗಮನಿಸಿ</string>
+    <string name="status_unsafe">ಅಸುರಕ್ಷಿತ</string>
+
+    <!-- Reports -->
+    <string name="reports_title">ಮಾಸಿಕ ನೀರಿನ ಗುಣಮಟ್ಟ ವರದಿ</string>
+    <string name="report_current_name">ಸೆಪ್ಟೆಂಬರ್ ೨೦೨೬ ಲೆಕ್ಕಪರಿಶೋಧನೆ</string>
+    <string name="report_current_size">ಪಿ.ಡಿ.ಎಫ್ • ೧.೪ MB • ಅಧಿಕೃತ</string>
+    <string name="btn_open_pdf">PDF ತೆರೆಯಿರಿ</string>
+    <string name="btn_share_whatsapp">ವಾಟ್ಸಾಪ್‌ನಲ್ಲಿ ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="btn_generate_report">ಹೊಸ ವರದಿ ರಚಿಸಿ</string>
+
+    <!-- Help Strip -->
+    <string name="help_call_helpline">ಸಹಾಯವಾಣಿ 1800-JJ-WATER</string>
+    <string name="help_voice_assist">ಧ್ವನಿ ಸಹಾಯ</string>
+
+    <!-- Offline & Sync -->
+    <string name="banner_offline">ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ. ನೆಟ್‌ವರ್ಕ್ ಬಂದಾಗ ಅಪ್‌ಲೋಡ್ ಆಗುತ್ತದೆ.</string>
+    <string name="banner_synced">ಎಲ್ಲಾ ಮಾಹಿತಿ ನವೀಕರಿಸಲಾಗಿದೆ.</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">ಮುಖಪುಟ</string>
+    <string name="nav_filters">ಫಿಲ್ಟರ್‌ಗಳು</string>
+    <string name="nav_check">ತಪಾಸಣೆ</string>
+    <string name="nav_test">ಪರೀಕ್ಷೆ</string>
+    <string name="nav_reports">ವರದಿಗಳು</string>
+
+    <!-- Roles -->
+    <string name="role_caretaker">ನಿರ್ವಾಹಕರ ವಿಧಾನ</string>
+    <string name="role_officer">ಅಧಿಕಾರಿ ಸಾರಾಂಶ</string>
+    <string name="role_engineer">PHC/BWSSB ಇಂಜಿನಿಯರ್</string>
+
+    <!-- Accessibility Descriptions -->
+    <string name="cd_logo">ಫಿಲ್ಟರ್ ಸಾಥಿ ಲೋಗೋ - ನೀರಿನ ಶುದ್ಧತೆ ಪರಿಶೀಲಕ</string>
+    <string name="cd_health_ring">ಫಿಲ್ಟರ್ ಆರೋಗ್ಯ ಸೂಚ್ಯಂಕ ಮೀಟರ್</string>
+    <string name="cd_lang_toggle">ಇಂಗ್ಲಿಷ್ ಭಾಷೆಗೆ ಬದಲಾಯಿಸಿ</string>
+    <string name="cd_notification_bell">ಸೂಚನೆಗಳ ಪಟ್ಟಿ</string>
+    <string name="cd_location">ಆಯ್ಕೆಮಾಡಲಾದ ಗ್ರಾಮ ಪಂಚಾಯಿತಿ ಸ್ಥಳ</string>
+</resources>

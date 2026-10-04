@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="140dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/surface_card_stroke_light"
+    app:strokeWidth="1dp"
+    app:cardBackgroundColor="@color/surface_card_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/ivStatIcon"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/bg_hero_gradient"
+            android:padding="5dp"
+            app:tint="@color/tricolour_white"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/tvStatValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text_primary_light"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:text="14 / 16" />
+
+        <TextView
+            android:id="@+id/tvStatTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/text_secondary_light"
+            android:textSize="12sp"
+            android:maxLines="2"
+            android:text="Working Filters" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

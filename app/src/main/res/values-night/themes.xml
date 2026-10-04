@@ -1,0 +1,31 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application dark theme. -->
+    <style name="Theme.FilterSaathi" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/aqua</item>
+        <item name="colorOnPrimary">#0F2A5C</item>
+        <item name="colorPrimaryContainer">@color/secondary_blue</item>
+        <item name="colorOnPrimaryContainer">#FFFFFF</item>
+
+        <item name="colorSecondary">@color/aqua</item>
+        <item name="colorOnSecondary">#0F2A5C</item>
+        <item name="colorSecondaryContainer">@color/aqua_tint</item>
+        <item name="colorOnSecondaryContainer">#FFFFFF</item>
+
+        <item name="colorTertiary">@color/accent_saffron</item>
+        <item name="colorOnTertiary">#FFFFFF</item>
+
+        <item name="android:colorBackground">@color/background_light</item>
+        <item name="colorSurface">@color/surface_card_light</item>
+        <item name="colorOnSurface">@color/text_primary_light</item>
+        <item name="colorSurfaceVariant">@color/background_light</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary_light</item>
+
+        <item name="android:statusBarColor">#0D131F</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:navigationBarColor">#162032</item>
+
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.FilterSaathi.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.FilterSaathi.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.FilterSaathi.Large</item>
+    </style>
+</resources>

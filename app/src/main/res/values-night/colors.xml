@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Surfaces & Neutrals -->
+    <color name="background_light">#0D131F</color>
+    <color name="surface_card_light">#162032</color>
+    <color name="surface_card_stroke_light">#2A3852</color>
+    <color name="text_primary_light">#F1F5F9</color>
+    <color name="text_secondary_light">#94A3B8</color>
+    <color name="text_tertiary_light">#64748B</color>
+    <color name="divider_light">#26334D</color>
+
+    <color name="shimmer_base">#1E293B</color>
+    <color name="shimmer_highlight">#334155</color>
+</resources>

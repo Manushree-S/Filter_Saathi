@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Colours -->
+    <color name="primary_navy">#0F2A5C</color>
+    <color name="secondary_blue">#1D4896</color>
+    <color name="aqua">#14B8D4</color>
+    <color name="accent_saffron">#EA7A12</color>
+
+    <!-- Semantic Status Colours (Never use colour alone) -->
+    <color name="status_success">#18803A</color>
+    <color name="status_warning">#D99A0B</color>
+    <color name="status_danger">#C62828</color>
+
+    <!-- Surfaces & Neutrals (Light) -->
+    <color name="background_light">#F3F6FB</color>
+    <color name="surface_card_light">#FFFFFF</color>
+    <color name="surface_card_stroke_light">#E2E8F0</color>
+    <color name="text_primary_light">#17213A</color>
+    <color name="text_secondary_light">#526078</color>
+    <color name="text_tertiary_light">#7A8CA3</color>
+    <color name="divider_light">#E4E9F2</color>
+
+    <!-- Indian Tricolour Accents -->
+    <color name="tricolour_saffron">#FF9933</color>
+    <color name="tricolour_white">#FFFFFF</color>
+    <color name="tricolour_green">#138808</color>
+
+    <!-- Shimmer skeleton -->
+    <color name="shimmer_base">#E0E7FF</color>
+    <color name="shimmer_highlight">#F8FAFC</color>
+
+    <!-- Status Tint Overlays (12% opacity) -->
+    <color name="status_success_tint">#1A18803A</color>
+    <color name="status_warning_tint">#1AD99A0B</color>
+    <color name="status_danger_tint">#1AC62828</color>
+    <color name="aqua_tint">#1A14B8D4</color>
+    <color name="secondary_blue_tint">#1A1D4896</color>
+</resources>

@@ -1,0 +1,30 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="org.filtersaathi.app.ui.home.HomeFragment"
+        android:label="@string/nav_home" />
+
+    <fragment
+        android:id="@+id/navigation_filters"
+        android:name="org.filtersaathi.app.ui.fragments.FiltersFragment"
+        android:label="@string/nav_filters" />
+
+    <fragment
+        android:id="@+id/navigation_check"
+        android:name="org.filtersaathi.app.ui.fragments.CheckFragment"
+        android:label="@string/nav_check" />
+
+    <fragment
+        android:id="@+id/navigation_test"
+        android:name="org.filtersaathi.app.ui.fragments.TestFragment"
+        android:label="@string/nav_test" />
+
+    <fragment
+        android:id="@+id/navigation_reports"
+        android:name="org.filtersaathi.app.ui.fragments.ReportsFragment"
+        android:label="@string/nav_reports" />
+</navigation>

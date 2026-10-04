@@ -1,0 +1,76 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.FilterSaathi" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand colors -->
+        <item name="colorPrimary">@color/primary_navy</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">@color/secondary_blue</item>
+        <item name="colorOnPrimaryContainer">#FFFFFF</item>
+
+        <!-- Secondary brand colors -->
+        <item name="colorSecondary">@color/aqua</item>
+        <item name="colorOnSecondary">#0F2A5C</item>
+        <item name="colorSecondaryContainer">@color/aqua_tint</item>
+        <item name="colorOnSecondaryContainer">@color/primary_navy</item>
+
+        <!-- Tertiary brand color (Saffron CTA) -->
+        <item name="colorTertiary">@color/accent_saffron</item>
+        <item name="colorOnTertiary">#FFFFFF</item>
+
+        <!-- Background & Surface -->
+        <item name="android:colorBackground">@color/background_light</item>
+        <item name="colorSurface">@color/surface_card_light</item>
+        <item name="colorOnSurface">@color/text_primary_light</item>
+        <item name="colorSurfaceVariant">@color/background_light</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary_light</item>
+
+        <!-- Status bar and navigation bar -->
+        <item name="android:statusBarColor">@color/primary_navy</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:navigationBarColor">@color/surface_card_light</item>
+
+        <!-- Shapes -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.FilterSaathi.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.FilterSaathi.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.FilterSaathi.Large</item>
+    </style>
+
+    <!-- Shape styles -->
+    <style name="ShapeAppearance.FilterSaathi.Small" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="ShapeAppearance.FilterSaathi.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">16dp</item>
+    </style>
+    <style name="ShapeAppearance.FilterSaathi.Large" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <!-- Card Styles -->
+    <style name="Widget.FilterSaathi.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/surface_card_stroke_light</item>
+        <item name="cardBackgroundColor">@color/surface_card_light</item>
+    </style>
+
+    <!-- Saffron Action Button -->
+    <style name="Widget.FilterSaathi.Button.Saffron" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/accent_saffron</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Outlined Button -->
+    <style name="Widget.FilterSaathi.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">@color/secondary_blue</item>
+        <item name="android:textColor">@color/secondary_blue</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+</resources>
