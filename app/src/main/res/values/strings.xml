@@ -18,14 +18,14 @@
     <string name="health_score_status_good">Good</string>
     <string name="health_score_status_watch">Attention Needed</string>
     <string name="health_score_status_critical">Critical</string>
-    <string name="health_score_delta_positive">+4% since last month</string>
-    <string name="health_score_delta_negative">-6% since last month</string>
+    <string name="health_score_delta_positive" formatted="false">+4% since last month</string>
+    <string name="health_score_delta_negative" formatted="false">-6% since last month</string>
 
     <!-- Alert Banner -->
     <string name="alert_dismiss">Dismiss</string>
     <string name="alert_fix_now">Fix Now</string>
     <string name="alert_urgent_title">Urgent Action Required</string>
-    <string name="alert_sample_message">Anganwadi RO-2 membrane blocked. Flow rate &lt; 20%.</string>
+    <string name="alert_sample_message" formatted="false">Anganwadi RO-2 membrane blocked. Flow rate &lt; 20%.</string>
 
     <!-- Quick Actions -->
     <string name="quick_actions_title">Quick Actions</string>
