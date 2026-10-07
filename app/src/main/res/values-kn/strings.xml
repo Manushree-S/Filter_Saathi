@@ -18,14 +18,14 @@
     <string name="health_score_status_good">ಉತ್ತಮ</string>
     <string name="health_score_status_watch">ಗಮನ ಅಗತ್ಯವಿದೆ</string>
     <string name="health_score_status_critical">ತುರ್ತು</string>
-    <string name="health_score_delta_positive">ಕಳೆದ ತಿಂಗಳಿಗಿಂತ +೪% ಸುಧಾರಣೆ</string>
-    <string name="health_score_delta_negative">ಕಳೆದ ತಿಂಗಳಿಗಿಂತ -೬% ಇಳಿಕೆ</string>
+    <string name="health_score_delta_positive" formatted="false">ಕಳೆದ ತಿಂಗಳಿಗಿಂತ +೪% ಸುಧಾರಣೆ</string>
+    <string name="health_score_delta_negative" formatted="false">ಕಳೆದ ತಿಂಗಳಿಗಿಂತ -೬% ಇಳಿಕೆ</string>
 
     <!-- Alert Banner -->
     <string name="alert_dismiss">ಮುಚ್ಚಿ</string>
     <string name="alert_fix_now">ಈಗಲೇ ಸರಿಪಡಿಸಿ</string>
     <string name="alert_urgent_title">ತುರ್ತು ಕ್ರಮ ಅಗತ್ಯವಿದೆ</string>
-    <string name="alert_sample_message">ಅಂಗನವಾಡಿ RO-2 ಮೆಂಬ್ರೇನ್ ಬ್ಲಾಕ್ ಆಗಿದೆ. ನೀರಿನ ಹರಿವು &lt; 20%.</string>
+    <string name="alert_sample_message" formatted="false">ಅಂಗನವಾಡಿ RO-2 ಮೆಂಬ್ರೇನ್ ಬ್ಲಾಕ್ ಆಗಿದೆ. ನೀರಿನ ಹರಿವು &lt; 20%.</string>
 
     <!-- Quick Actions -->
     <string name="quick_actions_title">ತ್ವರಿತ ಕಾರ್ಯಗಳು</string>
