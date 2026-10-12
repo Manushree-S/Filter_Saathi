@@ -35,4 +35,29 @@
     <color name="status_danger_tint">#1AC62828</color>
     <color name="aqua_tint">#1A14B8D4</color>
     <color name="secondary_blue_tint">#1A1D4896</color>
+
+    <!-- Semantic Alert Badge Backgrounds and Foreground Texts -->
+    <color name="alert_red_bg">#FDECEC</color>
+    <color name="alert_red_text">#8A1C1C</color>
+    <color name="alert_amber_bg">#FFF1D6</color>
+    <color name="alert_amber_text">#7A4B00</color>
+    <color name="alert_green_bg">#E3F4E8</color>
+    <color name="alert_green_text">#135B2A</color>
+    <color name="alert_blue_bg">#E1F0FA</color>
+    <color name="alert_blue_text">#0D47A1</color>
+
+    <!-- Certificate Surface (Strictly pure white in light and dark mode) -->
+    <color name="certificate_bg">#FFFFFF</color>
+    <color name="certificate_text">#17213A</color>
+    <color name="certificate_stroke">#CBD5E1</color>
+
+    <!-- Map Palette Colors -->
+    <color name="map_palette_1">#CFE0F7</color>
+    <color name="map_palette_2">#D4EBDD</color>
+    <color name="map_palette_3">#FBE7C0</color>
+    <color name="map_palette_4">#E1D8F2</color>
+
+    <!-- Saffron Shades -->
+    <color name="saffron_dark">#B45309</color>
+    <color name="saffron_light">#E8801A</color>
 </resources>

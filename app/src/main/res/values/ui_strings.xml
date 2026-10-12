@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated from the FilterSaathi design prototype. Prefix ui_ avoids clashes with existing strings. -->
+<resources>
+    <string name="ui_brand">FilterSaathi</string>
+    <string name="ui_tagline">Every drop, verified.</string>
+    <string name="ui_nav_home">Home</string>
+    <string name="ui_nav_book">Book</string>
+    <string name="ui_nav_track">Track</string>
+    <string name="ui_nav_overview">Overview</string>
+    <string name="ui_login">Register / Login</string>
+    <string name="ui_logout">Log out</string>
+    <string name="ui_hi">Hi,</string>
+    <string name="ui_hero_title">Safe water for every village.</string>
+    <string name="ui_hero_sub">Request a sump sensor and filter for your panchayat.</string>
+    <string name="ui_hero_btn">Request installation</string>
+    <string name="ui_how">How it works</string>
+    <string name="ui_c1">Panchayat</string>
+    <string name="ui_c1t">Sends the request.</string>
+    <string name="ui_c2t">Verifies and routes it.</string>
+    <string name="ui_c3">BWSSB or installer</string>
+    <string name="ui_c3t">Surveys and installs.</string>
+    <string name="ui_no_pay">No payments in this app.</string>
+    <string name="ui_g_live">Live readings</string>
+    <string name="ui_g_tds">TDS · pH · level</string>
+    <string name="ui_g_sed">Sediment</string>
+    <string name="ui_g_car">Carbon</string>
+    <string name="ui_g_ro">RO filter</string>
+    <string name="ui_g_uv">UV light</string>
+    <string name="ui_g_tank">Sump tank</string>
+    <string name="ui_g_fil">Filter and UV</string>
+    <string name="ui_g_safe">Safe water</string>
+    <string name="ui_s1">Register</string>
+    <string name="ui_s2">Book</string>
+    <string name="ui_s3">Track</string>
+    <string name="ui_reg_title">Register or log in</string>
+    <string name="ui_name">Full name</string>
+    <string name="ui_phone">Mobile number</string>
+    <string name="ui_send_otp">Send OTP</string>
+    <string name="ui_otp_title">Verify your number</string>
+    <string name="ui_otp_sent">OTP sent to</string>
+    <string name="ui_otp_label">6-digit OTP</string>
+    <string name="ui_verify">Verify</string>
+    <string name="ui_demo_note">Demo: any 6 digits work.</string>
+    <string name="ui_err_reg">Enter your name and a valid 10-digit mobile number.</string>
+    <string name="ui_err_otp">Enter the 6-digit OTP.</string>
+    <string name="ui_err_book">Fill in all fields. PIN must be 6 digits.</string>
+    <string name="ui_book_title">Book installation</string>
+    <string name="ui_district">District</string>
+    <string name="ui_select_district">Select district</string>
+    <string name="ui_taluk">Taluk</string>
+    <string name="ui_village">Village or Gram Panchayat</string>
+    <string name="ui_sump">Sump location</string>
+    <string name="ui_sump_hint">Building, street, landmark</string>
+    <string name="ui_pin">PIN code</string>
+    <string name="ui_pin_hint">6 digits</string>
+    <string name="ui_book_btn">Book installation</string>
+    <string name="ui_banner">Booked. Request no.</string>
+    <string name="ui_close">Close</string>
+    <string name="ui_track_title">Track your request</string>
+    <string name="ui_req_no">Request no.</string>
+    <string name="ui_stg1">Request received</string>
+    <string name="ui_stg2">Verified</string>
+    <string name="ui_stg3">Installer assigned</string>
+    <string name="ui_stg4">Site survey</string>
+    <string name="ui_stg5">Installation</string>
+    <string name="ui_stg6">Live monitoring</string>
+    <string name="ui_done">Done</string>
+    <string name="ui_current">In progress</string>
+    <string name="ui_pending">Pending</string>
+    <string name="ui_installer_title">Your installer</string>
+    <string name="ui_i_name">Name</string>
+    <string name="ui_i_contact">Contact</string>
+    <string name="ui_i_exp">Experience</string>
+    <string name="ui_call">Call installer</string>
+    <string name="ui_installer_name">Ramesh Gowda</string>
+    <string name="ui_initial">R</string>
+    <string name="ui_installer_exp">8 years · 120+ installations</string>
+    <string name="ui_assigning">An installer will be assigned soon.</string>
+    <string name="ui_sample_tag">Sample details</string>
+    <string name="ui_next">Next stage (demo)</string>
+    <string name="ui_new_req">New request</string>
+    <string name="ui_ov_title">District overview</string>
+    <string name="ui_ov_sub">Officer view · October 2026</string>
+    <string name="ui_sample">Sample data</string>
+    <string name="ui_k1">Filters monitored</string>
+    <string name="ui_k2">Filters working</string>
+    <string name="ui_k3">Safe test results</string>
+    <string name="ui_k4">Open alerts</string>
+    <string name="ui_chart_title">Safe water test results</string>
+    <string name="ui_chart_sub">Last 6 months</string>
+    <string name="ui_alerts_title">Needs action</string>
+    <string name="ui_a1">Nitrate above limit</string>
+    <string name="ui_a2">Filter offline for 3 days</string>
+    <string name="ui_a3">UV lamp due in 7 days</string>
+    <string name="ui_tag_unsafe">Unsafe</string>
+    <string name="ui_tag_urgent">Urgent</string>
+    <string name="ui_tag_soon">Soon</string>
+    <string name="ui_vs_title">Village status</string>
+    <string name="ui_th_village">Village</string>
+    <string name="ui_th_filters">Filters</string>
+    <string name="ui_th_score">Health score</string>
+    <string name="ui_th_status">Status</string>
+    <string name="ui_st_good">Good</string>
+    <string name="ui_st_watch">Watch</string>
+    <string name="ui_st_action">Action needed</string>
+    <string name="ui_sump_title">Sump installations</string>
+    <string name="ui_map_title">Karnataka district map</string>
+    <string name="ui_map_note">Tap a district to start. Outlines: Census 2011, simplified.</string>
+    <string name="ui_map_hint">Tap a district on the map.</string>
+    <string name="ui_map_bv">Ballari and Vijayanagara share one outline. Tap again to switch.</string>
+    <string name="ui_search">Search district</string>
+    <string name="ui_no_res">No match.</string>
+    <string name="ui_c_blr">Bengaluru</string>
+    <string name="ui_n_mh">MAHARASHTRA</string>
+    <string name="ui_n_ts">TELANGANA</string>
+    <string name="ui_n_ap">ANDHRA PRADESH</string>
+    <string name="ui_n_tn">TAMIL NADU</string>
+    <string name="ui_n_kl">KERALA</string>
+    <string name="ui_n_ga">GOA</string>
+    <string name="ui_n_sea">Arabian Sea</string>
+    <string name="ui_online">Online</string>
+    <string name="ui_offline">Offline</string>
+    <string name="ui_off_bar">You are offline. Changes are saved on this phone.</string>
+    <string name="ui_saved_offline">Saved offline. Will sync. Request no.</string>
+    <string name="ui_synced">Synced. Request no.</string>
+    <string name="ui_notif">Notifications</string>
+    <string name="ui_nt1">Your request is verified</string>
+    <string name="ui_nt2">UV lamp due in 7 days</string>
+    <string name="ui_nt3">Monthly report is ready</string>
+    <string name="ui_tm1">2 hours ago</string>
+    <string name="ui_tm2">1 day ago</string>
+    <string name="ui_tm3">3 days ago</string>
+    <string name="ui_theme_btn">Dark mode</string>
+    <string name="ui_nav_scan">Test strip</string>
+    <string name="ui_scan_title">Test strip scanner</string>
+    <string name="ui_scan_hint">Place the strip inside the frame</string>
+    <string name="ui_scan_btn">Scan strip</string>
+    <string name="ui_scanning">Reading…</string>
+    <string name="ui_scan_again">Scan again</string>
+    <string name="ui_nav_public">Water check</string>
+    <string name="ui_nav_report">Report</string>
+    <string name="ui_hero_check">Check my village water</string>
+    <string name="ui_imp_title">Our impact</string>
+    <string name="ui_i_lit">Litres of safe water daily</string>
+    <string name="ui_i_people">People reached</string>
+    <string name="ui_i_vill">Villages covered</string>
+    <string name="ui_i_fix">Unsafe readings fixed</string>
+    <string name="ui_g6">Clean water</string>
+    <string name="ui_d6">Safe drinking water for every village.</string>
+    <string name="ui_g3">Good health</string>
+    <string name="ui_d3">Fewer water-borne illnesses.</string>
+    <string name="ui_g10">Fair access</string>
+    <string name="ui_d10">Kannada, voice and large text for everyone.</string>
+    <string name="ui_g17">Partnerships</string>
+    <string name="ui_d17">Government and installers working together.</string>
+    <string name="ui_sdg_note">UN Sustainable Development Goals.</string>
+    <string name="ui_ba_title">Before and after</string>
+    <string name="ui_ba_before">Before</string>
+    <string name="ui_ba_after">After</string>
+    <string name="ui_ba_hint">Drag to compare</string>
+    <string name="ui_pub_title">Is my village water safe?</string>
+    <string name="ui_pub_sub">Select your own district first. No login needed.</string>
+    <string name="ui_pub_district">Your district</string>
+    <string name="ui_pub_pick">Select your district to see your village water.</string>
+    <string name="ui_pub_none">No readings yet for this district.</string>
+    <string name="ui_pub_last">Last tested</string>
+    <string name="ui_pub_date">10 October 2026</string>
+    <string name="ui_pub_safe">Safe to drink</string>
+    <string name="ui_pub_watch">Use with care</string>
+    <string name="ui_pub_unsafe">Do not drink</string>
+    <string name="ui_pub_safe_txt">All readings are within safe limits.</string>
+    <string name="ui_pub_watch_txt">One reading is low. A check is scheduled.</string>
+    <string name="ui_pub_unsafe_txt">A reading is above the limit. A repair is scheduled.</string>
+    <string name="ui_journey">How your water becomes safe</string>
+    <string name="ui_j_src">Source</string>
+    <string name="ui_j_sump">Sump</string>
+    <string name="ui_j_fil">Filter</string>
+    <string name="ui_j_tap">Your tap</string>
+    <string name="ui_rep_title">Report a problem</string>
+    <string name="ui_rep_type">Problem</string>
+    <string name="ui_rep_sel">Select problem</string>
+    <string name="ui_ty1">Bad taste or smell</string>
+    <string name="ui_ty2">Filter not working</string>
+    <string name="ui_ty3">Leak</string>
+    <string name="ui_ty4">Other</string>
+    <string name="ui_rep_desc">Details (optional)</string>
+    <string name="ui_rep_photo">Add photo</string>
+    <string name="ui_rep_photo_on">Photo added</string>
+    <string name="ui_rep_btn">Send report</string>
+    <string name="ui_err_rep">Choose the problem and enter your village.</string>
+    <string name="ui_rep_done">Report sent. Ticket no.</string>
+    <string name="ui_ticket">Ticket no.</string>
+    <string name="ui_rs1">Received</string>
+    <string name="ui_rs2">In review</string>
+    <string name="ui_rs3">Fixed</string>
+    <string name="ui_rep_new">Send another</string>
+    <string name="ui_acc">Accessibility</string>
+    <string name="ui_acc_big">Large text</string>
+    <string name="ui_acc_hc">High contrast</string>
+    <string name="ui_acc_read">Read this page aloud</string>
+    <string name="ui_voice_note">Voice depends on your phone.</string>
+    <string name="ui_speak">Read aloud</string>
+    <string name="ui_a_on">On</string>
+    <string name="ui_a_off">Off</string>
+    <string name="ui_scan_warn">Nitrate is above the limit. Do not drink this water. The panchayat has been notified.</string>
+    <string name="ui_s_safe">Safe</string>
+    <string name="ui_s_low">Low</string>
+    <string name="ui_r_tds">TDS</string>
+    <string name="ui_r_ph">pH</string>
+    <string name="ui_r_cl">Chlorine</string>
+    <string name="ui_r_ni">Nitrate</string>
+    <string name="ui_rate_title">Rate your installer</string>
+    <string name="ui_thanks">Thank you for your feedback.</string>
+    <string name="ui_view_cert">View certificate</string>
+    <string name="ui_cert_title">Water Safety Certificate</string>
+    <string name="ui_cert_body">A FilterSaathi sump sensor and filter has been installed and is reporting.</string>
+    <string name="ui_cert_date">Date</string>
+    <string name="ui_date_val">11 October 2026</string>
+    <string name="ui_cert_read">Readings</string>
+    <string name="ui_read_val">TDS 312 ppm · pH 7.2</string>
+    <string name="ui_cert_inst">Installer</string>
+    <string name="ui_cert_verify">Scan to verify</string>
+    <string name="ui_qr_sample">Sample QR</string>
+    <string name="ui_print">Print / Save</string>
+    <string name="ui_back">Back to tracking</string>
+    <string name="ui_cov_title">District coverage</string>
+    <string name="ui_none">No request</string>
+    <string name="ui_sump_level">Live sump level</string>
+    <string name="ui_s_req">Requested</string>
+    <string name="ui_s_sch">Scheduled</string>
+    <string name="ui_s_ins">Installed</string>
+    <string-array name="ui_district_names">
+        <item>Bagalkot</item>
+        <item>Ballari</item>
+        <item>Belagavi</item>
+        <item>Bengaluru Rural</item>
+        <item>Bengaluru South</item>
+        <item>Bengaluru Urban</item>
+        <item>Bidar</item>
+        <item>Chamarajanagar</item>
+        <item>Chikkaballapura</item>
+        <item>Chikkamagaluru</item>
+        <item>Chitradurga</item>
+        <item>Dakshina Kannada</item>
+        <item>Davanagere</item>
+        <item>Dharwad</item>
+        <item>Gadag</item>
+        <item>Hassan</item>
+        <item>Haveri</item>
+        <item>Kalaburagi</item>
+        <item>Kodagu</item>
+        <item>Kolar</item>
+        <item>Koppal</item>
+        <item>Mandya</item>
+        <item>Mysuru</item>
+        <item>Raichur</item>
+        <item>Shivamogga</item>
+        <item>Tumakuru</item>
+        <item>Udupi</item>
+        <item>Uttara Kannada</item>
+        <item>Vijayanagara</item>
+        <item>Vijayapura</item>
+        <item>Yadgir</item>
+    </string-array>
+</resources>

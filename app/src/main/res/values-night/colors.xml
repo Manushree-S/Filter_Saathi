@@ -11,4 +11,29 @@
 
     <color name="shimmer_base">#1E293B</color>
     <color name="shimmer_highlight">#334155</color>
+
+    <!-- Semantic Alert Badge Backgrounds and Foreground Texts -->
+    <color name="alert_red_bg">#3E1818</color>
+    <color name="alert_red_text">#FCA5A5</color>
+    <color name="alert_amber_bg">#3D2A00</color>
+    <color name="alert_amber_text">#FDE047</color>
+    <color name="alert_green_bg">#0F381D</color>
+    <color name="alert_green_text">#86EFAC</color>
+    <color name="alert_blue_bg">#102A43</color>
+    <color name="alert_blue_text">#93C5FD</color>
+
+    <!-- Certificate Surface (Strictly pure white even in night mode) -->
+    <color name="certificate_bg">#FFFFFF</color>
+    <color name="certificate_text">#17213A</color>
+    <color name="certificate_stroke">#CBD5E1</color>
+
+    <!-- Map Palette Colors -->
+    <color name="map_palette_1">#CFE0F7</color>
+    <color name="map_palette_2">#D4EBDD</color>
+    <color name="map_palette_3">#FBE7C0</color>
+    <color name="map_palette_4">#E1D8F2</color>
+
+    <!-- Saffron Shades -->
+    <color name="saffron_dark">#B45309</color>
+    <color name="saffron_light">#E8801A</color>
 </resources>
