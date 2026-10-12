@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generated from the FilterSaathi design prototype. Prefix ui_ avoids clashes with existing strings. -->
+<resources>
+    <string name="ui_brand">ಫಿಲ್ಟರ್ ಸಾಥಿ</string>
+    <string name="ui_tagline">ಪ್ರತಿ ಹನಿ, ಸುರಕ್ಷಿತ</string>
+    <string name="ui_nav_home">ಮುಖಪುಟ</string>
+    <string name="ui_nav_book">ಬುಕ್ ಮಾಡಿ</string>
+    <string name="ui_nav_track">ಟ್ರ್ಯಾಕ್</string>
+    <string name="ui_nav_overview">ಅವಲೋಕನ</string>
+    <string name="ui_login">ನೋಂದಣಿ / ಲಾಗಿನ್</string>
+    <string name="ui_logout">ಲಾಗ್ ಔಟ್</string>
+    <string name="ui_hi">ನಮಸ್ಕಾರ,</string>
+    <string name="ui_hero_title">ಪ್ರತಿ ಹಳ್ಳಿಗೂ ಸುರಕ್ಷಿತ ನೀರು.</string>
+    <string name="ui_hero_sub">ನಿಮ್ಮ ಪಂಚಾಯತ್ಗೆ ಸಂಪ್ ಸೆನ್ಸರ್ ಮತ್ತು ಫಿಲ್ಟರ್ಗಾಗಿ ಮನವಿ ಮಾಡಿ.</string>
+    <string name="ui_hero_btn">ಸ್ಥಾಪನೆಗೆ ಮನವಿ ಮಾಡಿ</string>
+    <string name="ui_how">ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ</string>
+    <string name="ui_c1">ಪಂಚಾಯತ್</string>
+    <string name="ui_c1t">ಮನವಿ ಕಳುಹಿಸುತ್ತದೆ.</string>
+    <string name="ui_c2t">ಪರಿಶೀಲಿಸಿ ಕಳುಹಿಸುತ್ತದೆ.</string>
+    <string name="ui_c3">BWSSB ಅಥವಾ ಸ್ಥಾಪಕರು</string>
+    <string name="ui_c3t">ಸಮೀಕ್ಷೆ ಮತ್ತು ಸ್ಥಾಪನೆ ಮಾಡುತ್ತಾರೆ.</string>
+    <string name="ui_no_pay">ಈ ಆ್ಯಪ್ನಲ್ಲಿ ಯಾವುದೇ ಪಾವತಿ ಇಲ್ಲ.</string>
+    <string name="ui_g_live">ನೇರ ಮಾಪನ</string>
+    <string name="ui_g_tds">TDS · pH · ಮಟ್ಟ</string>
+    <string name="ui_g_sed">ಕೆಸರು</string>
+    <string name="ui_g_car">ಕಾರ್ಬನ್</string>
+    <string name="ui_g_ro">RO ಫಿಲ್ಟರ್</string>
+    <string name="ui_g_uv">UV ಬೆಳಕು</string>
+    <string name="ui_g_tank">ಸಂಪ್ ಟ್ಯಾಂಕ್</string>
+    <string name="ui_g_fil">ಫಿಲ್ಟರ್ ಮತ್ತು UV</string>
+    <string name="ui_g_safe">ಸುರಕ್ಷಿತ ನೀರು</string>
+    <string name="ui_s1">ನೋಂದಣಿ</string>
+    <string name="ui_s2">ಬುಕ್</string>
+    <string name="ui_s3">ಟ್ರ್ಯಾಕ್</string>
+    <string name="ui_reg_title">ನೋಂದಣಿ ಅಥವಾ ಲಾಗಿನ್</string>
+    <string name="ui_name">ಪೂರ್ಣ ಹೆಸರು</string>
+    <string name="ui_phone">ಮೊಬೈಲ್ ಸಂಖ್ಯೆ</string>
+    <string name="ui_send_otp">OTP ಕಳುಹಿಸಿ</string>
+    <string name="ui_otp_title">ನಿಮ್ಮ ಸಂಖ್ಯೆಯನ್ನು ಪರಿಶೀಲಿಸಿ</string>
+    <string name="ui_otp_sent">OTP ಕಳುಹಿಸಲಾಗಿದೆ:</string>
+    <string name="ui_otp_label">6 ಅಂಕಿಯ OTP</string>
+    <string name="ui_verify">ಪರಿಶೀಲಿಸಿ</string>
+    <string name="ui_demo_note">ಡೆಮೊ: ಯಾವುದೇ 6 ಅಂಕಿ ಸಾಕು.</string>
+    <string name="ui_err_reg">ಹೆಸರು ಮತ್ತು ಸರಿಯಾದ 10 ಅಂಕಿಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ.</string>
+    <string name="ui_err_otp">6 ಅಂಕಿಯ OTP ನಮೂದಿಸಿ.</string>
+    <string name="ui_err_book">ಎಲ್ಲಾ ವಿವರಗಳನ್ನು ತುಂಬಿ. ಪಿನ್ 6 ಅಂಕಿ ಇರಬೇಕು.</string>
+    <string name="ui_book_title">ಸ್ಥಾಪನೆ ಬುಕ್ ಮಾಡಿ</string>
+    <string name="ui_district">ಜಿಲ್ಲೆ</string>
+    <string name="ui_select_district">ಜಿಲ್ಲೆ ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="ui_taluk">ತಾಲ್ಲೂಕು</string>
+    <string name="ui_village">ಗ್ರಾಮ ಅಥವಾ ಗ್ರಾಮ ಪಂಚಾಯತ್</string>
+    <string name="ui_sump">ಸಂಪ್ ಇರುವ ಸ್ಥಳ</string>
+    <string name="ui_sump_hint">ಕಟ್ಟಡ, ರಸ್ತೆ, ಗುರುತು ಸ್ಥಳ</string>
+    <string name="ui_pin">ಪಿನ್ ಕೋಡ್</string>
+    <string name="ui_pin_hint">6 ಅಂಕಿ</string>
+    <string name="ui_book_btn">ಸ್ಥಾಪನೆ ಬುಕ್ ಮಾಡಿ</string>
+    <string name="ui_banner">ಬುಕ್ ಆಗಿದೆ. ವಿನಂತಿ ಸಂಖ್ಯೆ</string>
+    <string name="ui_close">ಮುಚ್ಚಿ</string>
+    <string name="ui_track_title">ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ</string>
+    <string name="ui_req_no">ವಿನಂತಿ ಸಂಖ್ಯೆ</string>
+    <string name="ui_stg1">ವಿನಂತಿ ಸ್ವೀಕರಿಸಲಾಗಿದೆ</string>
+    <string name="ui_stg2">ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
+    <string name="ui_stg3">ಸ್ಥಾಪಕರ ನೇಮಕ</string>
+    <string name="ui_stg4">ಸ್ಥಳ ಸಮೀಕ್ಷೆ</string>
+    <string name="ui_stg5">ಸ್ಥಾಪನೆ</string>
+    <string name="ui_stg6">ನೇರ ಮೇಲ್ವಿಚಾರಣೆ</string>
+    <string name="ui_done">ಮುಗಿದಿದೆ</string>
+    <string name="ui_current">ನಡೆಯುತ್ತಿದೆ</string>
+    <string name="ui_pending">ಬಾಕಿ</string>
+    <string name="ui_installer_title">ನಿಮ್ಮ ಸ್ಥಾಪಕರು</string>
+    <string name="ui_i_name">ಹೆಸರು</string>
+    <string name="ui_i_contact">ಸಂಪರ್ಕ</string>
+    <string name="ui_i_exp">ಅನುಭವ</string>
+    <string name="ui_call">ಸ್ಥಾಪಕರಿಗೆ ಕರೆ ಮಾಡಿ</string>
+    <string name="ui_installer_name">ರಮೇಶ್ ಗೌಡ</string>
+    <string name="ui_initial">ರ</string>
+    <string name="ui_installer_exp">8 ವರ್ಷ · 120+ ಸ್ಥಾಪನೆಗಳು</string>
+    <string name="ui_assigning">ಶೀಘ್ರದಲ್ಲೇ ಸ್ಥಾಪಕರನ್ನು ನೇಮಿಸಲಾಗುವುದು.</string>
+    <string name="ui_sample_tag">ಮಾದರಿ ವಿವರಗಳು</string>
+    <string name="ui_next">ಮುಂದಿನ ಹಂತ (ಡೆಮೊ)</string>
+    <string name="ui_new_req">ಹೊಸ ವಿನಂತಿ</string>
+    <string name="ui_ov_title">ಜಿಲ್ಲಾ ಅವಲೋಕನ</string>
+    <string name="ui_ov_sub">ಅಧಿಕಾರಿ ವೀಕ್ಷಣೆ · ಅಕ್ಟೋಬರ್ 2026</string>
+    <string name="ui_sample">ಮಾದರಿ ಅಂಕಿಅಂಶ</string>
+    <string name="ui_k1">ಮೇಲ್ವಿಚಾರಣೆಯ ಫಿಲ್ಟರ್ಗಳು</string>
+    <string name="ui_k2">ಕಾರ್ಯನಿರತ ಫಿಲ್ಟರ್ಗಳು</string>
+    <string name="ui_k3">ಸುರಕ್ಷಿತ ಪರೀಕ್ಷಾ ಫಲಿತಾಂಶ</string>
+    <string name="ui_k4">ಬಾಕಿ ಎಚ್ಚರಿಕೆಗಳು</string>
+    <string name="ui_chart_title">ಸುರಕ್ಷಿತ ನೀರಿನ ಪರೀಕ್ಷೆ</string>
+    <string name="ui_chart_sub">ಕಳೆದ 6 ತಿಂಗಳು</string>
+    <string name="ui_alerts_title">ಗಮನ ಅಗತ್ಯ</string>
+    <string name="ui_a1">ನೈಟ್ರೇಟ್ ಮಿತಿ ಮೀರಿದೆ</string>
+    <string name="ui_a2">ಫಿಲ್ಟರ್ 3 ದಿನ ಸ್ಥಗಿತ</string>
+    <string name="ui_a3">UV ದೀಪ 7 ದಿನದಲ್ಲಿ ಬದಲಿಸಿ</string>
+    <string name="ui_tag_unsafe">ಅಸುರಕ್ಷಿತ</string>
+    <string name="ui_tag_urgent">ತುರ್ತು</string>
+    <string name="ui_tag_soon">ಶೀಘ್ರದಲ್ಲಿ</string>
+    <string name="ui_vs_title">ಹಳ್ಳಿಯ ಸ್ಥಿತಿ</string>
+    <string name="ui_th_village">ಹಳ್ಳಿ</string>
+    <string name="ui_th_filters">ಫಿಲ್ಟರ್ಗಳು</string>
+    <string name="ui_th_score">ಆರೋಗ್ಯ ಅಂಕ</string>
+    <string name="ui_th_status">ಸ್ಥಿತಿ</string>
+    <string name="ui_st_good">ಉತ್ತಮ</string>
+    <string name="ui_st_watch">ಗಮನಿಸಿ</string>
+    <string name="ui_st_action">ಕ್ರಮ ಬೇಕು</string>
+    <string name="ui_sump_title">ಸಂಪ್ ಸ್ಥಾಪನೆಗಳು</string>
+    <string name="ui_map_title">ಕರ್ನಾಟಕ ಜಿಲ್ಲಾ ನಕ್ಷೆ</string>
+    <string name="ui_map_note">ಪ್ರಾರಂಭಿಸಲು ಜಿಲ್ಲೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ. ರೂಪರೇಖೆ: ಜನಗಣತಿ 2011, ಸರಳೀಕೃತ.</string>
+    <string name="ui_map_hint">ನಕ್ಷೆಯಲ್ಲಿ ಜಿಲ್ಲೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ.</string>
+    <string name="ui_map_bv">ಬಳ್ಳಾರಿ ಮತ್ತು ವಿಜಯನಗರ ಒಂದೇ ರೂಪರೇಖೆ ಹಂಚಿಕೊಂಡಿವೆ. ಬದಲಿಸಲು ಮತ್ತೆ ಒತ್ತಿ.</string>
+    <string name="ui_search">ಜಿಲ್ಲೆ ಹುಡುಕಿ</string>
+    <string name="ui_no_res">ಹೊಂದಾಣಿಕೆ ಇಲ್ಲ.</string>
+    <string name="ui_c_blr">ಬೆಂಗಳೂರು</string>
+    <string name="ui_n_mh">ಮಹಾರಾಷ್ಟ್ರ</string>
+    <string name="ui_n_ts">ತೆಲಂಗಾಣ</string>
+    <string name="ui_n_ap">ಆಂಧ್ರ ಪ್ರದೇಶ</string>
+    <string name="ui_n_tn">ತಮಿಳುನಾಡು</string>
+    <string name="ui_n_kl">ಕೇರಳ</string>
+    <string name="ui_n_ga">ಗೋವಾ</string>
+    <string name="ui_n_sea">ಅರಬ್ಬೀ ಸಮುದ್ರ</string>
+    <string name="ui_online">ಆನ್ಲೈನ್</string>
+    <string name="ui_offline">ಆಫ್ಲೈನ್</string>
+    <string name="ui_off_bar">ನೀವು ಆಫ್ಲೈನ್ ಇದ್ದೀರಿ. ಬದಲಾವಣೆಗಳು ಈ ಫೋನ್ನಲ್ಲಿ ಉಳಿಯುತ್ತವೆ.</string>
+    <string name="ui_saved_offline">ಆಫ್ಲೈನ್ನಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ. ಸಂಪರ್ಕ ಸಿಕ್ಕಾಗ ಕಳುಹಿಸಲಾಗುತ್ತದೆ. ವಿನಂತಿ ಸಂಖ್ಯೆ</string>
+    <string name="ui_synced">ಸಿಂಕ್ ಆಗಿದೆ. ವಿನಂತಿ ಸಂಖ್ಯೆ</string>
+    <string name="ui_notif">ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="ui_nt1">ನಿಮ್ಮ ವಿನಂತಿ ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
+    <string name="ui_nt2">UV ದೀಪ 7 ದಿನದಲ್ಲಿ ಬದಲಿಸಿ</string>
+    <string name="ui_nt3">ಮಾಸಿಕ ವರದಿ ಸಿದ್ಧವಾಗಿದೆ</string>
+    <string name="ui_tm1">2 ಗಂಟೆ ಹಿಂದೆ</string>
+    <string name="ui_tm2">1 ದಿನ ಹಿಂದೆ</string>
+    <string name="ui_tm3">3 ದಿನ ಹಿಂದೆ</string>
+    <string name="ui_theme_btn">ಡಾರ್ಕ್ ಮೋಡ್</string>
+    <string name="ui_nav_scan">ಟೆಸ್ಟ್ ಸ್ಟ್ರಿಪ್</string>
+    <string name="ui_scan_title">ಟೆಸ್ಟ್ ಸ್ಟ್ರಿಪ್ ಸ್ಕ್ಯಾನರ್</string>
+    <string name="ui_scan_hint">ಸ್ಟ್ರಿಪ್ ಅನ್ನು ಚೌಕಟ್ಟಿನೊಳಗೆ ಇರಿಸಿ</string>
+    <string name="ui_scan_btn">ಸ್ಟ್ರಿಪ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
+    <string name="ui_scanning">ಓದಲಾಗುತ್ತಿದೆ…</string>
+    <string name="ui_scan_again">ಮತ್ತೆ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
+    <string name="ui_nav_public">ನೀರಿನ ಪರಿಶೀಲನೆ</string>
+    <string name="ui_nav_report">ದೂರು</string>
+    <string name="ui_hero_check">ನನ್ನ ಹಳ್ಳಿಯ ನೀರು ಪರಿಶೀಲಿಸಿ</string>
+    <string name="ui_imp_title">ನಮ್ಮ ಪರಿಣಾಮ</string>
+    <string name="ui_i_lit">ಪ್ರತಿದಿನ ಸುರಕ್ಷಿತ ನೀರು (ಲೀಟರ್)</string>
+    <string name="ui_i_people">ತಲುಪಿದ ಜನರು</string>
+    <string name="ui_i_vill">ಒಳಗೊಂಡ ಹಳ್ಳಿಗಳು</string>
+    <string name="ui_i_fix">ಸರಿಪಡಿಸಿದ ಅಸುರಕ್ಷಿತ ಮಾಪನಗಳು</string>
+    <string name="ui_g6">ಶುದ್ಧ ನೀರು</string>
+    <string name="ui_d6">ಪ್ರತಿ ಹಳ್ಳಿಗೂ ಸುರಕ್ಷಿತ ಕುಡಿಯುವ ನೀರು.</string>
+    <string name="ui_g3">ಉತ್ತಮ ಆರೋಗ್ಯ</string>
+    <string name="ui_d3">ನೀರಿನಿಂದ ಹರಡುವ ರೋಗಗಳು ಕಡಿಮೆ.</string>
+    <string name="ui_g10">ಎಲ್ಲರಿಗೂ ಸಮಾನ ಪ್ರವೇಶ</string>
+    <string name="ui_d10">ಎಲ್ಲರಿಗೂ ಕನ್ನಡ, ಧ್ವನಿ ಮತ್ತು ದೊಡ್ಡ ಅಕ್ಷರ.</string>
+    <string name="ui_g17">ಪಾಲುದಾರಿಕೆ</string>
+    <string name="ui_d17">ಸರ್ಕಾರ ಮತ್ತು ಸ್ಥಾಪಕರು ಒಟ್ಟಾಗಿ.</string>
+    <string name="ui_sdg_note">ವಿಶ್ವಸಂಸ್ಥೆಯ ಸುಸ್ಥಿರ ಅಭಿವೃದ್ಧಿ ಗುರಿಗಳು.</string>
+    <string name="ui_ba_title">ಮೊದಲು ಮತ್ತು ನಂತರ</string>
+    <string name="ui_ba_before">ಮೊದಲು</string>
+    <string name="ui_ba_after">ನಂತರ</string>
+    <string name="ui_ba_hint">ಹೋಲಿಸಲು ಎಳೆಯಿರಿ</string>
+    <string name="ui_pub_title">ನನ್ನ ಹಳ್ಳಿಯ ನೀರು ಸುರಕ್ಷಿತವೇ?</string>
+    <string name="ui_pub_sub">ಮೊದಲು ನಿಮ್ಮ ಜಿಲ್ಲೆ ಆಯ್ಕೆಮಾಡಿ. ಲಾಗಿನ್ ಬೇಕಿಲ್ಲ.</string>
+    <string name="ui_pub_district">ನಿಮ್ಮ ಜಿಲ್ಲೆ</string>
+    <string name="ui_pub_pick">ನಿಮ್ಮ ಹಳ್ಳಿಯ ನೀರು ನೋಡಲು ನಿಮ್ಮ ಜಿಲ್ಲೆ ಆಯ್ಕೆಮಾಡಿ.</string>
+    <string name="ui_pub_none">ಈ ಜಿಲ್ಲೆಗೆ ಇನ್ನೂ ಮಾಪನಗಳಿಲ್ಲ.</string>
+    <string name="ui_pub_last">ಕೊನೆಯ ಪರೀಕ್ಷೆ</string>
+    <string name="ui_pub_date">10 ಅಕ್ಟೋಬರ್ 2026</string>
+    <string name="ui_pub_safe">ಕುಡಿಯಲು ಸುರಕ್ಷಿತ</string>
+    <string name="ui_pub_watch">ಎಚ್ಚರಿಕೆಯಿಂದ ಬಳಸಿ</string>
+    <string name="ui_pub_unsafe">ಕುಡಿಯಬೇಡಿ</string>
+    <string name="ui_pub_safe_txt">ಎಲ್ಲಾ ಮಾಪನಗಳು ಸುರಕ್ಷಿತ ಮಿತಿಯೊಳಗಿವೆ.</string>
+    <string name="ui_pub_watch_txt">ಒಂದು ಮಾಪನ ಕಡಿಮೆ ಇದೆ. ಪರಿಶೀಲನೆ ನಿಗದಿಯಾಗಿದೆ.</string>
+    <string name="ui_pub_unsafe_txt">ಒಂದು ಮಾಪನ ಮಿತಿ ಮೀರಿದೆ. ದುರಸ್ತಿ ನಿಗದಿಯಾಗಿದೆ.</string>
+    <string name="ui_journey">ನಿಮ್ಮ ನೀರು ಹೇಗೆ ಸುರಕ್ಷಿತವಾಗುತ್ತದೆ</string>
+    <string name="ui_j_src">ಮೂಲ</string>
+    <string name="ui_j_sump">ಸಂಪ್</string>
+    <string name="ui_j_fil">ಫಿಲ್ಟರ್</string>
+    <string name="ui_j_tap">ನಿಮ್ಮ ನಲ್ಲಿ</string>
+    <string name="ui_rep_title">ಸಮಸ್ಯೆ ವರದಿ ಮಾಡಿ</string>
+    <string name="ui_rep_type">ಸಮಸ್ಯೆ</string>
+    <string name="ui_rep_sel">ಸಮಸ್ಯೆ ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="ui_ty1">ಕೆಟ್ಟ ರುಚಿ ಅಥವಾ ವಾಸನೆ</string>
+    <string name="ui_ty2">ಫಿಲ್ಟರ್ ಕೆಲಸ ಮಾಡುತ್ತಿಲ್ಲ</string>
+    <string name="ui_ty3">ಸೋರಿಕೆ</string>
+    <string name="ui_ty4">ಇತರೆ</string>
+    <string name="ui_rep_desc">ವಿವರಗಳು (ಐಚ್ಛಿಕ)</string>
+    <string name="ui_rep_photo">ಫೋಟೋ ಸೇರಿಸಿ</string>
+    <string name="ui_rep_photo_on">ಫೋಟೋ ಸೇರಿಸಲಾಗಿದೆ</string>
+    <string name="ui_rep_btn">ವರದಿ ಕಳುಹಿಸಿ</string>
+    <string name="ui_err_rep">ಸಮಸ್ಯೆ ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು ನಿಮ್ಮ ಹಳ್ಳಿ ನಮೂದಿಸಿ.</string>
+    <string name="ui_rep_done">ವರದಿ ಕಳುಹಿಸಲಾಗಿದೆ. ಟಿಕೆಟ್ ಸಂಖ್ಯೆ</string>
+    <string name="ui_ticket">ಟಿಕೆಟ್ ಸಂಖ್ಯೆ</string>
+    <string name="ui_rs1">ಸ್ವೀಕರಿಸಲಾಗಿದೆ</string>
+    <string name="ui_rs2">ಪರಿಶೀಲನೆಯಲ್ಲಿ</string>
+    <string name="ui_rs3">ಸರಿಪಡಿಸಲಾಗಿದೆ</string>
+    <string name="ui_rep_new">ಇನ್ನೊಂದು ಕಳುಹಿಸಿ</string>
+    <string name="ui_acc">ಪ್ರವೇಶಸಾಧ್ಯತೆ</string>
+    <string name="ui_acc_big">ದೊಡ್ಡ ಅಕ್ಷರ</string>
+    <string name="ui_acc_hc">ಹೆಚ್ಚಿನ ವ್ಯತಿರಿಕ್ತತೆ</string>
+    <string name="ui_acc_read">ಈ ಪುಟವನ್ನು ಓದಿ ಹೇಳಿ</string>
+    <string name="ui_voice_note">ಧ್ವನಿ ನಿಮ್ಮ ಫೋನ್ ಅನ್ನು ಅವಲಂಬಿಸಿದೆ.</string>
+    <string name="ui_speak">ಓದಿ ಹೇಳಿ</string>
+    <string name="ui_a_on">ಆನ್</string>
+    <string name="ui_a_off">ಆಫ್</string>
+    <string name="ui_scan_warn">ನೈಟ್ರೇಟ್ ಮಿತಿ ಮೀರಿದೆ. ಈ ನೀರನ್ನು ಕುಡಿಯಬೇಡಿ. ಪಂಚಾಯತ್ಗೆ ತಿಳಿಸಲಾಗಿದೆ.</string>
+    <string name="ui_s_safe">ಸುರಕ್ಷಿತ</string>
+    <string name="ui_s_low">ಕಡಿಮೆ</string>
+    <string name="ui_r_tds">TDS</string>
+    <string name="ui_r_ph">pH</string>
+    <string name="ui_r_cl">ಕ್ಲೋರಿನ್</string>
+    <string name="ui_r_ni">ನೈಟ್ರೇಟ್</string>
+    <string name="ui_rate_title">ಸ್ಥಾಪಕರಿಗೆ ರೇಟಿಂಗ್ ನೀಡಿ</string>
+    <string name="ui_thanks">ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆಗೆ ಧನ್ಯವಾದ.</string>
+    <string name="ui_view_cert">ಪ್ರಮಾಣಪತ್ರ ನೋಡಿ</string>
+    <string name="ui_cert_title">ಜಲ ಸುರಕ್ಷತಾ ಪ್ರಮಾಣಪತ್ರ</string>
+    <string name="ui_cert_body">ಫಿಲ್ಟರ್ ಸಾಥಿ ಸಂಪ್ ಸೆನ್ಸರ್ ಮತ್ತು ಫಿಲ್ಟರ್ ಸ್ಥಾಪಿಸಲಾಗಿದೆ ಮತ್ತು ಮಾಹಿತಿ ಕಳುಹಿಸುತ್ತಿದೆ.</string>
+    <string name="ui_cert_date">ದಿನಾಂಕ</string>
+    <string name="ui_date_val">11 ಅಕ್ಟೋಬರ್ 2026</string>
+    <string name="ui_cert_read">ಮಾಪನಗಳು</string>
+    <string name="ui_read_val">TDS 312 ppm · pH 7.2</string>
+    <string name="ui_cert_inst">ಸ್ಥಾಪಕರು</string>
+    <string name="ui_cert_verify">ಪರಿಶೀಲಿಸಲು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
+    <string name="ui_qr_sample">ಮಾದರಿ QR</string>
+    <string name="ui_print">ಮುದ್ರಿಸಿ / ಉಳಿಸಿ</string>
+    <string name="ui_back">ಟ್ರ್ಯಾಕಿಂಗ್ಗೆ ಹಿಂತಿರುಗಿ</string>
+    <string name="ui_cov_title">ಜಿಲ್ಲಾ ವ್ಯಾಪ್ತಿ</string>
+    <string name="ui_none">ಮನವಿ ಇಲ್ಲ</string>
+    <string name="ui_sump_level">ನೇರ ಸಂಪ್ ಮಟ್ಟ</string>
+    <string name="ui_s_req">ಮನವಿ</string>
+    <string name="ui_s_sch">ನಿಗದಿ</string>
+    <string name="ui_s_ins">ಸ್ಥಾಪಿಸಲಾಗಿದೆ</string>
+    <string-array name="ui_district_names">
+        <item>ಬಾಗಲಕೋಟೆ</item>
+        <item>ಬಳ್ಳಾರಿ</item>
+        <item>ಬೆಳಗಾವಿ</item>
+        <item>ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ</item>
+        <item>ಬೆಂಗಳೂರು ದಕ್ಷಿಣ</item>
+        <item>ಬೆಂಗಳೂರು ನಗರ</item>
+        <item>ಬೀದರ್</item>
+        <item>ಚಾಮರಾಜನಗರ</item>
+        <item>ಚಿಕ್ಕಬಳ್ಳಾಪುರ</item>
+        <item>ಚಿಕ್ಕಮಗಳೂರು</item>
+        <item>ಚಿತ್ರದುರ್ಗ</item>
+        <item>ದಕ್ಷಿಣ ಕನ್ನಡ</item>
+        <item>ದಾವಣಗೆರೆ</item>
+        <item>ಧಾರವಾಡ</item>
+        <item>ಗದಗ</item>
+        <item>ಹಾಸನ</item>
+        <item>ಹಾವೇರಿ</item>
+        <item>ಕಲಬುರಗಿ</item>
+        <item>ಕೊಡಗು</item>
+        <item>ಕೋಲಾರ</item>
+        <item>ಕೊಪ್ಪಳ</item>
+        <item>ಮಂಡ್ಯ</item>
+        <item>ಮೈಸೂರು</item>
+        <item>ರಾಯಚೂರು</item>
+        <item>ಶಿವಮೊಗ್ಗ</item>
+        <item>ತುಮಕೂರು</item>
+        <item>ಉಡುಪಿ</item>
+        <item>ಉತ್ತರ ಕನ್ನಡ</item>
+        <item>ವಿಜಯನಗರ</item>
+        <item>ವಿಜಯಪುರ</item>
+        <item>ಯಾದಗಿರಿ</item>
+    </string-array>
+    <!-- Stage 7, Month labels and unit symbols -->
+    <string name="ui_stg_done">ಪೂರ್ಣಗೊಂಡಿದೆ</string>
+    <string name="ui_m_may">ಮೇ</string>
+    <string name="ui_m_jun">ಜೂನ್</string>
+    <string name="ui_m_jul">ಜುಲೈ</string>
+    <string name="ui_m_aug">ಆಗಸ್ಟ್</string>
+    <string name="ui_m_sep">ಸೆಪ್ಟೆಂಬರ್</string>
+    <string name="ui_m_oct">ಅಕ್ಟೋಬರ್</string>
+    <string name="ui_unit_ppm">ಪಿಪಿಎಂ</string>
+    <string name="ui_unit_mgl">ಮಿಗ್ರಾಂ/ಲೀ</string>
+<!-- Welcome Screen Strings (Bilingual and fixed) -->
+    <string name="ui_welcome_brand">ಫಿಲ್ಟರ್ ಸಾಥಿ · FilterSaathi</string>
+    <string name="ui_welcome_tagline">ಪ್ರತಿ ಹನಿ, ಸುರಕ್ಷಿತ · Every drop, verified.</string>
+    <string name="ui_welcome_choose_lang">ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ · Choose language</string>
+    <string name="ui_lang_kn">ಕನ್ನಡ</string>
+    <string name="ui_lang_en">English</string>
+</resources>
