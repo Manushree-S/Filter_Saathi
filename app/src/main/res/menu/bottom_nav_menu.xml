@@ -2,21 +2,21 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_nav_home"
-        android:title="@string/nav_home" />
+        android:title="@string/ui_nav_home" />
     <item
-        android:id="@+id/navigation_filters"
-        android:icon="@drawable/ic_nav_filters"
-        android:title="@string/nav_filters" />
-    <item
-        android:id="@+id/navigation_check"
+        android:id="@+id/navigation_book"
         android:icon="@drawable/ic_checklist"
-        android:title="@string/nav_check" />
+        android:title="@string/ui_nav_book" />
     <item
-        android:id="@+id/navigation_test"
-        android:icon="@drawable/ic_nav_test"
-        android:title="@string/nav_test" />
+        android:id="@+id/navigation_test_strip"
+        android:icon="@drawable/ic_test_strip"
+        android:title="@string/ui_nav_scan" />
     <item
-        android:id="@+id/navigation_reports"
+        android:id="@+id/navigation_water_check"
+        android:icon="@drawable/ic_water_drop"
+        android:title="@string/ui_nav_public" />
+    <item
+        android:id="@+id/navigation_report"
         android:icon="@drawable/ic_report"
-        android:title="@string/nav_reports" />
+        android:title="@string/ui_nav_report" />
 </menu>

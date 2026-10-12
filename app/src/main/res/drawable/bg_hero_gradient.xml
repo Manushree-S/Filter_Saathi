@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <corners android:radius="20dp" />
-    <gradient
-        android:angle="135"
-        android:startColor="@color/secondary_blue"
-        android:centerColor="#1867AE"
-        android:endColor="@color/aqua"
-        android:type="linear" />
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 135-degree gradient #0F2A5C to #1D4896 -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="315"
+                android:startColor="@color/hero_gradient_start"
+                android:endColor="@color/hero_gradient_end"
+                android:type="linear" />
+        </shape>
+    </item>
+    <!-- Top-right Aqua radial glow -->
+    <item android:gravity="top|end">
+        <shape android:shape="oval">
+            <size android:width="280dp" android:height="280dp" />
+            <gradient
+                android:gradientRadius="180dp"
+                android:startColor="@color/hero_glow_aqua"
+                android:endColor="@android:color/transparent"
+                android:type="radial" />
+        </shape>
+    </item>
+    <!-- Bottom-left Saffron radial glow -->
+    <item android:gravity="bottom|start">
+        <shape android:shape="oval">
+            <size android:width="240dp" android:height="240dp" />
+            <gradient
+                android:gradientRadius="160dp"
+                android:startColor="@color/hero_glow_saffron"
+                android:endColor="@android:color/transparent"
+                android:type="radial" />
+        </shape>
+    </item>
+</layer-list>

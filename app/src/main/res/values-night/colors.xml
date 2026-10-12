@@ -42,4 +42,28 @@
     <color name="topbar_blue">#1D4896</color>
     <color name="topbar_green">#18803A</color>
     <color name="welcome_card_bg">#17213A</color>
+
+    <!-- Language Toggle Tokens -->
+    <color name="lang_toggle_bg">#1E293B</color>
+    <color name="lang_toggle_stroke">#334155</color>
+    <color name="lang_toggle_selected_bg">#1D4896</color>
+
+    <!-- Hero Pill Tokens -->
+    <color name="hero_pill_bg">#2618803A</color>
+    <color name="hero_pill_stroke">#34D399</color>
+    <color name="hero_pill_text">#A7F3D0</color>
+
+    <!-- Hero Section Design Tokens -->
+    <color name="hero_title_text">#FFFFFF</color>
+    <color name="hero_sub_text">#E2E8F0</color>
+    <color name="hero_btn_text">#FFFFFF</color>
+    <color name="hero_btn_ghost_stroke">#B3FFFFFF</color>
+    <color name="glass_panel_bg">#1AFFFFFF</color>
+    <color name="glass_panel_stroke">#40FFFFFF</color>
+    <color name="hero_gradient_start">#0F2A5C</color>
+    <color name="hero_gradient_end">#1D4896</color>
+    <color name="hero_glow_aqua">#2600E5FF</color>
+    <color name="hero_glow_saffron">#20E8801A</color>
+    <color name="lang_toggle_text_selected">#FFFFFF</color>
+    <color name="btn_ripple_color">#33FFFFFF</color>
 </resources>

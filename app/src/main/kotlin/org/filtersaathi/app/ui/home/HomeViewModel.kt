@@ -1,63 +1,49 @@
 package org.filtersaathi.app.ui.home
 
+import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import org.filtersaathi.app.data.local.entity.FilterEntity
-import org.filtersaathi.app.data.repository.FilterRepository
-import org.filtersaathi.app.domain.model.ImpactStatItem
-import org.filtersaathi.app.domain.model.MaintenanceItem
-import org.filtersaathi.app.domain.model.VillageSummary
-import org.filtersaathi.app.domain.model.WaterQualityParameter
+import dagger.hilt.android.qualifiers.ApplicationContext
+import org.filtersaathi.app.data.repository.FakeRepository
+import org.filtersaathi.app.domain.model.BannerEvent
+import org.filtersaathi.app.domain.model.BookingRequest
+import org.filtersaathi.app.domain.model.UserProfile
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repository: FilterRepository
+    @ApplicationContext private val context: Context,
+    private val fakeRepository: FakeRepository
 ) : ViewModel() {
 
-    // Role state: CARETAKER vs OFFICER vs ENGINEER
-    private val _userRole = MutableLiveData("CARETAKER")
-    val userRole: LiveData<String> = _userRole
+    private val prefs = context.getSharedPreferences("filtersaathi_app_prefs", Context.MODE_PRIVATE)
 
-    // Urgent banner visibility state (can be dismissed by user)
-    private val _isAlertDismissed = MutableLiveData(false)
-    val isAlertDismissed: LiveData<Boolean> = _isAlertDismissed
+    val currentUser: LiveData<UserProfile?> = fakeRepository.currentUser
+    val currentBooking: LiveData<BookingRequest?> = fakeRepository.currentBooking
+    val isOfflineDemo: LiveData<Boolean> = fakeRepository.isOfflineDemo
+    val topBannerEvent: LiveData<BannerEvent?> = fakeRepository.topBannerEvent
 
-    // Loading State
-    private val _isLoading = MutableLiveData(false)
-    val isLoading: LiveData<Boolean> = _isLoading
+    fun saveLanguagePreference(langCode: String) {
+        prefs.edit()
+            .putBoolean("key_language_chosen", true)
+            .putString("key_selected_locale", langCode)
+            .commit()
+    }
 
-    // Expose LiveData directly for clean Java consumption
-    val villageSummary: LiveData<VillageSummary> = repository.villageSummary
-    val upcomingMaintenance: LiveData<List<MaintenanceItem>> = repository.upcomingMaintenance
-    val impactStats: LiveData<List<ImpactStatItem>> = repository.impactStats
-    val latestWaterParams: LiveData<List<WaterQualityParameter>> = repository.latestWaterParams
-    val mostUrgentFilter: LiveData<FilterEntity?> = repository.mostUrgentFilter
-    val isOffline: LiveData<Boolean> = repository.isOffline
-
-    init {
-        viewModelScope.launch {
-            repository.seedRoomDatabaseIfEmpty()
+    fun getCurrentLanguage(): String {
+        val appLocales = AppCompatDelegate.getApplicationLocales()
+        if (!appLocales.isEmpty) {
+            val tag = appLocales[0]?.language
+            if (!tag.isNullOrEmpty()) {
+                return tag
+            }
         }
-    }
-
-    fun dismissAlert() {
-        _isAlertDismissed.value = true
-    }
-
-    fun toggleRole() {
-        _userRole.value = if (_userRole.value == "CARETAKER") "OFFICER" else "CARETAKER"
-    }
-
-    fun refresh() {
-        _isLoading.value = true
-        viewModelScope.launch {
-            repository.refreshData()
-            _isLoading.value = false
+        val saved = prefs.getString("key_selected_locale", null)
+        if (!saved.isNullOrEmpty()) {
+            return saved
         }
+        return context.resources.configuration.locales[0].language
     }
 }
