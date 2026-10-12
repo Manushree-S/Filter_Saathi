@@ -9,71 +9,53 @@ import kotlin.random.Random
 
 /**
  * Deterministic in-memory fake repository for FilterSaathi Phase 1 Frontend.
- * Follows the user specification exactly.
+ * Follows the specification strictly:
+ * - No user-facing text in Kotlin (enums, numbers, and keys only).
+ * - Starts signed out (currentUser is null).
+ * - No booking at start (currentBooking is null).
+ * - Stages 1 to 7 (7 = all done, advanceStageDemo stops at 7).
+ * - Offline pendingSync flag.
  */
 @Singleton
 class FakeRepository @Inject constructor() {
 
-    // --- Current User State (Whoever registers) ---
-    private val _currentUser = MutableLiveData(
-        UserProfile(
-            isLoggedIn = true,
-            name = "Ravi Kumar",
-            phone = "+91 94481 23456"
-        )
-    )
-    val currentUser: LiveData<UserProfile> = _currentUser
+    // --- Current User State (Starts signed out, no user) ---
+    private val _currentUser = MutableLiveData<UserProfile?>(null)
+    val currentUser: LiveData<UserProfile?> = _currentUser
 
-    // --- Sample Installer (Ramesh Gowda, 8 years, 120+ installations) ---
+    // --- Sample Installer (Keys & digits only) ---
     val sampleInstaller = Installer(
-        name = "Ramesh Gowda",
-        phone = "+91 98765 43210",
-        experienceYears = 8,
-        installationsDone = "120+ installations"
+        nameKey = "ui_installer_name",
+        phone = "+919876543210",
+        expKey = "ui_installer_exp"
     )
 
-    // --- Offline Mode Simulation State ---
+    // --- Offline Mode Simulation State & Pending Sync Flag ---
     private val _isOfflineDemo = MutableLiveData(false)
     val isOfflineDemo: LiveData<Boolean> = _isOfflineDemo
 
-    // --- Top Banner Events (Booked, Saved offline, Synced) ---
+    private var pendingSync = false
+
+    // --- Top Banner Events ---
     private val _topBannerEvent = MutableLiveData<BannerEvent?>()
     val topBannerEvent: LiveData<BannerEvent?> = _topBannerEvent
 
-    // --- Current Booking & Tracking State ---
-    private val _currentBooking = MutableLiveData<BookingRequest>(
-        BookingRequest(
-            requestNumber = "FS-2026-1042",
-            district = "Tumakuru",
-            taluk = "Gubbi",
-            village = "Chikkanahalli",
-            sumpLocation = "Primary Health Centre, Main Sump",
-            pinCode = "572216",
-            currentStage = 3, // Starts at stage 3 so installer card is visible in demo
-            installer = sampleInstaller,
-            rating = 0
-        )
-    )
+    // --- Current Booking State (Starts null) ---
+    private val _currentBooking = MutableLiveData<BookingRequest?>(null)
     val currentBooking: LiveData<BookingRequest?> = _currentBooking
 
-    // --- Notifications State ---
+    // --- Notifications State (3 notifications with keys, unread count = 3) ---
     private val _notifications = MutableLiveData<List<AppNotification>>(
         listOf(
-            AppNotification(
-                id = "NOTIF-1",
-                titleKey = "ui_stg3",
-                description = "Installer assigned: Ramesh Gowda (+91 98765 43210)",
-                isRead = false
-            ),
-            AppNotification(
-                id = "NOTIF-2",
-                titleKey = "ui_a1",
-                description = "Sample alert: Nitrate above limit (62 mg/L) in Doddabele",
-                isRead = false
-            )
+            AppNotification("N1", "ui_nt1", "ui_tm1", false),
+            AppNotification("N2", "ui_nt2", "ui_tm2", false),
+            AppNotification("N3", "ui_nt3", "ui_tm3", false)
         )
     )
     val notifications: LiveData<List<AppNotification>> = _notifications
+
+    private val _unreadNotificationCount = MutableLiveData(3)
+    val unreadNotificationCount: LiveData<Int> = _unreadNotificationCount
 
     // --- Problem Reports Storage ---
     private val _problemReports = MutableLiveData<List<ProblemReport>>(emptyList())
@@ -81,46 +63,64 @@ class FakeRepository @Inject constructor() {
 
     // --- Fixed Test Strip Result (Phase 1 Simulation) ---
     val fixedTestStripResult = TestStripResult(
-        tdsPpm = 312,
+        tds = 312,
+        tdsStatus = ReadingStatus.SAFE,
         ph = 7.2,
-        chlorineMgL = 0.1,
-        chlorineStatus = "Low",
-        nitrateMgL = 62,
-        nitrateStatus = "Unsafe",
-        warningTextKey = "ui_scan_warn"
+        phStatus = ReadingStatus.SAFE,
+        chlorine = 0.1,
+        chlorineStatus = ReadingStatus.WATCH,
+        nitrate = 62,
+        nitrateStatus = ReadingStatus.UNSAFE,
+        warningKey = "ui_scan_warn"
+    )
+
+    // 31 Karnataka district keys matching ui_district_keys order
+    private val districtKeys = listOf(
+        "Bagalkot", "Ballari", "Belagavi",
+        "Bengaluru_Rural".replace('_', ' '),
+        "Bengaluru_South".replace('_', ' '),
+        "Bengaluru_Urban".replace('_', ' '),
+        "Bidar", "Chamarajanagar", "Chikkaballapura", "Chikkamagaluru", "Chitradurga",
+        "Dakshina_Kannada".replace('_', ' '),
+        "Davanagere", "Dharwad", "Gadag", "Hassan", "Haveri",
+        "Kalaburagi", "Kodagu", "Kolar", "Koppal", "Mandya", "Mysuru", "Raichur",
+        "Shivamogga", "Tumakuru", "Udupi",
+        "Uttara_Kannada".replace('_', ' '),
+        "Vijayanagara", "Vijayapura", "Yadgir"
     )
 
     // --- Auth Actions ---
     fun registerOrLogin(name: String, phone: String) {
         _currentUser.value = UserProfile(
             isLoggedIn = true,
-            name = name.trim().ifEmpty { "Guest User" },
+            name = name.trim(),
             phone = phone.trim()
         )
     }
 
     fun logout() {
-        _currentUser.value = UserProfile(
-            isLoggedIn = false,
-            name = "",
-            phone = ""
-        )
+        _currentUser.value = null
     }
 
     // --- Offline Simulation Toggle ---
     fun toggleOfflineDemo(): Boolean {
         val nextState = !(_isOfflineDemo.value ?: false)
         _isOfflineDemo.value = nextState
-        val reqNo = _currentBooking.value?.requestNumber ?: "FS-2026-1042"
-        if (!nextState) {
-            // Reconnected online -> show Synced banner
+        if (!nextState && pendingSync) {
+            val reqNo = _currentBooking.value?.requestNumber ?: ""
             _topBannerEvent.value = BannerEvent(BannerType.SYNCED, reqNo)
+            pendingSync = false
         }
         return nextState
     }
 
     fun dismissTopBanner() {
         _topBannerEvent.value = null
+    }
+
+    fun markNotificationsRead() {
+        _unreadNotificationCount.value = 0
+        _notifications.value = _notifications.value?.map { it.copy(isRead = true) }
     }
 
     // --- Booking Actions ---
@@ -146,6 +146,7 @@ class FakeRepository @Inject constructor() {
         _currentBooking.value = newBooking
 
         if (_isOfflineDemo.value == true) {
+            pendingSync = true
             _topBannerEvent.value = BannerEvent(BannerType.SAVED_OFFLINE, reqNumber)
         } else {
             _topBannerEvent.value = BannerEvent(BannerType.BOOKED, reqNumber)
@@ -153,28 +154,19 @@ class FakeRepository @Inject constructor() {
         return newBooking
     }
 
-    // --- Stage Progression for Demo ("Next stage (demo)") ---
+    // --- Stage Progression for Demo (Next stage demo) ---
+    // Stages 1 to 6, plus 7 = all done. advanceStageDemo() stops at 7 (no wrap).
     fun advanceStageDemo(): Int {
         val current = _currentBooking.value ?: return 1
-        val nextStage = if (current.currentStage < 6) current.currentStage + 1 else 1
+        val nextStage = if (current.currentStage < 7) current.currentStage + 1 else 7
         _currentBooking.value = current.copy(currentStage = nextStage)
         return nextStage
     }
 
-    // --- Reset for Demo ("New request") ---
+    // --- Reset for Demo (New request) ---
+    // Clears the booking and returns to Book
     fun resetToNewRequestDemo() {
-        val randomNum = Random.nextInt(1000, 9999)
-        val reqNumber = "FS-2026-$randomNum"
-        _currentBooking.value = BookingRequest(
-            requestNumber = reqNumber,
-            district = "Tumakuru",
-            taluk = "Gubbi",
-            village = "Chikkanahalli",
-            sumpLocation = "Main Community Sump",
-            pinCode = "572216",
-            currentStage = 1,
-            installer = sampleInstaller
-        )
+        _currentBooking.value = null
     }
 
     fun submitRating(stars: Int) {
@@ -182,36 +174,45 @@ class FakeRepository @Inject constructor() {
         _currentBooking.value = current.copy(rating = stars)
     }
 
+    // --- Status Calculation from Score ---
+    private fun scoreToStatus(score: Int): ReadingStatus = when {
+        score >= 80 -> ReadingStatus.SAFE
+        score >= 50 -> ReadingStatus.WATCH
+        else -> ReadingStatus.UNSAFE
+    }
+
     // --- Public Water Check Query ---
     fun getWaterCheck(district: String): VillageWaterData {
         val clean = district.trim()
+        val mysuruReadings = listOf(
+            WaterReading(ReadingType.TDS, 312.0, ReadingStatus.SAFE),
+            WaterReading(ReadingType.PH, 7.2, ReadingStatus.SAFE),
+            WaterReading(ReadingType.CHLORINE, 0.5, ReadingStatus.SAFE),
+            WaterReading(ReadingType.NITRATE, 12.0, ReadingStatus.SAFE)
+        )
+
         return when {
             clean.equals("Mysuru", ignoreCase = true) -> VillageWaterData(
                 district = "Mysuru",
                 village = "Hosahalli",
-                taluk = "Mysore Taluk",
-                overallStatus = ReadingStatus.SAFE,
-                statusMessage = "Safe to drink",
-                readings = listOf(
-                    WaterReading("TDS", "142", "ppm", ReadingStatus.SAFE, "Ideal minerals"),
-                    WaterReading("pH", "7.2", "", ReadingStatus.SAFE, "Balanced"),
-                    WaterReading("Chlorine", "0.4", "mg/L", ReadingStatus.SAFE, "Adequate"),
-                    WaterReading("Nitrate", "12", "mg/L", ReadingStatus.SAFE, "Well below limit")
-                ),
+                score = 91,
+                status = scoreToStatus(91),
+                testedDateKey = "ui_pub_date",
+                readings = mysuruReadings,
                 hasReadings = true
             )
 
             clean.equals("Tumakuru", ignoreCase = true) -> VillageWaterData(
                 district = "Tumakuru",
                 village = "Chikkanahalli",
-                taluk = "Gubbi",
-                overallStatus = ReadingStatus.SAFE,
-                statusMessage = "Safe to drink",
+                score = 68,
+                status = scoreToStatus(68),
+                testedDateKey = "ui_pub_date",
                 readings = listOf(
-                    WaterReading("TDS", "210", "ppm", ReadingStatus.SAFE, "Normal"),
-                    WaterReading("pH", "7.4", "", ReadingStatus.SAFE, "Balanced"),
-                    WaterReading("Chlorine", "0.3", "mg/L", ReadingStatus.SAFE, "Normal"),
-                    WaterReading("Nitrate", "18", "mg/L", ReadingStatus.SAFE, "Safe")
+                    WaterReading(ReadingType.TDS, 420.0, ReadingStatus.WATCH),
+                    WaterReading(ReadingType.PH, 7.4, ReadingStatus.SAFE),
+                    WaterReading(ReadingType.CHLORINE, 0.1, ReadingStatus.WATCH),
+                    WaterReading(ReadingType.NITRATE, 18.0, ReadingStatus.SAFE)
                 ),
                 hasReadings = true
             )
@@ -219,14 +220,14 @@ class FakeRepository @Inject constructor() {
             clean.equals("Chikkaballapura", ignoreCase = true) -> VillageWaterData(
                 district = "Chikkaballapura",
                 village = "Doddabele",
-                taluk = "Chikkaballapura",
-                overallStatus = ReadingStatus.UNSAFE,
-                statusMessage = "Do not drink · Nitrate above limit",
+                score = 41,
+                status = scoreToStatus(41),
+                testedDateKey = "ui_pub_date",
                 readings = listOf(
-                    WaterReading("TDS", "450", "ppm", ReadingStatus.WATCH, "High minerals"),
-                    WaterReading("pH", "7.8", "", ReadingStatus.WATCH, "Slightly alkaline"),
-                    WaterReading("Chlorine", "0.1", "mg/L", ReadingStatus.WATCH, "Low disinfection"),
-                    WaterReading("Nitrate", "62", "mg/L", ReadingStatus.UNSAFE, "Above safe limit")
+                    WaterReading(ReadingType.TDS, 480.0, ReadingStatus.WATCH),
+                    WaterReading(ReadingType.PH, 7.6, ReadingStatus.SAFE),
+                    WaterReading(ReadingType.CHLORINE, 0.3, ReadingStatus.SAFE),
+                    WaterReading(ReadingType.NITRATE, 62.0, ReadingStatus.UNSAFE)
                 ),
                 hasReadings = true
             )
@@ -234,39 +235,29 @@ class FakeRepository @Inject constructor() {
             clean.equals("Shivamogga", ignoreCase = true) -> VillageWaterData(
                 district = "Shivamogga",
                 village = "Bettahalli",
-                taluk = "Thirthahalli",
-                overallStatus = ReadingStatus.SAFE,
-                statusMessage = "Safe to drink",
-                readings = listOf(
-                    WaterReading("TDS", "95", "ppm", ReadingStatus.SAFE, "Pure natural water"),
-                    WaterReading("pH", "6.9", "", ReadingStatus.SAFE, "Neutral"),
-                    WaterReading("Chlorine", "0.5", "mg/L", ReadingStatus.SAFE, "Optimal"),
-                    WaterReading("Nitrate", "8", "mg/L", ReadingStatus.SAFE, "Low")
-                ),
+                score = 86,
+                status = scoreToStatus(86),
+                testedDateKey = "ui_pub_date",
+                readings = mysuruReadings,
                 hasReadings = true
             )
 
             clean.equals("Mandya", ignoreCase = true) -> VillageWaterData(
                 district = "Mandya",
                 village = "Kyathanahalli",
-                taluk = "Pandavapura",
-                overallStatus = ReadingStatus.SAFE,
-                statusMessage = "Safe to drink",
-                readings = listOf(
-                    WaterReading("TDS", "180", "ppm", ReadingStatus.SAFE, "Normal"),
-                    WaterReading("pH", "7.1", "", ReadingStatus.SAFE, "Balanced"),
-                    WaterReading("Chlorine", "0.3", "mg/L", ReadingStatus.SAFE, "Normal"),
-                    WaterReading("Nitrate", "15", "mg/L", ReadingStatus.SAFE, "Safe")
-                ),
+                score = 88,
+                status = scoreToStatus(88),
+                testedDateKey = "ui_pub_date",
+                readings = mysuruReadings,
                 hasReadings = true
             )
 
             else -> VillageWaterData(
                 district = district,
                 village = "",
-                taluk = "",
-                overallStatus = ReadingStatus.WATCH,
-                statusMessage = "No readings yet for this district.",
+                score = 0,
+                status = ReadingStatus.WATCH,
+                testedDateKey = "ui_pub_date",
                 readings = emptyList(),
                 hasReadings = false
             )
@@ -275,74 +266,74 @@ class FakeRepository @Inject constructor() {
 
     // --- Report Problem Submission ---
     fun submitProblemReport(
-        problemType: String,
+        problemType: ProblemType,
         village: String,
         details: String,
         hasPhoto: Boolean
     ): ProblemReport {
         val randomNum = Random.nextInt(1000, 9999)
+        val ticketNum = "FS-R-$randomNum"
         val ticket = ProblemReport(
-            ticketNumber = "FS-R-$randomNum",
+            ticketNumber = ticketNum,
             problemType = problemType,
             village = village,
             details = details,
-            hasPhotoAttached = hasPhoto
+            hasPhoto = hasPhoto
         )
         val currentList = _problemReports.value ?: emptyList()
         _problemReports.value = listOf(ticket) + currentList
+        _topBannerEvent.value = BannerEvent(BannerType.REPORT_SENT, ticketNum)
         return ticket
     }
 
     // --- Officer Overview Sample Data ---
     fun getOfficerOverviewData(): OfficerOverviewData {
-        val colorSafe = 0xFFD4EBDD.toInt()   // light green
-        val colorBlue = 0xFFCFE0F7.toInt()   // light blue
-        val colorWatch = 0xFFFBE7C0.toInt()  // light amber
-        val colorUnsafe = 0xFFFDECEC.toInt() // light red
-
-        val fillOverrides = mapOf(
-            "Mysuru" to colorSafe,
-            "Tumakuru" to colorSafe,
-            "Shivamogga" to colorSafe,
-            "Mandya" to colorSafe,
-            "Chikkaballapura" to colorUnsafe,
-            "Bengaluru Urban" to colorBlue,
-            "Belagavi" to colorBlue,
-            "Dakshina Kannada" to colorBlue,
-            "Udupi" to colorSafe,
-            "Ballari" to colorWatch,
-            "Kalaburagi" to colorWatch
-        )
+        val coverage = mutableMapOf<String, CoverageStatus>()
+        districtKeys.forEachIndexed { i, key ->
+            val status = when ((i * 7 + 3) % 4) {
+                0 -> CoverageStatus.INSTALLED
+                1 -> CoverageStatus.SCHEDULED
+                2 -> CoverageStatus.REQUESTED
+                else -> CoverageStatus.NO_REQUEST
+            }
+            coverage[key] = status
+        }
 
         return OfficerOverviewData(
-            kpis = listOf(
-                OfficerKpi("Active filters", "1,420", "+28 this month", true),
-                OfficerKpi("Verified safe", "94.2%", "+1.4% improvement", true),
-                OfficerKpi("Pending surveys", "18", "Scheduled this week", false),
-                OfficerKpi("Offline sensors", "3", "Attention required", false)
+            kpis = OfficerKpis(
+                monitoredCount = 1248,
+                workingPercent = 90.2,
+                safeTestsPercent = 94.2,
+                openAlertsCount = 37
             ),
             monthlyTrend = listOf(
-                MonthBarData("Oct", 185),
-                MonthBarData("Nov", 210),
-                MonthBarData("Dec", 245),
-                MonthBarData("Jan", 290),
-                MonthBarData("Feb", 340),
-                MonthBarData("Mar", 380)
+                MonthBarItem("ui_m_may", 88),
+                MonthBarItem("ui_m_jun", 90),
+                MonthBarItem("ui_m_jul", 91),
+                MonthBarItem("ui_m_aug", 92),
+                MonthBarItem("ui_m_sep", 93),
+                MonthBarItem("ui_m_oct", 94)
             ),
             alerts = listOf(
-                "Doddabele Anganwadi: Nitrate level high (62 mg/L)",
-                "Chikkanahalli PHC: Sensor telemetry delayed"
+                OfficerAlert("ui_a1", "Doddabele", "ui_tag_unsafe", ReadingStatus.UNSAFE),
+                OfficerAlert("ui_a2", "Chikkanahalli", "ui_tag_urgent", ReadingStatus.UNSAFE),
+                OfficerAlert("ui_a3", "Hosahalli", "ui_tag_soon", ReadingStatus.SAFE)
             ),
-            villageStatuses = listOf(
-                VillageStatusRow("Doddabele", "Chikkaballapura", ReadingStatus.UNSAFE, "Nitrate 62 mg/L"),
-                VillageStatusRow("Hosahalli", "Mysuru", ReadingStatus.SAFE, "TDS 142 ppm"),
-                VillageStatusRow("Chikkanahalli", "Tumakuru", ReadingStatus.SAFE, "TDS 210 ppm"),
-                VillageStatusRow("Bettahalli", "Shivamogga", ReadingStatus.SAFE, "TDS 95 ppm"),
-                VillageStatusRow("Kyathanahalli", "Mandya", ReadingStatus.SAFE, "TDS 180 ppm")
+            villageRows = listOf(
+                OfficerVillageRow("Hosahalli", 14, 91, ReadingStatus.SAFE),
+                OfficerVillageRow("Chikkanahalli", 9, 68, ReadingStatus.WATCH),
+                OfficerVillageRow("Doddabele", 12, 41, ReadingStatus.UNSAFE),
+                OfficerVillageRow("Bettahalli", 6, 86, ReadingStatus.SAFE),
+                OfficerVillageRow("Kyathanahalli", 7, 88, ReadingStatus.SAFE)
             ),
-            sumpsMonitoredCount = 48,
-            sumpAverageLevelPercent = 76,
-            districtFillOverrides = fillOverrides
+            sumpStats = SumpStats(
+                requestedCount = 42,
+                scheduledCount = 18,
+                installedCount = 96,
+                totalCount = 156,
+                tankLevelPercent = 78
+            ),
+            coverageMap = coverage
         )
     }
 }

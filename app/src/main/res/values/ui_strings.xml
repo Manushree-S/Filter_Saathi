@@ -262,4 +262,15 @@
         <item>Vijayapura</item>
         <item>Yadgir</item>
     </string-array>
+
+    <!-- Stage 7, Month labels and unit symbols -->
+    <string name="ui_stg_done">Completed</string>
+    <string name="ui_m_may">May</string>
+    <string name="ui_m_jun">Jun</string>
+    <string name="ui_m_jul">Jul</string>
+    <string name="ui_m_aug">Aug</string>
+    <string name="ui_m_sep">Sep</string>
+    <string name="ui_m_oct">Oct</string>
+    <string name="ui_unit_ppm">ppm</string>
+    <string name="ui_unit_mgl">mg/L</string>
 </resources>

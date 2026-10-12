@@ -262,4 +262,14 @@
         <item>ವಿಜಯಪುರ</item>
         <item>ಯಾದಗಿರಿ</item>
     </string-array>
+    <!-- Stage 7, Month labels and unit symbols -->
+    <string name="ui_stg_done">ಪೂರ್ಣಗೊಂಡಿದೆ</string>
+    <string name="ui_m_may">ಮೇ</string>
+    <string name="ui_m_jun">ಜೂನ್</string>
+    <string name="ui_m_jul">ಜುಲೈ</string>
+    <string name="ui_m_aug">ಆಗಸ್ಟ್</string>
+    <string name="ui_m_sep">ಸೆಪ್ಟೆಂಬರ್</string>
+    <string name="ui_m_oct">ಅಕ್ಟೋಬರ್</string>
+    <string name="ui_unit_ppm">ಪಿಪಿಎಂ</string>
+    <string name="ui_unit_mgl">ಮಿಗ್ರಾಂ/ಲೀ</string>
 </resources>
