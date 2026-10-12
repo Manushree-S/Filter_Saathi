@@ -1,7 +1,6 @@
 package org.filtersaathi.app.ui.home;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,7 +24,6 @@ import org.filtersaathi.app.util.PdfReportGenerator;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
 
 @AndroidEntryPoint
 public class HomeFragment extends Fragment {
@@ -73,9 +71,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupClickListeners() {
-        // Language Toggle (EN / ಕನ್ನಡ)
-        binding.btnLanguageToggle.setOnClickListener(v -> toggleLanguage());
-
         // Alert banner actions
         binding.btnDismissAlert.setOnClickListener(v -> viewModel.dismissAlert());
         binding.btnAlertFixNow.setOnClickListener(v -> {
@@ -166,22 +161,6 @@ public class HomeFragment extends Fragment {
         viewModel.isOffline().observe(getViewLifecycleOwner(), isOffline -> {
             binding.bannerOffline.setVisibility(isOffline ? View.VISIBLE : View.GONE);
         });
-    }
-
-    private void toggleLanguage() {
-        Locale current = getResources().getConfiguration().getLocales().get(0);
-        String targetLang = current.getLanguage().equalsIgnoreCase("kn") ? "en" : "kn";
-
-        Locale newLocale = new Locale(targetLang);
-        Locale.setDefault(newLocale);
-        Configuration config = new Configuration();
-        config.setLocale(newLocale);
-        requireActivity().getResources().updateConfiguration(
-                config, requireActivity().getResources().getDisplayMetrics()
-        );
-
-        // Recreate activity to apply Kannada / English string resources cleanly
-        requireActivity().recreate();
     }
 
     private void showReportFaultDialog() {
