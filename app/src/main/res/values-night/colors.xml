@@ -36,4 +36,10 @@
     <!-- Saffron Shades -->
     <color name="saffron_dark">#B45309</color>
     <color name="saffron_light">#E8801A</color>
+
+    <!-- Welcome Screen Topbar & Card Tokens -->
+    <color name="topbar_saffron">#E8801A</color>
+    <color name="topbar_blue">#1D4896</color>
+    <color name="topbar_green">#18803A</color>
+    <color name="welcome_card_bg">#17213A</color>
 </resources>

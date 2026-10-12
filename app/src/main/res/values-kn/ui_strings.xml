@@ -272,4 +272,10 @@
     <string name="ui_m_oct">ಅಕ್ಟೋಬರ್</string>
     <string name="ui_unit_ppm">ಪಿಪಿಎಂ</string>
     <string name="ui_unit_mgl">ಮಿಗ್ರಾಂ/ಲೀ</string>
+<!-- Welcome Screen Strings (Bilingual and fixed) -->
+    <string name="ui_welcome_brand">ಫಿಲ್ಟರ್ ಸಾಥಿ · FilterSaathi</string>
+    <string name="ui_welcome_tagline">ಪ್ರತಿ ಹನಿ, ಸುರಕ್ಷಿತ · Every drop, verified.</string>
+    <string name="ui_welcome_choose_lang">ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ · Choose language</string>
+    <string name="ui_lang_kn">ಕನ್ನಡ</string>
+    <string name="ui_lang_en">English</string>
 </resources>
