@@ -44,6 +44,14 @@ class FakeRepository @Inject constructor() {
     private val _currentBooking = MutableLiveData<BookingRequest?>(null)
     val currentBooking: LiveData<BookingRequest?> = _currentBooking
 
+    // --- Selected District from Map (pre-fill for Book) ---
+    private val _selectedDistrict = MutableLiveData<String?>(null)
+    val selectedDistrict: LiveData<String?> = _selectedDistrict
+
+    fun selectDistrict(district: String?) {
+        _selectedDistrict.value = district
+    }
+
     // --- Notifications State (3 notifications with keys, unread count = 3) ---
     private val _notifications = MutableLiveData<List<AppNotification>>(
         listOf(

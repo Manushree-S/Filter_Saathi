@@ -248,7 +248,394 @@
                     android:contentDescription="@null" />
             </LinearLayout>
 
-            <!-- 4. CONTAINER FOR FUTURE HOME SECTIONS (2b How it works, 2c Our impact, 2d District map) -->
+            <!-- 4. STEP 2b: HOW IT WORKS SECTION -->
+            <LinearLayout
+                android:id="@+id/sectionHowItWorks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="24dp">
+
+                <!-- Section Heading: "How it works" -->
+                <TextView
+                    android:id="@+id/tvHowTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ui_how"
+                    android:textColor="@color/text_primary_light"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <!-- Flow Container: Stacks vertically on phones, side-by-side on wide screens -->
+                <LinearLayout
+                    android:id="@+id/layoutHowCardsFlow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp">
+
+                    <!-- Card 1: Panchayat -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardHowPanchayat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/surface_card_light"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp"
+                        app:strokeColor="@color/surface_card_stroke_light"
+                        app:strokeWidth="1dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="16dp"
+                            android:minHeight="72dp">
+
+                            <!-- 48dp Rounded Badge: Landmark -->
+                            <FrameLayout
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@drawable/bg_card_badge_neutral">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_landmark"
+                                    android:contentDescription="@null"
+                                    app:tint="@color/card_badge_neutral_icon" />
+                            </FrameLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="16dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/ui_c1"
+                                    android:textColor="@color/text_primary_light"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:text="@string/ui_c1t"
+                                    android:textColor="@color/text_secondary_light"
+                                    android:textSize="13sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Arrow 1 (Down on stacked phones, Right on wide screens) -->
+                    <ImageView
+                        android:id="@+id/ivArrowHow1"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginVertical="8dp"
+                        android:src="@drawable/ic_arrow_down"
+                        android:contentDescription="@null"
+                        app:tint="@color/how_arrow_color" />
+
+                    <!-- Card 2: FilterSaathi (Highlighted with navy-to-blue gradient and white text) -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardHowFilterSaathi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:strokeWidth="0dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/bg_card_highlight_gradient"
+                            android:padding="16dp"
+                            android:minHeight="72dp">
+
+                            <!-- 48dp Rounded Badge: Shield Check -->
+                            <FrameLayout
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@drawable/bg_card_badge_highlight">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_shield_check"
+                                    android:contentDescription="@null"
+                                    app:tint="@color/card_badge_highlight_icon" />
+                            </FrameLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="16dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/ui_brand"
+                                    android:textColor="@color/hero_title_text"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:text="@string/ui_c2t"
+                                    android:textColor="@color/promo_card_text_sub"
+                                    android:textSize="13sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Arrow 2 (Down on stacked phones, Right on wide screens) -->
+                    <ImageView
+                        android:id="@+id/ivArrowHow2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginVertical="8dp"
+                        android:src="@drawable/ic_arrow_down"
+                        android:contentDescription="@null"
+                        app:tint="@color/how_arrow_color" />
+
+                    <!-- Card 3: BWSSB or installer -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardHowInstaller"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/surface_card_light"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp"
+                        app:strokeColor="@color/surface_card_stroke_light"
+                        app:strokeWidth="1dp"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="16dp"
+                            android:minHeight="72dp">
+
+                            <!-- 48dp Rounded Badge: Wrench -->
+                            <FrameLayout
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@drawable/bg_card_badge_neutral">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_wrench"
+                                    android:contentDescription="@null"
+                                    app:tint="@color/card_badge_neutral_icon" />
+                            </FrameLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginStart="16dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/ui_c3"
+                                    android:textColor="@color/text_primary_light"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="4dp"
+                                    android:text="@string/ui_c3t"
+                                    android:textColor="@color/text_secondary_light"
+                                    android:textSize="13sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <!-- Green Notice under the cards: ui_no_pay with alert_green_bg & alert_green_text -->
+                <LinearLayout
+                    android:id="@+id/noticeNoPayments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/bg_notice_green"
+                    android:layout_marginTop="16dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_check"
+                        android:contentDescription="@null"
+                        app:tint="@color/alert_green_text" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/ui_no_pay"
+                        android:textColor="@color/alert_green_text"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- 5. STEP 2b: TEST STRIP PROMO BANNER -->
+            <LinearLayout
+                android:id="@+id/sectionTestStripPromo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="20dp">
+
+                <!-- Rounded navy-to-blue gradient card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardTestStripPromo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_promo_gradient"
+                        android:padding="20dp">
+
+                        <!-- Top Row: Title, hint and 4 colored pads -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <!-- Left: Title & Hint -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvPromoTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/ui_scan_title"
+                                    android:textColor="@color/hero_title_text"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvPromoHint"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="6dp"
+                                    android:text="@string/ui_scan_hint"
+                                    android:textColor="@color/promo_card_text_sub"
+                                    android:textSize="13sp"
+                                    android:lineSpacingExtra="2dp" />
+                            </LinearLayout>
+
+                            <!-- Right: Test Strip Pad Holder with 4 colored pads (#E6C84A, #A8C25C, #D88BA8, #C4572A) -->
+                            <LinearLayout
+                                android:id="@+id/layoutTestStripPadsHolder"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="14dp"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:background="@drawable/bg_test_strip_holder"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="12dp">
+
+                                <View
+                                    android:layout_width="16dp"
+                                    android:layout_height="16dp"
+                                    android:background="@drawable/bg_strip_pad_1" />
+
+                                <View
+                                    android:layout_width="16dp"
+                                    android:layout_height="16dp"
+                                    android:layout_marginTop="6dp"
+                                    android:background="@drawable/bg_strip_pad_2" />
+
+                                <View
+                                    android:layout_width="16dp"
+                                    android:layout_height="16dp"
+                                    android:layout_marginTop="6dp"
+                                    android:background="@drawable/bg_strip_pad_3" />
+
+                                <View
+                                    android:layout_width="16dp"
+                                    android:layout_height="16dp"
+                                    android:layout_marginTop="6dp"
+                                    android:background="@drawable/bg_strip_pad_4" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <!-- Saffron Button: ui_scan_btn, 48dp min height, navigates to Test strip tab -->
+                        <TextView
+                            android:id="@+id/btnPromoScanStrip"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:minHeight="48dp"
+                            android:layout_marginTop="18dp"
+                            android:gravity="center"
+                            android:background="@drawable/bg_btn_saffron"
+                            android:text="@string/ui_scan_btn"
+                            android:textColor="@color/hero_btn_text"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- 6. CONTAINER FOR FUTURE HOME SECTIONS (2c Our impact, 2d District map) -->
             <LinearLayout
                 android:id="@+id/containerFutureSections"
                 android:layout_width="match_parent"

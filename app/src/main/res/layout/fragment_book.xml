@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="20dp"
+        android:gravity="center_horizontal">
+
+        <!-- Main Form Card with Tricolour Top Bar -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/surface_card_light"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="3dp"
+            app:strokeColor="@color/surface_card_stroke_light"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- 5dp Tricolour top bar -->
+                <LinearLayout
+                    android:id="@+id/topBarTricolour"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/topbar_saffron" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/topbar_blue" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/topbar_green" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="22dp">
+
+                    <!-- Step Indicator: 1 Register (Done), 2 Book (Active), 3 Track (Inactive) -->
+                    <LinearLayout
+                        android:id="@+id/layoutStepIndicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="20dp">
+
+                        <!-- Step 1: Register (Done/Check) -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <FrameLayout
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                android:background="@drawable/bg_step_done">
+
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_check"
+                                    android:contentDescription="@null"
+                                    app:tint="#FFFFFF" />
+                            </FrameLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:text="@string/ui_s1"
+                                android:textColor="@color/text_secondary_light"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <!-- Connector Line 1-2 -->
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="8dp"
+                            android:background="@color/status_success" />
+
+                        <!-- Step 2: Book (Active) -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                android:background="@drawable/bg_step_active"
+                                android:gravity="center"
+                                android:text="2"
+                                android:textColor="#FFFFFF"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:text="@string/ui_s2"
+                                android:textColor="@color/text_primary_light"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Connector Line 2-3 -->
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="8dp"
+                            android:background="@color/divider_light" />
+
+                        <!-- Step 3: Track (Inactive) -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                android:background="@drawable/bg_step_inactive"
+                                android:gravity="center"
+                                android:text="3"
+                                android:textColor="@color/text_secondary_light"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:text="@string/ui_s3"
+                                android:textColor="@color/text_secondary_light"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Title -->
+                    <TextView
+                        android:id="@+id/tvBookTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ui_book_title"
+                        android:textColor="@color/text_primary_light"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="18dp" />
+
+                    <!-- District Dropdown Field -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilDistrict"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:hint="@string/ui_district"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/secondary_blue"
+                        app:hintTextColor="@color/secondary_blue">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/actvDistrict"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:inputType="none"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Taluk Field -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilTaluk"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:hint="@string/ui_taluk"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/secondary_blue"
+                        app:hintTextColor="@color/secondary_blue">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etTaluk"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:inputType="textCapWords"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Village or Gram Panchayat Field -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilVillage"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:hint="@string/ui_village"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/secondary_blue"
+                        app:hintTextColor="@color/secondary_blue">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etVillage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:inputType="textCapWords"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Sump Location Field -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilSumpLocation"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:hint="@string/ui_sump"
+                        app:placeholderText="@string/ui_sump_hint"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/secondary_blue"
+                        app:hintTextColor="@color/secondary_blue">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etSumpLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:inputType="textCapSentences"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- PIN Code Field (6 digits) -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilPinCode"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:hint="@string/ui_pin"
+                        app:placeholderText="@string/ui_pin_hint"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxStrokeColor="@color/secondary_blue"
+                        app:hintTextColor="@color/secondary_blue">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etPinCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Error Text (Fill all fields. PIN 6 digits) -->
+                    <TextView
+                        android:id="@+id/tvBookError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/ui_err_book"
+                        android:textColor="@color/status_danger"
+                        android:textSize="13sp"
+                        android:visibility="gone" />
+
+                    <!-- Book Installation Button (Saffron) -->
+                    <TextView
+                        android:id="@+id/btnBook"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:minHeight="48dp"
+                        android:gravity="center"
+                        android:background="@drawable/bg_btn_saffron"
+                        android:text="@string/ui_book_btn"
+                        android:textColor="@color/hero_btn_text"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:clickable="true"
+                        android:focusable="true" />
+
+                    <!-- No payments green notice -->
+                    <LinearLayout
+                        android:id="@+id/noticeNoPayments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_notice_green"
+                        android:layout_marginTop="20dp"
+                        android:paddingHorizontal="14dp"
+                        android:paddingVertical="10dp">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_check"
+                            android:contentDescription="@null"
+                            app:tint="@color/alert_green_text" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/ui_no_pay"
+                            android:textColor="@color/alert_green_text"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
