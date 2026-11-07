@@ -67,7 +67,15 @@
             app:destination="@id/navigation_book"
             app:popUpTo="@id/navigation_track"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_track_to_certificate"
+            app:destination="@id/navigation_certificate" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_certificate"
+        android:name="org.filtersaathi.app.ui.certificate.CertificateFragment"
+        android:label="@string/ui_cert_title" />
 
     <fragment
         android:id="@+id/navigation_test_strip"
