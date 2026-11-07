@@ -1,41 +1,43 @@
 package org.filtersaathi.app.ui.home;
 
-import android.content.Intent;
+import android.animation.ObjectAnimator;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.LocaleListCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import com.google.android.material.card.MaterialCardView;
+
 import dagger.hilt.android.AndroidEntryPoint;
 import org.filtersaathi.app.R;
 import org.filtersaathi.app.databinding.FragmentHomeBinding;
-import org.filtersaathi.app.ui.adapters.ImpactStatsAdapter;
-import org.filtersaathi.app.ui.adapters.MaintenanceAdapter;
-import org.filtersaathi.app.ui.adapters.WaterParamsAdapter;
-import org.filtersaathi.app.util.PdfReportGenerator;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Locale;
-
+/**
+ * HomeFragment for FilterSaathi Phase 1 (Step 2a + Step 2b).
+ * Displays:
+ * 1. 6dp tricolour strip
+ * 2. Toolbar row with logo, brand and EN | ಕನ್ನಡ segmented toggle
+ * 3. Hero container with headline, sub-headline, SumpHeroView, saffron CTA and ghost button
+ * 4. "How it works" section with 3 cards (Panchayat -> FilterSaathi -> BWSSB or installer) and arrows
+ * 5. Green notice "No payments in this app."
+ * 6. Test strip promo banner with 4 colored pads and "Scan strip" CTA
+ */
 @AndroidEntryPoint
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private HomeViewModel viewModel;
-
-    private ImpactStatsAdapter impactStatsAdapter;
-    private MaintenanceAdapter maintenanceAdapter;
-    private WaterParamsAdapter waterParamsAdapter;
 
     @Nullable
     @Override
@@ -48,203 +50,112 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Obtain Kotlin ViewModel in Java
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
-        setupAdapters();
-        setupClickListeners();
-        observeViewModel();
+        setupLanguageToggle();
+        setupNavigationButtons();
+        setupHowItWorksSection();
+        setupTestStripPromo();
     }
 
-    private void setupAdapters() {
-        impactStatsAdapter = new ImpactStatsAdapter();
-        binding.rvImpactStats.setLayoutManager(
-                new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        );
-        binding.rvImpactStats.setAdapter(impactStatsAdapter);
+    private void setupLanguageToggle() {
+        updateLanguageToggleUI();
 
-        maintenanceAdapter = new MaintenanceAdapter();
-        binding.rvMaintenance.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.rvMaintenance.setAdapter(maintenanceAdapter);
-
-        waterParamsAdapter = new WaterParamsAdapter();
-        binding.rvWaterParams.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.rvWaterParams.setAdapter(waterParamsAdapter);
+        binding.btnLangEn.setOnClickListener(v -> setAppLanguage("en"));
+        binding.btnLangKn.setOnClickListener(v -> setAppLanguage("kn"));
     }
 
-    private void setupClickListeners() {
-        // Language Toggle (EN / ಕನ್ನಡ)
-        binding.btnLanguageToggle.setOnClickListener(v -> toggleLanguage());
-
-        // Alert banner actions
-        binding.btnDismissAlert.setOnClickListener(v -> viewModel.dismissAlert());
-        binding.btnAlertFixNow.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.navigation_check);
-        });
-
-        // Quick action tiles (2x2)
-        binding.tileStartCheck.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.navigation_check);
-        });
-
-        binding.tileScanStrip.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.navigation_test);
-        });
-
-        binding.tileReportFault.setOnClickListener(v -> showReportFaultDialog());
-
-        binding.tileRequestSump.setOnClickListener(v -> showSumpRequestDialog());
-
-        // Sump monitoring button
-        binding.btnRequestSump.setOnClickListener(v -> showSumpRequestDialog());
-
-        // Reports actions
-        binding.btnOpenPdf.setOnClickListener(v -> openGeneratedPdf());
-        binding.btnShareWhatsapp.setOnClickListener(v -> shareReportOnWhatsapp());
-
-        // Help strip actions
-        binding.btnHelplineCall.setOnClickListener(v -> dialHelpline());
-        binding.btnVoiceAssist.setOnClickListener(v -> triggerVoiceAssist());
-
-        // Location chip switches role/village info
-        binding.chipLocation.setOnClickListener(v -> viewModel.toggleRole());
+    private void updateLanguageToggleUI() {
+        String currentLang = viewModel.getCurrentLanguage();
+        boolean isKannada = "kn".equalsIgnoreCase(currentLang);
+        binding.btnLangKn.setSelected(isKannada);
+        binding.btnLangEn.setSelected(!isKannada);
     }
 
-    private void observeViewModel() {
-        // Observe Village Summary & Health Score
-        viewModel.getVillageSummary().observe(getViewLifecycleOwner(), summary -> {
-            if (summary != null) {
-                binding.chipLocation.setText(summary.getVillageName());
-                binding.healthScoreRing.setScore(summary.getOverallHealthScore(), true);
-
-                if (summary.getOverallHealthScore() >= 80) {
-                    binding.tvHealthScoreStatus.setText(R.string.health_score_status_good);
-                } else if (summary.getOverallHealthScore() >= 50) {
-                    binding.tvHealthScoreStatus.setText(R.string.health_score_status_watch);
-                } else {
-                    binding.tvHealthScoreStatus.setText(R.string.health_score_status_critical);
-                }
-
-                if (summary.getScoreDelta() >= 0) {
-                    binding.tvHealthScoreDelta.setText(getString(R.string.health_score_delta_positive));
-                } else {
-                    binding.tvHealthScoreDelta.setText(getString(R.string.health_score_delta_negative));
-                }
-            }
-        });
-
-        // Observe Alert dismissal
-        viewModel.isAlertDismissed().observe(getViewLifecycleOwner(), isDismissed -> {
-            binding.cardAlertBanner.setVisibility(isDismissed ? View.GONE : View.VISIBLE);
-        });
-
-        // Observe Impact Stats
-        viewModel.getImpactStats().observe(getViewLifecycleOwner(), stats -> {
-            impactStatsAdapter.setItems(stats);
-        });
-
-        // Observe Upcoming Maintenance
-        viewModel.getUpcomingMaintenance().observe(getViewLifecycleOwner(), items -> {
-            maintenanceAdapter.setItems(items);
-        });
-
-        // Observe Water Test Parameters
-        viewModel.getLatestWaterParams().observe(getViewLifecycleOwner(), params -> {
-            waterParamsAdapter.setItems(params);
-        });
-
-        // Observe Role toggle (Caretaker vs Officer)
-        viewModel.getUserRole().observe(getViewLifecycleOwner(), role -> {
-            if ("OFFICER".equals(role)) {
-                binding.tvRoleIndicator.setText(R.string.role_officer);
-            } else {
-                binding.tvRoleIndicator.setText(R.string.role_caretaker);
-            }
-        });
-
-        // Observe Offline State Banner
-        viewModel.isOffline().observe(getViewLifecycleOwner(), isOffline -> {
-            binding.bannerOffline.setVisibility(isOffline ? View.VISIBLE : View.GONE);
-        });
-    }
-
-    private void toggleLanguage() {
-        Locale current = getResources().getConfiguration().getLocales().get(0);
-        String targetLang = current.getLanguage().equalsIgnoreCase("kn") ? "en" : "kn";
-
-        Locale newLocale = new Locale(targetLang);
-        Locale.setDefault(newLocale);
-        Configuration config = new Configuration();
-        config.setLocale(newLocale);
-        requireActivity().getResources().updateConfiguration(
-                config, requireActivity().getResources().getDisplayMetrics()
-        );
-
-        // Recreate activity to apply Kannada / English string resources cleanly
-        requireActivity().recreate();
-    }
-
-    private void showReportFaultDialog() {
-        new MaterialAlertDialogBuilder(requireContext())
-                .setTitle(R.string.action_report_fault)
-                .setMessage("Report a breakdown or damaged tap at your local RO/UV centre. Panchayat engineers will be alerted.")
-                .setPositiveButton("Submit Report", (dialog, which) -> {
-                    Toast.makeText(requireContext(), "Fault report dispatched with GPS coordinates.", Toast.LENGTH_SHORT).show();
-                })
-                .setNegativeButton(android.R.string.cancel, null)
-                .show();
-    }
-
-    private void showSumpRequestDialog() {
-        new MaterialAlertDialogBuilder(requireContext())
-                .setTitle(R.string.sump_card_title)
-                .setMessage("Submit request for IoT sump sensor deployment under Jal Jeevan Mission?")
-                .setPositiveButton("Confirm Request", (dialog, which) -> {
-                    binding.chipSumpStatus.setText("Requested");
-                    Toast.makeText(requireContext(), "Sensor request logged. Verification scheduled.", Toast.LENGTH_LONG).show();
-                })
-                .setNegativeButton(android.R.string.cancel, null)
-                .show();
-    }
-
-    private void openGeneratedPdf() {
-        try {
-            File pdf = PdfReportGenerator.generateMonthlyReport(
-                    requireContext(),
-                    binding.chipLocation.getText().toString(),
-                    88
-            );
-            Toast.makeText(requireContext(), "Monthly Report ready: " + pdf.getName(), Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            Toast.makeText(requireContext(), "Error creating PDF: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+    private void setAppLanguage(@NonNull String langCode) {
+        if (langCode.equalsIgnoreCase(viewModel.getCurrentLanguage())) {
+            return;
         }
+
+        // 1. Save language choice to SharedPreferences with commit() BEFORE calling setApplicationLocales
+        viewModel.saveLanguagePreference(langCode);
+
+        // 2. Set application locales via AppCompatDelegate (triggers activity recreate cleanly)
+        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(langCode));
     }
 
-    private void shareReportOnWhatsapp() {
-        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
-        whatsappIntent.setType("text/plain");
-        whatsappIntent.setPackage("com.whatsapp");
-        whatsappIntent.putExtra(
-                Intent.EXTRA_TEXT,
-                "Jal Jeevan Mission - FilterSaathi Audit Report: Hosahalli Gram Panchayat water health score is 88/100 (Safe). Clean drinking water verified."
-        );
+    private void setupNavigationButtons() {
+        binding.btnRequestInstallation.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.navigation_book);
+        });
+
+        binding.btnCheckVillageWater.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.navigation_water_check);
+        });
+    }
+
+    private void setupHowItWorksSection() {
+        // Adjust arrows based on screen orientation / width
+        updateHowItWorksArrows();
+
+        // Add press elevation / lift animation to the cards (skipped when animations are disabled)
+        setupCardLift(binding.cardHowPanchayat, 2f, 6f);
+        setupCardLift(binding.cardHowFilterSaathi, 4f, 8f);
+        setupCardLift(binding.cardHowInstaller, 2f, 6f);
+    }
+
+    private void updateHowItWorksArrows() {
+        boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        int screenWidthDp = getResources().getConfiguration().screenWidthDp;
+
+        // Wide layout (e.g. tablet or landscape): right arrow; stacked: down arrow
+        int arrowRes = (isLandscape || screenWidthDp >= 600) ? R.drawable.ic_arrow_right : R.drawable.ic_arrow_down;
+        binding.ivArrowHow1.setImageResource(arrowRes);
+        binding.ivArrowHow2.setImageResource(arrowRes);
+    }
+
+    private void setupCardLift(@NonNull MaterialCardView card, float baseElevationDp, float liftElevationDp) {
+        if (!areAnimationsEnabled()) {
+            return;
+        }
+
+        float density = getResources().getDisplayMetrics().density;
+        float basePx = baseElevationDp * density;
+        float liftPx = liftElevationDp * density;
+
+        card.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    ObjectAnimator.ofFloat(card, "cardElevation", basePx, liftPx)
+                            .setDuration(120)
+                            .start();
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    ObjectAnimator.ofFloat(card, "cardElevation", liftPx, basePx)
+                            .setDuration(150)
+                            .start();
+                    break;
+            }
+            return false;
+        });
+    }
+
+    private void setupTestStripPromo() {
+        binding.btnPromoScanStrip.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.navigation_test_strip);
+        });
+    }
+
+    private boolean areAnimationsEnabled() {
         try {
-            startActivity(whatsappIntent);
+            float scale = Settings.Global.getFloat(
+                    requireContext().getContentResolver(),
+                    Settings.Global.ANIMATOR_DURATION_SCALE, 1.0f);
+            return scale > 0.0f;
         } catch (Exception e) {
-            // WhatsApp not installed, launch generic share chooser
-            Intent shareIntent = Intent.createChooser(whatsappIntent, "Share Water Audit");
-            startActivity(shareIntent);
+            return true;
         }
-    }
-
-    private void dialHelpline() {
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:18005592837"));
-        startActivity(intent);
-    }
-
-    private void triggerVoiceAssist() {
-        Toast.makeText(requireContext(), "ಧ್ವನಿ ಸಹಾಯ ಪ್ರಾರಂಭವಾಗುತ್ತಿದೆ... (Voice Assistant listening)", Toast.LENGTH_SHORT).show();
     }
 
     @Override

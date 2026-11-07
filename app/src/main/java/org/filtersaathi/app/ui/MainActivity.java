@@ -26,6 +26,13 @@ public class MainActivity extends AppCompatActivity {
         if (navHostFragment != null) {
             navController = navHostFragment.getNavController();
             NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
+            navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+                if (destination.getId() == R.id.navigation_welcome) {
+                    binding.bottomNavigation.setVisibility(android.view.View.GONE);
+                } else {
+                    binding.bottomNavigation.setVisibility(android.view.View.VISIBLE);
+                }
+            });
         }
     }
 }
