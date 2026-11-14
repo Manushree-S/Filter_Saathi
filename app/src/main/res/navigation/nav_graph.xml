@@ -91,4 +91,9 @@
         android:id="@+id/navigation_report"
         android:name="org.filtersaathi.app.ui.report.ReportFragment"
         android:label="@string/ui_nav_report" />
+
+    <fragment
+        android:id="@+id/navigation_officer_overview"
+        android:name="org.filtersaathi.app.ui.officer.OfficerOverviewFragment"
+        android:label="@string/ui_ov_title" />
 </navigation>

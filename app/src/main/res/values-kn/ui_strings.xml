@@ -281,4 +281,18 @@
     <string name="ui_lang_en_short">EN</string>
     <string name="ui_lang_kn_short">ಕನ್ನಡ</string>
     <string name="ui_placeholder_desc">ಈ ವಿಭಾಗವು ಶೀಘ್ರದಲ್ಲೇ ಲಭ್ಯವಾಗಲಿದೆ.</string>
+
+    <!-- Officer Overview & Toolbar Strings -->
+    <string name="ui_sample_badge_count">3</string>
+    <string name="ui_acc_symbol">Aa</string>
+    <string name="ui_kpi_monitored_val">1,248</string>
+    <string name="ui_kpi_working_val" formatted="false">90.2%</string>
+    <string name="ui_kpi_safe_val" formatted="false">94.2%</string>
+    <string name="ui_kpi_alerts_val">37</string>
+    <string name="ui_sump_installed_ratio">96 / 156</string>
+    <string name="ui_sump_scheduled_ratio">18 / 156</string>
+    <string name="ui_sump_requested_ratio">42 / 156</string>
+    <string name="ui_village_doddabele">ದೊಡ್ಡಬೆಲೆ</string>
+    <string name="ui_village_chikkanahalli">ಚಿಕ್ಕನಹಳ್ಳಿ</string>
+    <string name="ui_village_hosahalli">ಹೊಸಹಳ್ಳಿ</string>
 </resources>

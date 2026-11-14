@@ -164,7 +164,15 @@ public class DistrictMapView extends View {
         District selected = null;
         for (District d : districts) {
             if (selectedKey != null && d.keys.contains(selectedKey)) { selected = d; continue; }
-            Integer override = fillOverrides == null ? null : fillOverrides.get(d.keys.get(0));
+            Integer override = null;
+            if (fillOverrides != null) {
+                for (String k : d.keys) {
+                    if (fillOverrides.containsKey(k)) {
+                        override = fillOverrides.get(k);
+                        break;
+                    }
+                }
+            }
             fillPaint.setColor(override != null ? override : palette[d.colorIndex % palette.length]);
             canvas.drawPath(d.scaled, fillPaint);
             canvas.drawPath(d.scaled, strokePaint);

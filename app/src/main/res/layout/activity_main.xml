@@ -5,6 +5,326 @@
     android:layout_height="match_parent"
     android:background="@color/background_light">
 
+    <!-- Top Application Bar Container (Hidden on Welcome) -->
+    <LinearLayout
+        android:id="@+id/layoutTopAppArea"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:elevation="4dp"
+        android:background="@color/surface_card_light"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- 6dp Tricolour Strip -->
+        <LinearLayout
+            android:id="@+id/mainTricolourStrip"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/topbar_saffron" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/topbar_blue" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/topbar_green" />
+        </LinearLayout>
+
+        <!-- Main Toolbar Row (Horizontally scrollable on small screens to fit all controls comfortably) -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp">
+
+                <!-- Brand Logo & Name -->
+                <ImageView
+                    android:id="@+id/ivToolbarLogo"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_welcome_logo"
+                    android:contentDescription="@string/ui_brand" />
+
+                <TextView
+                    android:id="@+id/tvToolbarBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/ui_brand"
+                    android:textColor="@color/text_primary_light"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <!-- 1. Offline Chip (Online / Offline) -->
+                <LinearLayout
+                    android:id="@+id/chipOfflineMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/bg_offline_chip"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="@string/ui_online">
+
+                    <View
+                        android:id="@+id/viewOfflineDot"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:background="@drawable/bg_stage_done" />
+
+                    <TextView
+                        android:id="@+id/tvOfflineStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:text="@string/ui_online"
+                        android:textColor="@color/text_primary_light"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- 2. Notification Bell with Badge -->
+                <FrameLayout
+                    android:id="@+id/btnNotificationBell"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="4dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="@string/ui_notif">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_notifications"
+                        android:contentDescription="@null"
+                        app:tint="@color/text_primary_light" />
+
+                    <TextView
+                        android:id="@+id/tvNotificationBadge"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/bg_notif_badge"
+                        android:gravity="center"
+                        android:text="@string/ui_sample_badge_count"
+                        android:textColor="@color/tricolour_white"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
+                <!-- 3. Accessibility "Aa" Button -->
+                <TextView
+                    android:id="@+id/btnAccessibility"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="@string/ui_acc_symbol"
+                    android:textColor="@color/text_primary_light"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="@string/ui_acc" />
+
+                <!-- 4. Dark Mode Toggle -->
+                <FrameLayout
+                    android:id="@+id/btnDarkModeToggle"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="@string/ui_theme_btn">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_dark_mode"
+                        android:contentDescription="@null"
+                        app:tint="@color/text_primary_light" />
+                </FrameLayout>
+
+                <!-- 5. EN | ಕನ್ನಡ Segmented Language Toggle (44dp high) -->
+                <LinearLayout
+                    android:id="@+id/mainLangToggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/bg_lang_toggle_container"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:id="@+id/mainBtnLangEn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:minWidth="40dp"
+                        android:gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:text="@string/ui_lang_en_short"
+                        android:textColor="@color/sel_lang_toggle_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_lang_toggle_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/ui_lang_en" />
+
+                    <TextView
+                        android:id="@+id/mainBtnLangKn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:minWidth="44dp"
+                        android:gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:text="@string/ui_lang_kn_short"
+                        android:textColor="@color/sel_lang_toggle_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_lang_toggle_item"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/ui_lang_kn" />
+                </LinearLayout>
+
+                <!-- 6. Register / Login or Hi, <name> / Logout Button -->
+                <TextView
+                    android:id="@+id/btnAuthStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_btn_saffron"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:text="@string/ui_login"
+                    android:textColor="@color/hero_btn_text"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="@string/ui_login" />
+
+                <!-- 7. Overflow Menu Button (Three dots) -->
+                <FrameLayout
+                    android:id="@+id/btnOverflowMenu"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="@string/ui_ov_title">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_more_vert"
+                        android:contentDescription="@null"
+                        app:tint="@color/text_primary_light" />
+                </FrameLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Amber Offline Bar -->
+        <LinearLayout
+            android:id="@+id/layoutOfflineBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/alert_amber_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_sync_offline"
+                android:contentDescription="@null"
+                app:tint="@color/alert_amber_text" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="@string/ui_off_bar"
+                android:textColor="@color/alert_amber_text"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Unified Top Banner System (Booked, Saved offline, Synced, Report sent) -->
+        <LinearLayout
+            android:id="@+id/layoutGlobalTopBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/ivGlobalBannerIcon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/tvGlobalBannerMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btnGlobalBannerClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:gravity="center"
+                android:text="@string/ui_close"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+    </LinearLayout>
+
     <!-- Fragment container for Navigation Graph -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
@@ -12,13 +332,27 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"
+        app:layout_constraintTop_toBottomOf="@id/layoutTopAppArea"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:navGraph="@navigation/nav_graph" />
 
-    <!-- 11. BOTTOM NAVIGATION -->
+    <!-- Floating Speaker Button on Every Screen (Reads current screen aloud) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabSpeaker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/ui_speak"
+        app:srcCompat="@drawable/ic_speaker"
+        app:backgroundTint="@color/accent_saffron"
+        app:tint="@color/hero_btn_text"
+        app:elevation="6dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 11. Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
@@ -29,7 +363,8 @@
         app:itemTextColor="@color/primary_navy"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

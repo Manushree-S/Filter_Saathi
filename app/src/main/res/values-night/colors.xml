@@ -82,4 +82,7 @@
     <color name="test_strip_holder_bg">#1E293B</color>
     <color name="test_strip_holder_stroke">#334155</color>
     <color name="promo_card_text_sub">#E2E8F0</color>
+
+    <!-- Map Legend Neutral -->
+    <color name="map_legend_no_request">#2A3852</color>
 </resources>

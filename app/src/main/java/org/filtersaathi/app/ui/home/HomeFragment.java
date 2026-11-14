@@ -52,6 +52,9 @@ public class HomeFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
+        if (binding.tricolourStrip != null) binding.tricolourStrip.setVisibility(View.GONE);
+        if (binding.toolbarRow != null) binding.toolbarRow.setVisibility(View.GONE);
+
         setupLanguageToggle();
         setupNavigationButtons();
         setupHowItWorksSection();

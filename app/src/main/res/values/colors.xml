@@ -106,4 +106,7 @@
     <color name="test_strip_holder_bg">#F1F5F9</color>
     <color name="test_strip_holder_stroke">#CBD5E1</color>
     <color name="promo_card_text_sub">#E2E8F0</color>
+
+    <!-- Map Legend Neutral -->
+    <color name="map_legend_no_request">#E3E9F4</color>
 </resources>
