@@ -295,4 +295,21 @@
     <string name="ui_village_doddabele">ದೊಡ್ಡಬೆಲೆ</string>
     <string name="ui_village_chikkanahalli">ಚಿಕ್ಕನಹಳ್ಳಿ</string>
     <string name="ui_village_hosahalli">ಹೊಸಹಳ್ಳಿ</string>
+
+    <!-- Local Notifications & Reminders (Feature 4) -->
+    <string name="ui_notif_channel_requests">ವಿನಂತಿ ನವೀಕರಣಗಳು</string>
+    <string name="ui_notif_channel_requests_desc">ಫಿಲ್ಟರ್ ವಿನಂತಿ ನವೀಕರಣಗಳ ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="ui_notif_channel_maint">ನಿರ್ವಹಣೆ ಜ್ಞಾಪನೆಗಳು</string>
+    <string name="ui_notif_channel_maint_desc">ಫಿಲ್ಟರ್ ನಿರ್ವಹಣಾ ವೇಳಾಪಟ್ಟಿಗಳ ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="ui_notif_reminders">ಜ್ಞಾಪನೆಗಳು</string>
+    <string name="ui_notif_reminders_desc">ವಿನಂತಿ ನವೀಕರಣಗಳು ಮತ್ತು ನಿರ್ವಹಣೆ ಎಚ್ಚರಿಕೆಗಳನ್ನು ಪಡೆಯಿರಿ</string>
+    <string name="ui_notif_perm_denied">ಜ್ಞಾಪನೆಗಳನ್ನು ಪಡೆಯಲು ಅಧಿಸೂಚನೆ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ.</string>
+    <string name="ui_notif_demo_run">ನಿರ್ವಹಣಾ ಪರಿಶೀಲನೆ ಚಲಾಯಿಸಿ (ಡೆಮೊ)</string>
+    <string name="ui_notif_demo_triggered">ನಿರ್ವಹಣಾ ಪರಿಶೀಲನೆ ಪೂರ್ಣಗೊಂಡಿದೆ (ಡೆಮೊ)</string>
+    <string name="ui_notif_stage_title">ವಿನಂತಿ ನವೀಕರಣ</string>
+    <string name="ui_notif_stage_body">ವಿನಂತಿ %1$s ಈಗ: %2$s</string>
+    <string name="ui_notif_maint_soon_title">ಶೀಘ್ರದಲ್ಲೇ ನಿರ್ವಹಣೆ ಬಾಕಿ ಇದೆ (ಮಾದರಿ ಮಾಹಿತಿ)</string>
+    <string name="ui_notif_maint_soon_body">%2$s ನಲ್ಲಿರುವ ಫಿಲ್ಟರ್ %1$s ಗೆ %3$d ದಿನಗಳಲ್ಲಿ ಸೇವೆ ಅಗತ್ಯವಿದೆ.</string>
+    <string name="ui_notif_maint_urgent_title">ತುರ್ತು: ನಿರ್ವಹಣೆ ಅಗತ್ಯವಿದೆ (ಮಾದರಿ ಮಾಹಿತಿ)</string>
+    <string name="ui_notif_maint_urgent_body">%2$s ನಲ್ಲಿರುವ ಫಿಲ್ಟರ್ %1$s ಗೆ ತುರ್ತು ನಿರ್ವಹಣೆ ಅಗತ್ಯವಿದೆ (%3$d ದಿನಗಳು ಬಾಕಿ).</string>
 </resources>

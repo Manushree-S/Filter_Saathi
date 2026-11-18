@@ -297,4 +297,21 @@
     <string name="ui_village_doddabele">Doddabele</string>
     <string name="ui_village_chikkanahalli">Chikkanahalli</string>
     <string name="ui_village_hosahalli">Hosahalli</string>
+
+    <!-- Local Notifications & Reminders (Feature 4) -->
+    <string name="ui_notif_channel_requests">Request updates</string>
+    <string name="ui_notif_channel_requests_desc">Notifications for filter request updates</string>
+    <string name="ui_notif_channel_maint">Maintenance reminders</string>
+    <string name="ui_notif_channel_maint_desc">Notifications for filter maintenance schedules</string>
+    <string name="ui_notif_reminders">Reminders</string>
+    <string name="ui_notif_reminders_desc">Receive request updates and maintenance alerts</string>
+    <string name="ui_notif_perm_denied">Notification permission is required to receive reminders.</string>
+    <string name="ui_notif_demo_run">Run maintenance check (Demo)</string>
+    <string name="ui_notif_demo_triggered">Maintenance check executed (Demo)</string>
+    <string name="ui_notif_stage_title">Request update</string>
+    <string name="ui_notif_stage_body">Request %1$s is now: %2$s</string>
+    <string name="ui_notif_maint_soon_title">Maintenance due soon (Sample data)</string>
+    <string name="ui_notif_maint_soon_body">Filter %1$s at %2$s needs service in %3$d days.</string>
+    <string name="ui_notif_maint_urgent_title">Urgent: Maintenance required (Sample data)</string>
+    <string name="ui_notif_maint_urgent_body">Filter %1$s at %2$s requires urgent maintenance (%3$d days remaining).</string>
 </resources>

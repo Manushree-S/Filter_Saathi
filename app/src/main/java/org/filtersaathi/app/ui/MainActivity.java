@@ -17,6 +17,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.os.LocaleListCompat;
 import androidx.navigation.NavController;
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.widget.Toast;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.navigation.NavDestination;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
@@ -24,12 +31,15 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import org.filtersaathi.app.BuildConfig;
 import org.filtersaathi.app.R;
 import org.filtersaathi.app.data.repository.FakeRepository;
 import org.filtersaathi.app.databinding.ActivityMainBinding;
 import org.filtersaathi.app.domain.model.BannerEvent;
 import org.filtersaathi.app.domain.model.BannerType;
+import org.filtersaathi.app.domain.model.BookingRequest;
 import org.filtersaathi.app.domain.model.UserProfile;
+import org.filtersaathi.app.notifications.NotificationHelper;
 
 import java.util.Locale;
 
@@ -45,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     private NavController navController;
     private TextToSpeech textToSpeech;
     private boolean isTtsReady = false;
+    private Integer lastObservedStage = null;
+    private ActivityResultLauncher<String> requestPermissionLauncher;
+    private androidx.appcompat.widget.SwitchCompat activeSheetRemindersSwitch = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +65,45 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        requestPermissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(),
+                isGranted -> {
+                    if (isGranted) {
+                        NotificationHelper.setRemindersEnabled(this, true);
+                        if (activeSheetRemindersSwitch != null) {
+                            activeSheetRemindersSwitch.setChecked(true);
+                        }
+                    } else {
+                        NotificationHelper.setRemindersEnabled(this, false);
+                        if (activeSheetRemindersSwitch != null) {
+                            activeSheetRemindersSwitch.setChecked(false);
+                        }
+                        Toast.makeText(this, R.string.ui_notif_perm_denied, Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+
+        NotificationHelper.createNotificationChannels(this);
         initTextToSpeech();
         setupNavigation();
         setupToolbarControls();
         observeRepositoryState();
+        handleNotificationIntent(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handleNotificationIntent(intent);
+    }
+
+    private void handleNotificationIntent(Intent intent) {
+        if (intent != null && NotificationHelper.DESTINATION_TRACK.equals(intent.getStringExtra(NotificationHelper.EXTRA_NAVIGATE_TO))) {
+            if (navController != null) {
+                navController.navigate(R.id.navigation_track);
+            }
+        }
     }
 
     private void setupNavigation() {
@@ -149,6 +197,22 @@ public class MainActivity extends AppCompatActivity {
 
         // Observe Unified Top Banner System
         fakeRepository.getTopBannerEvent().observe(this, this::updateTopBanner);
+
+        // Observe Current Booking for stage transitions (Feature 4)
+        fakeRepository.getCurrentBooking().observe(this, booking -> {
+            if (booking != null) {
+                if (lastObservedStage != null && !lastObservedStage.equals(booking.getCurrentStage())) {
+                    NotificationHelper.postStageUpdateNotification(
+                            this,
+                            booking.getRequestNumber(),
+                            booking.getCurrentStage()
+                    );
+                }
+                lastObservedStage = booking.getCurrentStage();
+            } else {
+                lastObservedStage = null;
+            }
+        });
     }
 
     private void updateTopBanner(@Nullable BannerEvent event) {
@@ -190,6 +254,43 @@ public class MainActivity extends AppCompatActivity {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         View sheetView = getLayoutInflater().inflate(R.layout.sheet_notifications, null);
         sheetView.findViewById(R.id.btnCloseNotifications).setOnClickListener(v -> dialog.dismiss());
+
+        androidx.appcompat.widget.SwitchCompat switchReminders = sheetView.findViewById(R.id.switchReminders);
+        activeSheetRemindersSwitch = switchReminders;
+        if (switchReminders != null) {
+            switchReminders.setChecked(NotificationHelper.isRemindersEnabled(this));
+            switchReminders.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                                == PackageManager.PERMISSION_GRANTED) {
+                            NotificationHelper.setRemindersEnabled(this, true);
+                        } else {
+                            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+                        }
+                    } else {
+                        NotificationHelper.setRemindersEnabled(this, true);
+                    }
+                } else {
+                    NotificationHelper.setRemindersEnabled(this, false);
+                }
+            });
+        }
+
+        View btnTriggerMaintenanceDemo = sheetView.findViewById(R.id.btnTriggerMaintenanceDemo);
+        if (btnTriggerMaintenanceDemo != null) {
+            if (BuildConfig.DEBUG) {
+                btnTriggerMaintenanceDemo.setVisibility(View.VISIBLE);
+                btnTriggerMaintenanceDemo.setOnClickListener(v -> {
+                    NotificationHelper.checkAndNotifyMaintenance(this, true, true, null);
+                    Toast.makeText(this, R.string.ui_notif_demo_triggered, Toast.LENGTH_SHORT).show();
+                });
+            } else {
+                btnTriggerMaintenanceDemo.setVisibility(View.GONE);
+            }
+        }
+
+        dialog.setOnDismissListener(d -> activeSheetRemindersSwitch = null);
         dialog.setContentView(sheetView);
         dialog.show();
     }
@@ -232,9 +333,16 @@ public class MainActivity extends AppCompatActivity {
     private void showOverflowMenu(View anchor) {
         PopupMenu popup = new PopupMenu(this, anchor);
         popup.getMenu().add(0, 1, 0, R.string.ui_ov_title);
+        if (BuildConfig.DEBUG) {
+            popup.getMenu().add(0, 2, 1, R.string.ui_notif_demo_run);
+        }
         popup.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == 1 && navController != null) {
                 navController.navigate(R.id.navigation_officer_overview);
+                return true;
+            } else if (item.getItemId() == 2) {
+                NotificationHelper.checkAndNotifyMaintenance(this, true, true, null);
+                Toast.makeText(this, R.string.ui_notif_demo_triggered, Toast.LENGTH_SHORT).show();
                 return true;
             }
             return false;

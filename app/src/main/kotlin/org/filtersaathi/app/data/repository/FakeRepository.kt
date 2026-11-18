@@ -69,6 +69,28 @@ class FakeRepository @Inject constructor() {
     private val _problemReports = MutableLiveData<List<ProblemReport>>(emptyList())
     val problemReports: LiveData<List<ProblemReport>> = _problemReports
 
+    // --- Sample Filter Data for Maintenance Reminders (Labelled "Sample data") ---
+    val sampleFilters: List<SampleFilter> = listOf(
+        SampleFilter(
+            filterId = "FS-FLT-101",
+            villageName = "Hosahalli",
+            installDate = "2025-11-20",
+            daysUntilService = 5 // Urgent (< 7 days)
+        ),
+        SampleFilter(
+            filterId = "FS-FLT-102",
+            villageName = "Chikkanahalli",
+            installDate = "2026-01-10",
+            daysUntilService = 18 // Soon (< 30 days)
+        ),
+        SampleFilter(
+            filterId = "FS-FLT-103",
+            villageName = "Doddabele",
+            installDate = "2026-03-01",
+            daysUntilService = 75 // OK (>= 30 days)
+        )
+    )
+
     // --- Fixed Test Strip Result (Phase 1 Simulation) ---
     val fixedTestStripResult = TestStripResult(
         tds = 312,
