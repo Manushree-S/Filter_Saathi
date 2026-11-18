@@ -59,6 +59,21 @@ public class HomeFragment extends Fragment {
         setupNavigationButtons();
         setupHowItWorksSection();
         setupTestStripPromo();
+        setupDistrictMapSection();
+    }
+
+    private void setupDistrictMapSection() {
+        boolean isKannada = "kn".equalsIgnoreCase(viewModel.getCurrentLanguage());
+        binding.homeDistrictMapView.setKannada(isKannada);
+        binding.homeDistrictMapView.setListener(districtKey -> {
+            viewModel.selectDistrict(districtKey);
+            binding.layoutSelectedDistrictBar.setVisibility(View.VISIBLE);
+            binding.tvHomeSelectedDistrict.setText(getString(R.string.ui_dist_map_selected, districtKey));
+        });
+
+        binding.btnHomeBookDistrict.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.navigation_book);
+        });
     }
 
     private void setupLanguageToggle() {

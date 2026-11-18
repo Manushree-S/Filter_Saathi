@@ -98,6 +98,14 @@
                             android:textColor="@color/text_secondary_light"
                             android:textSize="13sp" />
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/ui_scan_tds_note"
+                            android:textColor="@color/text_tertiary_light"
+                            android:textSize="11sp" />
+
                         <!-- Dark Viewfinder with Corner Brackets & Sweeping Laser -->
                         <FrameLayout
                             android:layout_width="match_parent"

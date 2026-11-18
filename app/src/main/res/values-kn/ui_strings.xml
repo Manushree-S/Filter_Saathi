@@ -134,6 +134,7 @@
     <string name="ui_nav_scan">ಟೆಸ್ಟ್ ಸ್ಟ್ರಿಪ್</string>
     <string name="ui_scan_title">ಟೆಸ್ಟ್ ಸ್ಟ್ರಿಪ್ ಸ್ಕ್ಯಾನರ್</string>
     <string name="ui_scan_hint">ಸ್ಟ್ರಿಪ್ ಅನ್ನು ಚೌಕಟ್ಟಿನೊಳಗೆ ಇರಿಸಿ</string>
+    <string name="ui_scan_tds_note">ಟಿಡಿಎಸ್ ಅನ್ನು ಸಂವೇದಕ ಅಥವಾ ಹಸ್ತಚಾಲಿತ ನಮೂದಿನಿಂದ ಪಡೆಯಲಾಗುತ್ತದೆ, ಪಟ್ಟಿಯಿಂದಲ್ಲ.</string>
     <string name="ui_scan_btn">ಸ್ಟ್ರಿಪ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
     <string name="ui_scanning">ಓದಲಾಗುತ್ತಿದೆ…</string>
     <string name="ui_scan_again">ಮತ್ತೆ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
@@ -165,12 +166,13 @@
     <string name="ui_pub_none">ಈ ಜಿಲ್ಲೆಗೆ ಇನ್ನೂ ಮಾಪನಗಳಿಲ್ಲ.</string>
     <string name="ui_pub_last">ಕೊನೆಯ ಪರೀಕ್ಷೆ</string>
     <string name="ui_pub_date">10 ಅಕ್ಟೋಬರ್ 2026</string>
-    <string name="ui_pub_safe">ಕುಡಿಯಲು ಸುರಕ್ಷಿತ</string>
+    <string name="ui_pub_safe">ಮಾಡಲಾದ ಪರೀಕ್ಷೆಗಳ ಮಿತಿಯಲ್ಲಿದೆ</string>
     <string name="ui_pub_watch">ಎಚ್ಚರಿಕೆಯಿಂದ ಬಳಸಿ</string>
     <string name="ui_pub_unsafe">ಕುಡಿಯಬೇಡಿ</string>
-    <string name="ui_pub_safe_txt">ಎಲ್ಲಾ ಮಾಪನಗಳು ಸುರಕ್ಷಿತ ಮಿತಿಯೊಳಗಿವೆ.</string>
+    <string name="ui_pub_safe_txt">ಮಾಡಲಾದ ಪರೀಕ್ಷೆಗಳ ಮಾಪನಗಳು ಮಿತಿಯೊಳಗಿವೆ.</string>
     <string name="ui_pub_watch_txt">ಒಂದು ಮಾಪನ ಕಡಿಮೆ ಇದೆ. ಪರಿಶೀಲನೆ ನಿಗದಿಯಾಗಿದೆ.</string>
     <string name="ui_pub_unsafe_txt">ಒಂದು ಮಾಪನ ಮಿತಿ ಮೀರಿದೆ. ದುರಸ್ತಿ ನಿಗದಿಯಾಗಿದೆ.</string>
+    <string name="ui_pub_no_bacteria_note">ಇದು ಬ್ಯಾಕ್ಟೀರಿಯಾವನ್ನು ಪರೀಕ್ಷಿಸುವುದಿಲ್ಲ. ಅಧಿಕೃತ ಸಲಹೆಯನ್ನು ಅನುಸರಿಸಿ.</string>
     <string name="ui_journey">ನಿಮ್ಮ ನೀರು ಹೇಗೆ ಸುರಕ್ಷಿತವಾಗುತ್ತದೆ</string>
     <string name="ui_j_src">ಮೂಲ</string>
     <string name="ui_j_sump">ಸಂಪ್</string>
@@ -203,7 +205,7 @@
     <string name="ui_a_on">ಆನ್</string>
     <string name="ui_a_off">ಆಫ್</string>
     <string name="ui_scan_warn">ನೈಟ್ರೇಟ್ ಮಿತಿ ಮೀರಿದೆ. ಈ ನೀರನ್ನು ಕುಡಿಯಬೇಡಿ. ಪಂಚಾಯತ್ಗೆ ತಿಳಿಸಲಾಗಿದೆ.</string>
-    <string name="ui_s_safe">ಸುರಕ್ಷಿತ</string>
+    <string name="ui_s_safe">ಮಿತಿಯಲ್ಲಿದೆ</string>
     <string name="ui_s_low">ಕಡಿಮೆ</string>
     <string name="ui_r_tds">TDS</string>
     <string name="ui_r_ph">pH</string>
@@ -295,4 +297,16 @@
     <string name="ui_village_doddabele">ದೊಡ್ಡಬೆಲೆ</string>
     <string name="ui_village_chikkanahalli">ಚಿಕ್ಕನಹಳ್ಳಿ</string>
     <string name="ui_village_hosahalli">ಹೊಸಹಳ್ಳಿ</string>
+
+    <!-- Home Sections 2c & 2d -->
+    <string name="ui_imp_gp">ಗ್ರಾಮ ಪಂಚಾಯತಿಗಳು ಒಳಗೊಂಡಿವೆ</string>
+    <string name="ui_imp_free">ಉಚಿತ ನೀರಿನ ಪರೀಕ್ಷೆ</string>
+    <string name="ui_imp_safety">ನಿರಂತರ ಮೇಲ್ವಿಚಾರಣೆ</string>
+    <string name="ui_dist_map_title">ಜಿಲ್ಲಾ ವ್ಯಾಪ್ತಿ ನಕ್ಷೆ</string>
+    <string name="ui_dist_map_sub">ಬುಕಿಂಗ್ ಅಥವಾ ನೀರಿನ ಪರಿಶೀಲನೆಗಾಗಿ ಯಾವುದೇ ಜಿಲ್ಲೆಯನ್ನು ಸ್ಪರ್ಶಿಸಿ</string>
+    <string name="ui_dist_map_selected">ಆಯ್ಕೆಮಾಡಲಾಗಿದೆ: %1$s</string>
+    <string name="ui_dist_map_book">ಸ್ಥಾಪನೆಗೆ ವಿನಂತಿಸಿ</string>
+    <string name="ui_val_28">28</string>
+    <string name="ui_val_100pct" formatted="false">100%</string>
+    <string name="ui_val_24_7">24/7</string>
 </resources>

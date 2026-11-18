@@ -322,6 +322,16 @@
                             android:text="@string/ui_cert_verify"
                             android:textColor="#526078"
                             android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvCertNoBacteria"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="@string/ui_pub_no_bacteria_note"
+                            android:textColor="#526078"
+                            android:textSize="11sp" />
                     </LinearLayout>
 
                 </LinearLayout>

@@ -25,6 +25,10 @@ class HomeViewModel @Inject constructor(
     val isOfflineDemo: LiveData<Boolean> = fakeRepository.isOfflineDemo
     val topBannerEvent: LiveData<BannerEvent?> = fakeRepository.topBannerEvent
 
+    fun selectDistrict(districtKey: String?) {
+        fakeRepository.selectDistrict(districtKey)
+    }
+
     fun saveLanguagePreference(langCode: String) {
         prefs.edit()
             .putBoolean("key_language_chosen", true)

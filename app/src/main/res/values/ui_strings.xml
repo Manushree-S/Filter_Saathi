@@ -134,6 +134,7 @@
     <string name="ui_nav_scan">Test strip</string>
     <string name="ui_scan_title">Test strip scanner</string>
     <string name="ui_scan_hint">Place the strip inside the frame</string>
+    <string name="ui_scan_tds_note">TDS comes from a sensor or manual entry, not from the strip.</string>
     <string name="ui_scan_btn">Scan strip</string>
     <string name="ui_scanning">Reading…</string>
     <string name="ui_scan_again">Scan again</string>
@@ -165,12 +166,13 @@
     <string name="ui_pub_none">No readings yet for this district.</string>
     <string name="ui_pub_last">Last tested</string>
     <string name="ui_pub_date">10 October 2026</string>
-    <string name="ui_pub_safe">Safe to drink</string>
+    <string name="ui_pub_safe">Within limits for the tests done</string>
     <string name="ui_pub_watch">Use with care</string>
     <string name="ui_pub_unsafe">Do not drink</string>
-    <string name="ui_pub_safe_txt">All readings are within safe limits.</string>
+    <string name="ui_pub_safe_txt">Readings are within acceptable limits for the tests done.</string>
     <string name="ui_pub_watch_txt">One reading is low. A check is scheduled.</string>
     <string name="ui_pub_unsafe_txt">A reading is above the limit. A repair is scheduled.</string>
+    <string name="ui_pub_no_bacteria_note">This does not test for bacteria. Follow official advice.</string>
     <string name="ui_journey">How your water becomes safe</string>
     <string name="ui_j_src">Source</string>
     <string name="ui_j_sump">Sump</string>
@@ -203,7 +205,7 @@
     <string name="ui_a_on">On</string>
     <string name="ui_a_off">Off</string>
     <string name="ui_scan_warn">Nitrate is above the limit. Do not drink this water. The panchayat has been notified.</string>
-    <string name="ui_s_safe">Safe</string>
+    <string name="ui_s_safe">Within limit</string>
     <string name="ui_s_low">Low</string>
     <string name="ui_r_tds">TDS</string>
     <string name="ui_r_ph">pH</string>
@@ -297,4 +299,16 @@
     <string name="ui_village_doddabele">Doddabele</string>
     <string name="ui_village_chikkanahalli">Chikkanahalli</string>
     <string name="ui_village_hosahalli">Hosahalli</string>
+
+    <!-- Home Sections 2c & 2d -->
+    <string name="ui_imp_gp">Gram Panchayats covered</string>
+    <string name="ui_imp_free">Free water testing</string>
+    <string name="ui_imp_safety">Continuous monitoring</string>
+    <string name="ui_dist_map_title">District coverage map</string>
+    <string name="ui_dist_map_sub">Tap any district to select it for booking or water check</string>
+    <string name="ui_dist_map_selected">Selected: %1$s</string>
+    <string name="ui_dist_map_book">Book installation</string>
+    <string name="ui_val_28">28</string>
+    <string name="ui_val_100pct" formatted="false">100%</string>
+    <string name="ui_val_24_7">24/7</string>
 </resources>

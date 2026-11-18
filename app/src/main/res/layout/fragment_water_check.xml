@@ -287,6 +287,15 @@
                             android:textSize="12sp"
                             android:textStyle="italic" />
 
+                        <TextView
+                            android:id="@+id/tvNoBacteriaNote"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/ui_pub_no_bacteria_note"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
