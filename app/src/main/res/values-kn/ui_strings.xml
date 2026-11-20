@@ -19,7 +19,7 @@
     <string name="ui_c2t">ಪರಿಶೀಲಿಸಿ ಕಳುಹಿಸುತ್ತದೆ.</string>
     <string name="ui_c3">BWSSB ಅಥವಾ ಸ್ಥಾಪಕರು</string>
     <string name="ui_c3t">ಸಮೀಕ್ಷೆ ಮತ್ತು ಸ್ಥಾಪನೆ ಮಾಡುತ್ತಾರೆ.</string>
-    <string name="ui_no_pay">ಈ ಆ್ಯಪ್ನಲ್ಲಿ ಯಾವುದೇ ಪಾವತಿ ಇಲ್ಲ.</string>
+    <string name="ui_no_pay">ಈ ಆ್ಯಪ್ ಮೂಲಕ ಯಾವುದೇ ಪಾವತಿ ಸಂಗ್ರಹಿಸಲಾಗುವುದಿಲ್ಲ.</string>
     <string name="ui_g_live">ನೇರ ಮಾಪನ</string>
     <string name="ui_g_tds">TDS · pH · ಮಟ್ಟ</string>
     <string name="ui_g_sed">ಕೆಸರು</string>
