@@ -161,29 +161,80 @@
                                 android:textSize="14sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <!-- Simulated Add Photo Toggle -->
+                        <!-- Real Add Photo Section -->
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="48dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/tvPhotoLabel"
-                                android:layout_width="0dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
                                 android:text="@string/ui_rep_photo"
                                 android:textColor="@color/text_primary_light"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
-                            <androidx.appcompat.widget.SwitchCompat
-                                android:id="@+id/switchPhoto"
-                                android:layout_width="wrap_content"
-                                android:layout_height="48dp"
-                                android:contentDescription="@string/ui_rep_photo" />
+                            <!-- Photo Preview Container -->
+                            <FrameLayout
+                                android:id="@+id/layoutPhotoContainer"
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                android:layout_marginTop="8dp"
+                                android:background="@drawable/bg_test_strip_holder"
+                                android:visibility="gone">
+
+                                <ImageView
+                                    android:id="@+id/ivPhotoPreview"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:contentDescription="@string/ui_rep_photo" />
+
+                                <ImageView
+                                    android:id="@+id/btnRemovePhoto"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_gravity="top|end"
+                                    android:layout_margin="8dp"
+                                    android:background="@drawable/bg_step_inactive"
+                                    android:padding="6dp"
+                                    android:src="@drawable/ic_check"
+                                    android:contentDescription="@null"
+                                    app:tint="#FFFFFF" />
+                            </FrameLayout>
+
+                            <!-- Take Photo Button -->
+                            <LinearLayout
+                                android:id="@+id/btnAttachPhoto"
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:layout_marginTop="8dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:background="@drawable/bg_lang_toggle_container"
+                                android:clickable="true"
+                                android:focusable="true">
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/ic_nav_test"
+                                    android:contentDescription="@null"
+                                    app:tint="@color/secondary_blue" />
+
+                                <TextView
+                                    android:id="@+id/tvAttachPhotoText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text="@string/ui_take_photo_btn"
+                                    android:textColor="@color/secondary_blue"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
                         </LinearLayout>
 
                         <!-- Send Report Button -->

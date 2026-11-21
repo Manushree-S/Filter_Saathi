@@ -59,6 +59,8 @@ data class BookingRequest(
     val village: String,
     val sumpLocation: String,
     val pinCode: String,
+    val latitude: Double? = null,
+    val longitude: Double? = null,
     val currentStage: Int = 1, // 1..6, 7 = all done
     val installer: Installer = Installer(),
     val rating: Int = 0,

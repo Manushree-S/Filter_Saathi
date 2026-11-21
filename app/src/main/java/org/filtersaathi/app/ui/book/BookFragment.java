@@ -1,6 +1,10 @@
 package org.filtersaathi.app.ui.book;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Editable;
@@ -10,9 +14,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -23,6 +32,7 @@ import com.google.android.material.card.MaterialCardView;
 import dagger.hilt.android.AndroidEntryPoint;
 import org.filtersaathi.app.R;
 import org.filtersaathi.app.databinding.FragmentBookBinding;
+import org.filtersaathi.app.util.ResolvedAddress;
 
 /**
  * BookFragment (Screen 3):
@@ -32,6 +42,7 @@ import org.filtersaathi.app.databinding.FragmentBookBinding;
  * - Pre-fills district if selected from Home map
  * - All fields required; PIN exactly 6 digits
  * - On submit, generates booking (FS-2026-####) and navigates to Track (popUpTo Book inclusive)
+ * - Full-screen Map Location Picker for selecting sump position
  */
 @AndroidEntryPoint
 public class BookFragment extends Fragment {
@@ -42,6 +53,29 @@ public class BookFragment extends Fragment {
     private String[] districtNames;
     private String[] districtKeys;
     private String selectedDistrictKey = "";
+
+    private Double selectedLatitude = null;
+    private Double selectedLongitude = null;
+
+    private ActivityResultLauncher<String[]> locationPermissionLauncher;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        locationPermissionLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestMultiplePermissions(),
+                result -> {
+                    Boolean fineGranted = result.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false);
+                    Boolean coarseGranted = result.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false);
+
+                    if ((fineGranted != null && fineGranted) || (coarseGranted != null && coarseGranted)) {
+                        openMapPicker();
+                    } else {
+                        handlePermissionDenied();
+                    }
+                }
+        );
+    }
 
     @Nullable
     @Override
@@ -69,6 +103,7 @@ public class BookFragment extends Fragment {
         setupDistrictDropdown();
         setupTextWatchers();
         setupSubmitButton();
+        setupLocationButton();
         setupCardElevation(binding.cardBook, 3f, 6f);
     }
 
@@ -124,6 +159,107 @@ public class BookFragment extends Fragment {
         binding.etVillage.addTextChangedListener(clearErrorWatcher);
         binding.etSumpLocation.addTextChangedListener(clearErrorWatcher);
         binding.etPinCode.addTextChangedListener(clearErrorWatcher);
+    }
+
+    private void setupLocationButton() {
+        binding.btnUseCurrentLocation.setOnClickListener(v -> {
+            boolean fineGranted = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+            boolean coarseGranted = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+
+            if (fineGranted || coarseGranted) {
+                openMapPicker();
+            } else {
+                locationPermissionLauncher.launch(new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                });
+            }
+        });
+    }
+
+    private void openMapPicker() {
+        MapPickerDialogFragment picker = MapPickerDialogFragment.newInstance();
+        picker.setOnLocationSelectedListener((lat, lng, resolved) -> {
+            selectedLatitude = lat;
+            selectedLongitude = lng;
+            if (resolved != null) {
+                processResolvedAddress(resolved);
+            } else {
+                binding.noticeLocationFilled.setVisibility(View.VISIBLE);
+            }
+        });
+        picker.show(getChildFragmentManager(), "MapPickerDialog");
+    }
+
+    private void handlePermissionDenied() {
+        boolean showFineRationale = shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION);
+        boolean showCoarseRationale = shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION);
+
+        if (!showFineRationale && !showCoarseRationale) {
+            new AlertDialog.Builder(requireContext())
+                    .setMessage(R.string.ui_location_perm_settings)
+                    .setPositiveButton(R.string.ui_location_open_settings_btn, (dialog, which) -> {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", requireContext().getPackageName(), null);
+                        intent.setData(uri);
+                        startActivity(intent);
+                    })
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .show();
+        } else {
+            Toast.makeText(requireContext(), R.string.ui_location_perm_denied, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void processResolvedAddress(@NonNull ResolvedAddress resolved) {
+        if (resolved.isOutsideKarnataka()) {
+            Toast.makeText(requireContext(), R.string.ui_location_outside_karnataka, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        boolean filledAny = false;
+
+        // Village / Gram Panchayat
+        String currentVillage = binding.etVillage.getText() != null ? binding.etVillage.getText().toString().trim() : "";
+        if (currentVillage.isEmpty() && resolved.getVillageOrPanchayat() != null) {
+            binding.etVillage.setText(resolved.getVillageOrPanchayat());
+            filledAny = true;
+        }
+
+        // Sump location suggestion
+        String currentSump = binding.etSumpLocation.getText() != null ? binding.etSumpLocation.getText().toString().trim() : "";
+        if (currentSump.isEmpty() && resolved.getSumpLocation() != null) {
+            binding.etSumpLocation.setText(resolved.getSumpLocation());
+            filledAny = true;
+        }
+
+        // PIN Code
+        String currentPin = binding.etPinCode.getText() != null ? binding.etPinCode.getText().toString().trim() : "";
+        if (currentPin.isEmpty() && resolved.getPostalCode() != null) {
+            binding.etPinCode.setText(resolved.getPostalCode());
+            filledAny = true;
+        }
+
+        // District
+        String currentDistrict = selectedDistrictKey;
+        if (currentDistrict.isEmpty() && binding.actvDistrict.getText() != null) {
+            currentDistrict = binding.actvDistrict.getText().toString().trim();
+        }
+        if (currentDistrict.isEmpty() && resolved.getDistrict() != null) {
+            String targetDistrictKey = resolved.getDistrict();
+            for (int i = 0; i < districtKeys.length; i++) {
+                if (districtKeys[i].equalsIgnoreCase(targetDistrictKey)) {
+                    binding.actvDistrict.setText(districtNames[i], false);
+                    selectedDistrictKey = districtKeys[i];
+                    filledAny = true;
+                    break;
+                }
+            }
+        }
+
+        if (filledAny) {
+            binding.noticeLocationFilled.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setupSubmitButton() {
@@ -185,7 +321,7 @@ public class BookFragment extends Fragment {
             binding.tilPinCode.setError(null);
             binding.tvBookError.setVisibility(View.GONE);
 
-            viewModel.submitBooking(districtToSubmit, taluk, village, sump, pin);
+            viewModel.submitBooking(districtToSubmit, taluk, village, sump, pin, selectedLatitude, selectedLongitude);
             viewModel.clearSelectedDistrict();
 
             NavController navController = Navigation.findNavController(v);

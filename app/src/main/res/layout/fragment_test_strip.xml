@@ -266,6 +266,17 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Small disclaimer note under results -->
+                <TextView
+                    android:id="@+id/tvScanDisclaimer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/ui_scan_prototype_disclaimer"
+                    android:textColor="@color/text_tertiary_light"
+                    android:textSize="12sp" />
+
                 <!-- Scan Again Button -->
                 <TextView
                     android:id="@+id/btnScanAgain"

@@ -3,13 +3,18 @@ package org.filtersaathi.app.ui.report;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
+import android.content.ActivityNotFoundException;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -25,7 +30,7 @@ import org.filtersaathi.app.domain.model.ProblemReport;
  * - Public screen for reporting water or equipment problems
  * - Problem spinner (Bad taste or smell, Filter not working, Leak, Other)
  * - Village input and optional details
- * - Simulated photo attachment toggle
+ * - Real photo attachment via camera launcher
  * - Generates FS-R-#### ticket and shows Received -> In review -> Fixed stepper
  * - Pulsing animation on "In review" indicator (respects system animation settings)
  */
@@ -36,6 +41,27 @@ public class ReportFragment extends Fragment {
     private ReportViewModel viewModel;
     private int selectedProblemIndex = -1;
     private ObjectAnimator inReviewPulseAnimator;
+
+    private ActivityResultLauncher<Void> cameraLauncher;
+    private Bitmap attachedPhotoBitmap;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        cameraLauncher = registerForActivityResult(
+                new ActivityResultContracts.TakePicturePreview(),
+                bitmap -> {
+                    if (bitmap != null) {
+                        attachedPhotoBitmap = bitmap;
+                        if (binding != null) {
+                            binding.ivPhotoPreview.setImageBitmap(bitmap);
+                            binding.layoutPhotoContainer.setVisibility(View.VISIBLE);
+                            binding.tvAttachPhotoText.setText(R.string.ui_change_photo_btn);
+                        }
+                    }
+                }
+        );
+    }
 
     @Nullable
     @Override
@@ -51,7 +77,6 @@ public class ReportFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(ReportViewModel.class);
 
         setupProblemDropdown();
-        setupPhotoSwitch();
         setupActions();
         setupObservers();
     }
@@ -76,21 +101,25 @@ public class ReportFragment extends Fragment {
         });
     }
 
-    private void setupPhotoSwitch() {
-        binding.switchPhoto.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                binding.tvPhotoLabel.setText(R.string.ui_rep_photo_on);
-            } else {
-                binding.tvPhotoLabel.setText(R.string.ui_rep_photo);
+    private void setupActions() {
+        binding.btnAttachPhoto.setOnClickListener(v -> {
+            try {
+                cameraLauncher.launch(null);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(requireContext(), R.string.ui_no_camera_app, Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
-    private void setupActions() {
+        binding.btnRemovePhoto.setOnClickListener(v -> {
+            attachedPhotoBitmap = null;
+            binding.layoutPhotoContainer.setVisibility(View.GONE);
+            binding.tvAttachPhotoText.setText(R.string.ui_take_photo_btn);
+        });
+
         binding.btnSendReport.setOnClickListener(v -> {
             String village = binding.etVillage.getText() != null ? binding.etVillage.getText().toString() : "";
             String details = binding.etDetails.getText() != null ? binding.etDetails.getText().toString() : "";
-            boolean hasPhoto = binding.switchPhoto.isChecked();
+            boolean hasPhoto = attachedPhotoBitmap != null;
 
             viewModel.submitReport(selectedProblemIndex, village, details, hasPhoto);
         });
@@ -102,7 +131,9 @@ public class ReportFragment extends Fragment {
             binding.etDetails.setText("");
             binding.actvProblemType.setText("", false);
             selectedProblemIndex = -1;
-            binding.switchPhoto.setChecked(false);
+            attachedPhotoBitmap = null;
+            binding.layoutPhotoContainer.setVisibility(View.GONE);
+            binding.tvAttachPhotoText.setText(R.string.ui_take_photo_btn);
         });
     }
 

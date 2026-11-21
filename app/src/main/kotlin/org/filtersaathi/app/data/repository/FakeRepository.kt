@@ -137,7 +137,9 @@ class FakeRepository @Inject constructor() {
         taluk: String,
         village: String,
         sumpLocation: String,
-        pinCode: String
+        pinCode: String,
+        latitude: Double? = null,
+        longitude: Double? = null
     ): BookingRequest {
         val randomNum = Random.nextInt(1000, 9999)
         val reqNumber = "FS-2026-$randomNum"
@@ -148,6 +150,8 @@ class FakeRepository @Inject constructor() {
             village = village,
             sumpLocation = sumpLocation,
             pinCode = pinCode,
+            latitude = latitude,
+            longitude = longitude,
             currentStage = 1,
             installer = sampleInstaller
         )

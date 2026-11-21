@@ -138,6 +138,8 @@
     <string name="ui_scan_btn">Scan strip</string>
     <string name="ui_scanning">Reading…</string>
     <string name="ui_scan_again">Scan again</string>
+    <string name="ui_no_camera_app">No camera app found on this device.</string>
+    <string name="ui_scan_prototype_disclaimer">Prototype: the photo is not analysed. Results shown are sample data.</string>
     <string name="ui_nav_public">Water check</string>
     <string name="ui_nav_report">Report</string>
     <string name="ui_hero_check">Check my village water</string>
@@ -231,6 +233,25 @@
     <string name="ui_s_req">Requested</string>
     <string name="ui_s_sch">Scheduled</string>
     <string name="ui_s_ins">Installed</string>
+    <string name="ui_use_location_btn">Use my current location</string>
+    <string name="ui_location_fetching">Getting location…</string>
+    <string name="ui_location_perm_denied">Location permission is required to detect address automatically. You can enter the address manually.</string>
+    <string name="ui_location_perm_settings">Location permission is disabled in app settings. Please open settings to enable it.</string>
+    <string name="ui_location_open_settings_btn">Open settings</string>
+    <string name="ui_location_disabled">Location is turned off. Please turn on Location services.</string>
+    <string name="ui_location_turn_on_btn">Turn on Location</string>
+    <string name="ui_location_error">Could not fetch address for your location. Please enter manually.</string>
+    <string name="ui_location_outside_karnataka">This location is outside Karnataka. Please enter the address manually.</string>
+    <string name="ui_location_filled_notice">Filled from your location. Please check and correct it.</string>
+    <string name="ui_take_photo_btn">Take photo</string>
+    <string name="ui_change_photo_btn">Change photo</string>
+    <string name="ui_picker_title">Select location on map</string>
+    <string name="ui_re_center">Re-centre map</string>
+    <string name="ui_picker_address_header">Selected location address</string>
+    <string name="ui_picker_loading_address">Detecting address…</string>
+    <string name="ui_picker_confirm_btn">Confirm location</string>
+    <string name="ui_picker_privacy_text">Latitude and longitude are saved with your booking so installers can locate your sump. Location is used only after you tap.</string>
+    <string name="ui_offline_map_notice">Offline mode: Map tiles unavailable. You can still drag the pin or enter address manually.</string>
     <string-array name="ui_district_names">
         <item>Bagalkot</item>
         <item>Ballari</item>

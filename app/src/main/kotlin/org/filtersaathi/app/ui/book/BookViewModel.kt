@@ -55,14 +55,18 @@ class BookViewModel @Inject constructor(
         taluk: String,
         village: String,
         sumpLocation: String,
-        pinCode: String
+        pinCode: String,
+        latitude: Double? = null,
+        longitude: Double? = null
     ): BookingRequest {
         return repository.bookInstallation(
             district = district.trim(),
             taluk = taluk.trim(),
             village = village.trim(),
             sumpLocation = sumpLocation.trim(),
-            pinCode = pinCode.trim()
+            pinCode = pinCode.trim(),
+            latitude = latitude,
+            longitude = longitude
         )
     }
 

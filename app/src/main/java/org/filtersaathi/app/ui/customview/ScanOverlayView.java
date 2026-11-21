@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -36,6 +37,10 @@ public class ScanOverlayView extends View {
     private RectF viewfinderRect;
     private RectF stripRect;
     private Path cornerPath;
+
+    private Bitmap capturedBitmap;
+    private Paint bitmapPaint;
+    private Path clipPath;
 
     private boolean isScanning = false;
     private float scanProgress = 0f; // 0.0 to 1.0 (top to bottom)
@@ -94,6 +99,13 @@ public class ScanOverlayView extends View {
         viewfinderRect = new RectF();
         stripRect = new RectF();
         cornerPath = new Path();
+        bitmapPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+        clipPath = new Path();
+    }
+
+    public void setCapturedPhoto(@Nullable Bitmap bitmap) {
+        this.capturedBitmap = bitmap;
+        invalidate();
     }
 
     public void startScan(Runnable onComplete) {
@@ -142,6 +154,7 @@ public class ScanOverlayView extends View {
         }
         isScanning = false;
         scanProgress = 0f;
+        capturedBitmap = null;
         invalidate();
     }
 
@@ -186,15 +199,24 @@ public class ScanOverlayView extends View {
         // 1. Draw dark background mask outside / inside viewfinder
         canvas.drawRoundRect(viewfinderRect, density * 12f, density * 12f, maskPaint);
 
-        // 2. Draw simulated test strip with 4 colored pads inside
-        canvas.drawRoundRect(stripRect, density * 6f, density * 6f, stripHolderPaint);
-        float padSize = density * 16f;
-        float padGap = (stripRect.width() - (padSize * 4f)) / 5f;
-        for (int i = 0; i < 4; i++) {
-            float pLeft = stripRect.left + padGap + i * (padSize + padGap);
-            float pTop = stripRect.centerY() - (padSize / 2f);
-            canvas.drawRoundRect(new RectF(pLeft, pTop, pLeft + padSize, pTop + padSize),
-                    density * 3f, density * 3f, padPaints[i]);
+        // 2. Draw captured photo or simulated test strip inside viewfinder
+        if (capturedBitmap != null && !capturedBitmap.isRecycled()) {
+            canvas.save();
+            clipPath.reset();
+            clipPath.addRoundRect(viewfinderRect, density * 12f, density * 12f, Path.Direction.CW);
+            canvas.clipPath(clipPath);
+            canvas.drawBitmap(capturedBitmap, null, viewfinderRect, bitmapPaint);
+            canvas.restore();
+        } else {
+            canvas.drawRoundRect(stripRect, density * 6f, density * 6f, stripHolderPaint);
+            float padSize = density * 16f;
+            float padGap = (stripRect.width() - (padSize * 4f)) / 5f;
+            for (int i = 0; i < 4; i++) {
+                float pLeft = stripRect.left + padGap + i * (padSize + padGap);
+                float pTop = stripRect.centerY() - (padSize / 2f);
+                canvas.drawRoundRect(new RectF(pLeft, pTop, pLeft + padSize, pTop + padSize),
+                        density * 3f, density * 3f, padPaints[i]);
+            }
         }
 
         // 3. Draw Four Orange Corner Brackets

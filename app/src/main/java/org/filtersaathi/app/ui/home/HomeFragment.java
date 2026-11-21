@@ -31,7 +31,6 @@ import org.filtersaathi.app.databinding.FragmentHomeBinding;
  * 3. Hero container with headline, sub-headline, SumpHeroView, saffron CTA and ghost button
  * 4. "How it works" section with 3 cards (Panchayat -> FilterSaathi -> BWSSB or installer) and arrows
  * 5. Green notice "No payments in this app."
- * 6. Test strip promo banner with 4 colored pads and "Scan strip" CTA
  */
 @AndroidEntryPoint
 public class HomeFragment extends Fragment {
@@ -58,7 +57,6 @@ public class HomeFragment extends Fragment {
         setupLanguageToggle();
         setupNavigationButtons();
         setupHowItWorksSection();
-        setupTestStripPromo();
         setupDistrictMapSection();
     }
 
@@ -156,12 +154,6 @@ public class HomeFragment extends Fragment {
                     break;
             }
             return false;
-        });
-    }
-
-    private void setupTestStripPromo() {
-        binding.btnPromoScanStrip.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.navigation_test_strip);
         });
     }
 

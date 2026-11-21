@@ -138,6 +138,8 @@
     <string name="ui_scan_btn">ಸ್ಟ್ರಿಪ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
     <string name="ui_scanning">ಓದಲಾಗುತ್ತಿದೆ…</string>
     <string name="ui_scan_again">ಮತ್ತೆ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
+    <string name="ui_no_camera_app">ಈ ಸಾಧನದಲ್ಲಿ ಯಾವುದೇ ಕ್ಯಾಮೆರಾ ಆ್ಯಪ್ ಕಂಡುಬಂದಿಲ್ಲ.</string>
+    <string name="ui_scan_prototype_disclaimer">ಪ್ರೋಟೋಟೈಪ್: ಫೋಟೋವನ್ನು ವಿಶ್ಲೇಷಿಸಲಾಗಿಲ್ಲ. ತೋರಿಸಲಾದ ಫಲಿತಾಂಶಗಳು ಮಾದರಿ ಡೇಟಾ.</string>
     <string name="ui_nav_public">ನೀರಿನ ಪರಿಶೀಲನೆ</string>
     <string name="ui_nav_report">ದೂರು</string>
     <string name="ui_hero_check">ನನ್ನ ಹಳ್ಳಿಯ ನೀರು ಪರಿಶೀಲಿಸಿ</string>
@@ -231,6 +233,25 @@
     <string name="ui_s_req">ಮನವಿ</string>
     <string name="ui_s_sch">ನಿಗದಿ</string>
     <string name="ui_s_ins">ಸ್ಥಾಪಿಸಲಾಗಿದೆ</string>
+    <string name="ui_use_location_btn">ನನ್ನ ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಬಳಸಿ</string>
+    <string name="ui_location_fetching">ಸ್ಥಳವನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ…</string>
+    <string name="ui_location_perm_denied">ಸ್ವಯಂಚಾಲಿತವಾಗಿ ವಿಳಾಸವನ್ನು ಪತ್ತೆಹಚ್ಚಲು ಸ್ಥಳದ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ. ನೀವು ವಿಳಾಸವನ್ನು ಕೈಯಾರೆ ನಮೂದಿಸಬಹುದು.</string>
+    <string name="ui_location_perm_settings">ಆ್ಯಪ್ ಸಂಯೋಜನೆಗಳಲ್ಲಿ ಸ್ಥಳದ ಅನುಮತಿಯನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಸಕ್ರಿಯಗೊಳಿಸಲು ಸಂಯೋಜನೆಗಳನ್ನು ತೆರೆಯಿರಿ.</string>
+    <string name="ui_location_open_settings_btn">ಸಂಯೋಜನೆಗಳನ್ನು ತೆರೆಯಿರಿ</string>
+    <string name="ui_location_disabled">ಸ್ಥಳದ ಸೇವೆಯನ್ನು ಆಫ್ ಮಾಡಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಸ್ಥಳದ ಸೇವೆಯನ್ನು ಆನ್ ಮಾಡಿ.</string>
+    <string name="ui_location_turn_on_btn">ಸ್ಥಳವನ್ನು ಆನ್ ಮಾಡಿ</string>
+    <string name="ui_location_error">ನಿಮ್ಮ ಸ್ಥಳಕ್ಕಾಗಿ ವಿಳಾಸವನ್ನು ಹಿಂಪಡೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಕೈಯಾರೆ ನಮೂದಿಸಿ.</string>
+    <string name="ui_location_outside_karnataka">ಈ ಸ್ಥಳವು ಕರ್ನಾಟಕದ ಹೊರಗಿದೆ. ದಯವಿಟ್ಟು ವಿಳಾಸವನ್ನು ಕೈಯಾರೆ ನಮೂದಿಸಿ.</string>
+    <string name="ui_location_filled_notice">ನಿಮ್ಮ ಸ್ಥಳದಿಂದ ತುಂಬಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಸರಿಪಡಿಸಿ.</string>
+    <string name="ui_take_photo_btn">ಫೋಟೋ ತೆಗೆಯಿರಿ</string>
+    <string name="ui_change_photo_btn">ಫೋಟೋ ಬದಲಾಯಿಸಿ</string>
+    <string name="ui_picker_title">ಮ್ಯಾಪ್‌ನಲ್ಲಿ ಸ್ಥಳವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="ui_re_center">ಮ್ಯಾಪ್‌ ಕೇಂದ್ರೀಕರಿಸಿ</string>
+    <string name="ui_picker_address_header">ಆಯ್ಕೆಮಾಡಲಾದ ಸ್ಥಳದ ವಿಳಾಸ</string>
+    <string name="ui_picker_loading_address">ವಿಳಾಸ ಪತ್ತೆಹಚ್ಚಲಾಗುತ್ತಿದೆ…</string>
+    <string name="ui_picker_confirm_btn">ಸ್ಥಳವನ್ನು ದೃಢೀಕರಿಸಿ</string>
+    <string name="ui_picker_privacy_text">ಸ್ಥಾಪಕರು ನಿಮ್ಮ ಸಂಪ್ ಅನ್ನು ಹುಡುಕಲು ಅಕ್ಷಾಂಶ ಮತ್ತು ರೇಖಾಂಶಗಳನ್ನು ಉಳಿಸಲಾಗುತ್ತದೆ. ನೀವು ಟ್ಯಾಪ್ ಮಾಡಿದ ನಂತರವೇ ಸ್ಥಳವನ್ನು ಬಳಸಲಾಗುತ್ತದೆ.</string>
+    <string name="ui_offline_map_notice">ಆಫ್‌ಲೈನ್ ಮೋಡ್: ಮ್ಯಾಪ್ ಲಭ್ಯವಿಲ್ಲ. ನೀವು ಪಿನ್ ಎಳೆಯಬಹುದು ಅಥವಾ ಕೈಯಾರೆ ವಿಳಾಸ ನಮೂದಿಸಬಹುದು.</string>
     <string-array name="ui_district_names">
         <item>ಬಾಗಲಕೋಟೆ</item>
         <item>ಬಳ್ಳಾರಿ</item>
