@@ -19,7 +19,7 @@
     <string name="ui_c2t">Verifies and routes it.</string>
     <string name="ui_c3">BWSSB or installer</string>
     <string name="ui_c3t">Surveys and installs.</string>
-    <string name="ui_no_pay">No payment is collected through this app.</string>
+    <string name="ui_no_pay">100% Free · No Payments Collected</string>
     <string name="ui_g_live">Live readings</string>
     <string name="ui_g_tds">TDS · pH · level</string>
     <string name="ui_g_sed">Sediment</string>

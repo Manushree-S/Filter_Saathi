@@ -485,36 +485,6 @@
 
                 </LinearLayout>
 
-                <!-- Green Notice under the cards: ui_no_pay with alert_green_bg & alert_green_text -->
-                <LinearLayout
-                    android:id="@+id/noticeNoPayments"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/bg_notice_green"
-                    android:layout_marginTop="16dp"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="12dp">
-
-                    <ImageView
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:src="@drawable/ic_check"
-                        android:contentDescription="@null"
-                        app:tint="@color/alert_green_text" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/ui_no_pay"
-                        android:textColor="@color/alert_green_text"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
             </LinearLayout>
 
             <!-- 6. STEP 2c: OUR IMPACT -->
