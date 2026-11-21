@@ -1,5 +1,6 @@
 package org.filtersaathi.app.ui.book;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -21,17 +23,15 @@ import org.filtersaathi.app.R;
 import org.filtersaathi.app.databinding.DialogMapPickerBinding;
 import org.filtersaathi.app.util.LocationAddressResolver;
 import org.filtersaathi.app.util.ResolvedAddress;
+import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.config.Configuration;
-import org.osmdroid.events.MapListener;
-import org.osmdroid.events.ScrollEvent;
-import org.osmdroid.events.ZoomEvent;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.api.IGeoPoint;
 
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MapPickerDialogFragment extends DialogFragment {
@@ -46,10 +46,10 @@ public class MapPickerDialogFragment extends DialogFragment {
     private double lastGeocodedLat = 0;
     private double lastGeocodedLng = 0;
     private ResolvedAddress lastResolvedAddress = null;
-    private long lastGeocodeTime = 0;
 
-    private Handler debounceHandler = new Handler(Looper.getMainLooper());
+    private final Handler debounceHandler = new Handler(Looper.getMainLooper());
     private Runnable debounceRunnable;
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     public static MapPickerDialogFragment newInstance() {
         return new MapPickerDialogFragment();
@@ -76,6 +76,7 @@ public class MapPickerDialogFragment extends DialogFragment {
         return binding.getRoot();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -127,7 +128,7 @@ public class MapPickerDialogFragment extends DialogFragment {
             dismiss();
         });
 
-        // 600 ms Debounced map center reverse-geocoding
+        // Lightweight Touch Listener for smooth map drags without thread locks
         debounceRunnable = () -> {
             if (binding != null) {
                 IGeoPoint center = binding.mapView.getMapCenter();
@@ -135,20 +136,12 @@ public class MapPickerDialogFragment extends DialogFragment {
             }
         };
 
-        binding.mapView.addMapListener(new MapListener() {
-            @Override
-            public boolean onScroll(ScrollEvent event) {
+        binding.mapView.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
                 debounceHandler.removeCallbacks(debounceRunnable);
-                debounceHandler.postDelayed(debounceRunnable, 600);
-                return false;
+                debounceHandler.postDelayed(debounceRunnable, 500);
             }
-
-            @Override
-            public boolean onZoom(ZoomEvent event) {
-                debounceHandler.removeCallbacks(debounceRunnable);
-                debounceHandler.postDelayed(debounceRunnable, 600);
-                return false;
-            }
+            return false;
         });
     }
 
@@ -158,17 +151,11 @@ public class MapPickerDialogFragment extends DialogFragment {
             return;
         }
 
-        long now = System.currentTimeMillis();
-        if (now - lastGeocodeTime < 1000) {
-            return; // Rate limit max 1 req/sec
-        }
-        lastGeocodeTime = now;
-
         if (binding == null) return;
         binding.pbPickerLoading.setVisibility(View.VISIBLE);
         binding.tvPickerAddress.setText(R.string.ui_picker_loading_address);
 
-        Executors.newSingleThreadExecutor().execute(() -> {
+        executorService.execute(() -> {
             ResolvedAddress resolved = LocationAddressResolver.reverseGeocodeHttp(lat, lng);
 
             if (resolved == null && Geocoder.isPresent() && isAdded()) {
@@ -239,6 +226,7 @@ public class MapPickerDialogFragment extends DialogFragment {
         if (debounceHandler != null && debounceRunnable != null) {
             debounceHandler.removeCallbacks(debounceRunnable);
         }
+        executorService.shutdown();
         binding = null;
         super.onDestroyView();
     }

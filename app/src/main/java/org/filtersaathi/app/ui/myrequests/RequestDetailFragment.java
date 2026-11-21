@@ -1,6 +1,7 @@
-package org.filtersaathi.app.ui.myfilters;
+package org.filtersaathi.app.ui.myrequests;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,38 +19,42 @@ import androidx.navigation.Navigation;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import org.filtersaathi.app.R;
-import org.filtersaathi.app.databinding.FragmentFilterDetailBinding;
+import org.filtersaathi.app.databinding.FragmentRequestDetailBinding;
+import org.filtersaathi.app.domain.model.BookingRequest;
+import org.filtersaathi.app.domain.model.FilterCareStatus;
 import org.filtersaathi.app.domain.model.FilterDevice;
 import org.filtersaathi.app.domain.model.FilterItemLife;
+import org.filtersaathi.app.domain.model.ProblemReport;
 import org.filtersaathi.app.domain.model.ServiceHistoryEntry;
 
 import java.util.List;
 
 /**
- * FilterDetailFragment:
- * - Displays details of a filter device including items, life bars, next service date, history.
- * - Allows marking items as serviced today with confirmation dialog.
- * - Navigates to Report a Problem with device name prefilled.
+ * RequestDetailFragment:
+ * - Details view for a selected installation request or problem report.
+ * - Displays request overview, stage stepper, installer info, rating/certificate.
+ * - Displays "Your device care" card for Stage 6 requests with component life bars,
+ *   next service date, history, and "Mark as serviced" actions.
  */
 @AndroidEntryPoint
-public class FilterDetailFragment extends Fragment {
+public class RequestDetailFragment extends Fragment {
 
-    private FragmentFilterDetailBinding binding;
-    private MyFiltersViewModel viewModel;
-    private String deviceId = "";
+    private FragmentRequestDetailBinding binding;
+    private MyRequestsViewModel viewModel;
+    private String requestId = "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            deviceId = getArguments().getString("deviceId", "");
+            requestId = getArguments().getString("requestId", "");
         }
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentFilterDetailBinding.inflate(inflater, container, false);
+        binding = FragmentRequestDetailBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -57,36 +62,70 @@ public class FilterDetailFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        viewModel = new ViewModelProvider(this).get(MyFiltersViewModel.class);
+        viewModel = new ViewModelProvider(this).get(MyRequestsViewModel.class);
 
-        viewModel.getFilterDevices().observe(getViewLifecycleOwner(), devices -> {
-            FilterDevice device = viewModel.getDeviceById(deviceId);
-            if (device != null) {
-                renderDeviceDetails(device);
+        BookingRequest booking = viewModel.getBooking(requestId);
+        if (booking != null) {
+            renderBookingDetails(booking);
+        } else {
+            ProblemReport report = viewModel.getReport(requestId);
+            if (report != null) {
+                renderReportDetails(report);
             }
-        });
+        }
     }
 
-    private void renderDeviceDetails(@NonNull FilterDevice device) {
+    private void renderBookingDetails(@NonNull BookingRequest booking) {
         Context ctx = requireContext();
 
-        // Device Name
-        int nameResId = ctx.getResources().getIdentifier(device.getNameKey(), "string", ctx.getPackageName());
-        String displayName = nameResId != 0 ? ctx.getString(nameResId) : device.getNameFallback();
-        binding.tvDetailName.setText(displayName);
+        binding.tvDetailId.setText(booking.getRequestNumber());
+        binding.tvDetailLocation.setText(booking.getVillage() + ", " + booking.getDistrict());
 
-        // Device Type & Install
-        int typeResId = ctx.getResources().getIdentifier(device.getTypeKey(), "string", ctx.getPackageName());
-        String displayType = typeResId != 0 ? ctx.getString(typeResId) : device.getTypeKey();
-        String typeAndInstall = displayType + " · " + ctx.getString(R.string.ui_installed_on, device.getInstallDate());
-        binding.tvDetailTypeAndInstall.setText(typeAndInstall);
+        int stageResId = ctx.getResources().getIdentifier(booking.getStageKey(), "string", ctx.getPackageName());
+        String stageText = stageResId != 0 ? ctx.getString(stageResId) : booking.getStageKey();
+        binding.tvDetailStatusChip.setText(stageText);
+        binding.tvDetailStatusChip.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.secondary_blue)));
 
-        // Life Items
-        binding.layoutDetailItems.removeAllViews();
+        String typeAndDate = ctx.getString(R.string.ui_tag_request) + " · PIN " + booking.getPinCode();
+        binding.tvDetailTypeAndDate.setText(typeAndDate);
+
+        // Stage 6 Device Care Card
+        if (booking.getShowDeviceCareCard()) {
+            binding.cardDeviceCare.setVisibility(View.VISIBLE);
+            FilterDevice device = viewModel.getDeviceCare(booking.getRequestNumber());
+            if (device != null) {
+                renderDeviceCare(device);
+            }
+        } else {
+            binding.cardDeviceCare.setVisibility(View.GONE);
+        }
+    }
+
+    private void renderReportDetails(@NonNull ProblemReport report) {
+        Context ctx = requireContext();
+
+        binding.tvDetailId.setText(report.getTicketNumber());
+        binding.tvDetailLocation.setText(report.getVillage());
+
+        int probResId = ctx.getResources().getIdentifier(report.getProblemType().getKey(), "string", ctx.getPackageName());
+        String probText = probResId != 0 ? ctx.getString(probResId) : report.getProblemType().name();
+        binding.tvDetailStatusChip.setText(probText);
+        binding.tvDetailStatusChip.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(ctx, R.color.accent_saffron)));
+
+        String typeAndDate = ctx.getString(R.string.ui_tag_report) + (report.getDetails().isEmpty() ? "" : " · " + report.getDetails());
+        binding.tvDetailTypeAndDate.setText(typeAndDate);
+
+        binding.cardDeviceCare.setVisibility(View.GONE);
+    }
+
+    private void renderDeviceCare(@NonNull FilterDevice device) {
+        Context ctx = requireContext();
+
+        binding.layoutDeviceCareItems.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(ctx);
 
         for (FilterItemLife item : device.getItems()) {
-            View itemView = inflater.inflate(R.layout.item_detail_life_row, binding.layoutDetailItems, false);
+            View itemView = inflater.inflate(R.layout.item_detail_life_row, binding.layoutDeviceCareItems, false);
             TextView tvDetailItemName = itemView.findViewById(R.id.tvDetailItemName);
             TextView tvDetailItemDays = itemView.findViewById(R.id.tvDetailItemDays);
             ProgressBar pbDetailItemBar = itemView.findViewById(R.id.pbDetailItemBar);
@@ -125,23 +164,29 @@ public class FilterDetailFragment extends Fragment {
                         .setMessage(getString(R.string.ui_confirm_service_msg, itemDisplayName))
                         .setPositiveButton(R.string.ui_confirm_btn, (dialog, which) -> {
                             viewModel.markItemServiced(device.getId(), item.getItemKey());
+                            FilterDevice updated = viewModel.getDeviceCare(device.getId());
+                            if (updated != null) {
+                                renderDeviceCare(updated);
+                            }
                         })
                         .setNegativeButton(android.R.string.cancel, null)
                         .show();
             });
 
-            binding.layoutDetailItems.addView(itemView);
+            binding.layoutDeviceCareItems.addView(itemView);
         }
 
-        // Service History List
-        binding.layoutHistoryList.removeAllViews();
+        // History
+        binding.layoutDeviceHistory.removeAllViews();
         List<ServiceHistoryEntry> history = device.getHistory();
         if (history.isEmpty()) {
-            binding.tvNoHistory.setVisibility(View.VISIBLE);
+            TextView emptyTv = new TextView(ctx);
+            emptyTv.setText(R.string.ui_no_history);
+            emptyTv.setTextColor(ContextCompat.getColor(ctx, R.color.text_secondary_light));
+            binding.layoutDeviceHistory.addView(emptyTv);
         } else {
-            binding.tvNoHistory.setVisibility(View.GONE);
             for (ServiceHistoryEntry entry : history) {
-                View histView = inflater.inflate(R.layout.item_history_row, binding.layoutHistoryList, false);
+                View histView = inflater.inflate(R.layout.item_history_row, binding.layoutDeviceHistory, false);
                 TextView tvHistoryItem = histView.findViewById(R.id.tvHistoryItem);
                 TextView tvHistoryDate = histView.findViewById(R.id.tvHistoryDate);
 
@@ -150,14 +195,14 @@ public class FilterDetailFragment extends Fragment {
                 tvHistoryItem.setText(itemDisplayName);
                 tvHistoryDate.setText(entry.getDate());
 
-                binding.layoutHistoryList.addView(histView);
+                binding.layoutDeviceHistory.addView(histView);
             }
         }
 
         // Report a Problem Button
-        binding.btnReportProblem.setOnClickListener(v -> {
+        binding.btnReportDeviceProblem.setOnClickListener(v -> {
             Bundle args = new Bundle();
-            args.putString("prefilledDeviceName", displayName);
+            args.putString("prefilledDeviceName", device.getId());
             Navigation.findNavController(requireView()).navigate(R.id.navigation_report, args);
         });
     }

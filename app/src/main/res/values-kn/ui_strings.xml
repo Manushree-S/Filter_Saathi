@@ -281,6 +281,19 @@
     <string name="ui_history_title">ಸೇವಾ ಇತಿಹಾಸ</string>
     <string name="ui_no_history">ಯಾವುದೇ ಹಿಂದಿನ ಸೇವಾ ಇತಿಹಾಸವಿಲ್ಲ.</string>
     <string name="ui_rep_problem_btn">ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಿ</string>
+    <string name="ui_hero_requests">ನನ್ನ ಮನವಿಗಳು</string>
+    <string name="ui_nav_requests">ನನ್ನ ಮನವಿಗಳು</string>
+    <string name="ui_requests_title">ನನ್ನ ಮನವಿಗಳು</string>
+    <string name="ui_requests_signed_out_title">ನಿಮ್ಮ ಮನವಿಗಳನ್ನು ವೀಕ್ಷಿಸಲು ಲಾಗ್ ಇನ್ ಮಾಡಿ</string>
+    <string name="ui_requests_signed_out_msg">ನಿಮ್ಮ ಕಾಯ್ದಿರಿಸುವಿಕೆಗಳು ಮತ್ತು ದೂರುಗಳನ್ನು ವೀಕ್ಷಿಸಲು ದಯವಿಟ್ಟು ಸೈನ್ ಇನ್ ಮಾಡಿ.</string>
+    <string name="ui_requests_empty_msg">ನಿಮ್ಮ ಖಾತೆಗೆ ಯಾವುದೇ ಮನವಿಗಳು ಅಥವಾ ದೂರುಗಳು ಕಂಡುಬಂದಿಲ್ಲ.</string>
+    <string name="ui_filter_all">ಎಲ್ಲವೂ</string>
+    <string name="ui_filter_requests">ಮನವಿಗಳು</string>
+    <string name="ui_filter_reports">ದೂರುಗಳು</string>
+    <string name="ui_tag_request">ಸ್ಥಾಪನೆ ಮನವಿ</string>
+    <string name="ui_tag_report">ಸಮಸ್ಯೆಯ ದೂರು</string>
+    <string name="ui_request_details_title">ಮನವಿ ವಿವರಗಳು</string>
+    <string name="ui_your_device_title">ನಿಮ್ಮ ಸಾಧನ ಆರೈಕೆ</string>
     <string-array name="ui_district_names">
         <item>ಬಾಗಲಕೋಟೆ</item>
         <item>ಬಳ್ಳಾರಿ</item>

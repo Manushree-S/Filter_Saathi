@@ -62,6 +62,7 @@ data class BookingRequest(
     val latitude: Double? = null,
     val longitude: Double? = null,
     val currentStage: Int = 1, // 1..6, 7 = all done
+    val ownerPhone: String? = null, // Signed-in user's phone
     val installer: Installer = Installer(),
     val rating: Int = 0,
     val timestamp: Long = System.currentTimeMillis()
@@ -82,6 +83,9 @@ data class BookingRequest(
 
     val showRatingAndCertificate: Boolean
         get() = currentStage >= 6
+
+    val showDeviceCareCard: Boolean
+        get() = currentStage >= 6
 }
 
 // --- 6. Problem Report ---
@@ -98,8 +102,28 @@ data class ProblemReport(
     val village: String,
     val details: String = "",
     val hasPhoto: Boolean = false,
+    val ownerPhone: String? = null, // Signed-in user's phone
     val timestamp: Long = System.currentTimeMillis()
 )
+
+// --- Unified Request / Report Item for My Requests ---
+sealed class RequestOrReportItem {
+    abstract val id: String
+    abstract val timestamp: Long
+    abstract val ownerPhone: String?
+
+    data class Booking(val request: BookingRequest) : RequestOrReportItem() {
+        override val id: String get() = request.requestNumber
+        override val timestamp: Long get() = request.timestamp
+        override val ownerPhone: String? get() = request.ownerPhone
+    }
+
+    data class Report(val report: ProblemReport) : RequestOrReportItem() {
+        override val id: String get() = report.ticketNumber
+        override val timestamp: Long get() = report.timestamp
+        override val ownerPhone: String? get() = report.ownerPhone
+    }
+}
 
 // --- 7. Top Banners ---
 enum class BannerType {

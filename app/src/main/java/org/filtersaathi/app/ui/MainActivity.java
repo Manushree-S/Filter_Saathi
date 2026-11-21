@@ -4,12 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +13,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.os.LocaleListCompat;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
@@ -31,8 +26,6 @@ import org.filtersaathi.app.domain.model.BannerEvent;
 import org.filtersaathi.app.domain.model.BannerType;
 import org.filtersaathi.app.domain.model.UserProfile;
 
-import java.util.Locale;
-
 import javax.inject.Inject;
 
 @AndroidEntryPoint
@@ -43,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private NavController navController;
-    private TextToSpeech textToSpeech;
-    private boolean isTtsReady = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        initTextToSpeech();
         setupNavigation();
         setupToolbarControls();
         observeRepositoryState();
@@ -68,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 boolean isWelcome = destination.getId() == R.id.navigation_welcome;
                 int visibility = isWelcome ? View.GONE : View.VISIBLE;
                 binding.layoutTopAppArea.setVisibility(visibility);
-                binding.fabSpeaker.setVisibility(visibility);
                 binding.bottomNavigation.setVisibility(visibility);
             });
         }
@@ -110,10 +99,7 @@ public class MainActivity extends AppCompatActivity {
         // 7. Overflow Menu (Officer overview)
         binding.btnOverflowMenu.setOnClickListener(this::showOverflowMenu);
 
-        // 8. Floating Speaker Button
-        binding.fabSpeaker.setOnClickListener(v -> speakCurrentScreen());
-
-        // 9. Global Banner Close
+        // 8. Global Banner Close
         binding.btnGlobalBannerClose.setOnClickListener(v -> fakeRepository.dismissTopBanner());
     }
 
@@ -197,10 +183,6 @@ public class MainActivity extends AppCompatActivity {
     private void showAccessibilityBottomSheet() {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         View sheetView = getLayoutInflater().inflate(R.layout.sheet_accessibility, null);
-        sheetView.findViewById(R.id.btnReadAloud).setOnClickListener(v -> {
-            dialog.dismiss();
-            speakCurrentScreen();
-        });
         dialog.setContentView(sheetView);
         dialog.show();
     }
@@ -242,50 +224,8 @@ public class MainActivity extends AppCompatActivity {
         popup.show();
     }
 
-    private void initTextToSpeech() {
-        textToSpeech = new TextToSpeech(getApplicationContext(), status -> {
-            if (status == TextToSpeech.SUCCESS) {
-                isTtsReady = true;
-                setupTtsLanguage();
-            }
-        });
-    }
-
-    private void setupTtsLanguage() {
-        if (!isTtsReady || textToSpeech == null) return;
-        LocaleListCompat locales = AppCompatDelegate.getApplicationLocales();
-        String lang = !locales.isEmpty() ? locales.get(0).getLanguage() : "en";
-        Locale targetLocale = "kn".equalsIgnoreCase(lang) ? new Locale("kn", "IN") : new Locale("en", "IN");
-        int result = textToSpeech.setLanguage(targetLocale);
-        if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-            textToSpeech.setLanguage(Locale.US);
-        }
-    }
-
-    private void speakCurrentScreen() {
-        if (navController == null) return;
-        NavDestination current = navController.getCurrentDestination();
-        if (current == null) return;
-
-        CharSequence label = current.getLabel();
-        String textToSpeak = label != null ? label.toString() : getString(R.string.ui_brand);
-        String fullSpeech = getString(R.string.ui_brand) + ". " + textToSpeak;
-
-        if (isTtsReady && textToSpeech != null) {
-            setupTtsLanguage();
-            textToSpeech.speak(fullSpeech, TextToSpeech.QUEUE_FLUSH, null, "FilterSaathi_TTS");
-        } else {
-            Toast.makeText(this, R.string.ui_voice_note, Toast.LENGTH_SHORT).show();
-        }
-    }
-
     @Override
     protected void onDestroy() {
-        if (textToSpeech != null) {
-            textToSpeech.stop();
-            textToSpeech.shutdown();
-            textToSpeech = null;
-        }
         super.onDestroy();
         binding = null;
     }

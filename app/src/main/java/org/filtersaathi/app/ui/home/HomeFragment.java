@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment {
         });
 
         binding.btnCheckVillageWater.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.navigation_my_filters);
+            Navigation.findNavController(v).navigate(R.id.navigation_my_requests);
         });
     }
 

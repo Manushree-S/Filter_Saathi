@@ -83,14 +83,14 @@
         android:label="@string/ui_nav_scan" />
 
     <fragment
-        android:id="@+id/navigation_my_filters"
-        android:name="org.filtersaathi.app.ui.myfilters.MyFiltersFragment"
-        android:label="@string/ui_nav_filters" />
+        android:id="@+id/navigation_my_requests"
+        android:name="org.filtersaathi.app.ui.myrequests.MyRequestsFragment"
+        android:label="@string/ui_nav_requests" />
 
     <fragment
-        android:id="@+id/navigation_filter_detail"
-        android:name="org.filtersaathi.app.ui.myfilters.FilterDetailFragment"
-        android:label="@string/ui_filters_title" />
+        android:id="@+id/navigation_request_detail"
+        android:name="org.filtersaathi.app.ui.myrequests.RequestDetailFragment"
+        android:label="@string/ui_request_details_title" />
 
     <fragment
         android:id="@+id/navigation_report"
