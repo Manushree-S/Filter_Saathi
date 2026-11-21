@@ -79,6 +79,13 @@ public class ReportFragment extends Fragment {
         setupProblemDropdown();
         setupActions();
         setupObservers();
+
+        if (getArguments() != null) {
+            String prefilledDevice = getArguments().getString("prefilledDeviceName", "");
+            if (prefilledDevice != null && !prefilledDevice.isEmpty()) {
+                binding.etDetails.setText("Device: " + prefilledDevice);
+            }
+        }
     }
 
     private void setupProblemDropdown() {

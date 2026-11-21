@@ -252,6 +252,35 @@
     <string name="ui_picker_confirm_btn">ಸ್ಥಳವನ್ನು ದೃಢೀಕರಿಸಿ</string>
     <string name="ui_picker_privacy_text">ಸ್ಥಾಪಕರು ನಿಮ್ಮ ಸಂಪ್ ಅನ್ನು ಹುಡುಕಲು ಅಕ್ಷಾಂಶ ಮತ್ತು ರೇಖಾಂಶಗಳನ್ನು ಉಳಿಸಲಾಗುತ್ತದೆ. ನೀವು ಟ್ಯಾಪ್ ಮಾಡಿದ ನಂತರವೇ ಸ್ಥಳವನ್ನು ಬಳಸಲಾಗುತ್ತದೆ.</string>
     <string name="ui_offline_map_notice">ಆಫ್‌ಲೈನ್ ಮೋಡ್: ಮ್ಯಾಪ್ ಲಭ್ಯವಿಲ್ಲ. ನೀವು ಪಿನ್ ಎಳೆಯಬಹುದು ಅಥವಾ ಕೈಯಾರೆ ವಿಳಾಸ ನಮೂದಿಸಬಹುದು.</string>
+    <string name="ui_hero_filters">ನನ್ನ ಫಿಲ್ಟರ್‌ಗಳು</string>
+    <string name="ui_nav_filters">ನನ್ನ ಫಿಲ್ಟರ್‌ಗಳು</string>
+    <string name="ui_filters_title">ನನ್ನ ಫಿಲ್ಟರ್‌ಗಳು</string>
+    <string name="ui_filters_empty">ಯಾವುದೇ ಫಿಲ್ಟರ್ ಸಾಧನಗಳು ಕಂಡುಬಂದಿಲ್ಲ.</string>
+    <string name="ui_dev_school_ro">ಶಾಲಾ ಸಂಪ್: RO ಪ್ಲಾಂಟ್</string>
+    <string name="ui_dev_anganwadi_uv">ಅಂಗನವಾಡಿ: UV ಯುನಿಟ್</string>
+    <string name="ui_dev_panchayat_ro">ಪಂಚಾಯತ್: ಸಮುದಾಯ RO</string>
+    <string name="ui_type_ro">RO ಪ್ಲಾಂಟ್</string>
+    <string name="ui_type_uv">UV ಯುನಿಟ್</string>
+    <string name="ui_type_sediment">ಸೆಡಿಮೆಂಟ್ ಫಿಲ್ಟರ್</string>
+    <string name="ui_type_community_ro">ಸಮುದಾಯ RO</string>
+    <string name="ui_status_urgent">ಅತ್ಯಂತ ತುರ್ತು ಸೇವೆ</string>
+    <string name="ui_status_soon">ಶೀಘ್ರದಲ್ಲೇ ಸೇವೆ</string>
+    <string name="ui_status_ok">ಸ್ಥಿತಿ ಸರಿ ಇದೆ</string>
+    <string name="ui_item_cartridge">ಸೆಡಿಮೆಂಟ್ ಕಾರ್ಟ್ರಿಡ್ಜ್</string>
+    <string name="ui_item_uv_lamp">UV ಲ್ಯಾಂಪ್</string>
+    <string name="ui_item_membrane">RO ಮೆಂಬರೇನ್</string>
+    <string name="ui_installed_on">ಸ್ಥಾಪಿಸಿದ ದಿನಾಂಕ: %1$s</string>
+    <string name="ui_days_left">%1$d ದಿನಗಳು ಬಾಕಿ ಇವೆ</string>
+    <string name="ui_overdue_days">%1$d ದಿನಗಳು ಮೀರಿದೆ</string>
+    <string name="ui_next_service">ಮುಂದಿನ ಸೇವೆ: %1$s</string>
+    <string name="ui_last_serviced">ಕೊನೆಯ ಸೇವೆ: %1$s</string>
+    <string name="ui_mark_serviced">ಸೇವೆ ಪೂರ್ಣಗೊಳಿಸಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸಿ</string>
+    <string name="ui_confirm_service_title">ಸೇವೆಯನ್ನು ದೃಢೀಕರಿಸಿ</string>
+    <string name="ui_confirm_service_msg">%1$s ಇಂದು ಸೇವೆ ಮಾಡಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸಬೇಕೇ?</string>
+    <string name="ui_confirm_btn">ದೃಢೀಕರಿಸಿ</string>
+    <string name="ui_history_title">ಸೇವಾ ಇತಿಹಾಸ</string>
+    <string name="ui_no_history">ಯಾವುದೇ ಹಿಂದಿನ ಸೇವಾ ಇತಿಹಾಸವಿಲ್ಲ.</string>
+    <string name="ui_rep_problem_btn">ಸಮಸ್ಯೆಯನ್ನು ವರದಿ ಮಾಡಿ</string>
     <string-array name="ui_district_names">
         <item>ಬಾಗಲಕೋಟೆ</item>
         <item>ಬಳ್ಳಾರಿ</item>

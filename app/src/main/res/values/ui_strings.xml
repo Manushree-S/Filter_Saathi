@@ -252,6 +252,35 @@
     <string name="ui_picker_confirm_btn">Confirm location</string>
     <string name="ui_picker_privacy_text">Latitude and longitude are saved with your booking so installers can locate your sump. Location is used only after you tap.</string>
     <string name="ui_offline_map_notice">Offline mode: Map tiles unavailable. You can still drag the pin or enter address manually.</string>
+    <string name="ui_hero_filters">My filters</string>
+    <string name="ui_nav_filters">My filters</string>
+    <string name="ui_filters_title">My filters</string>
+    <string name="ui_filters_empty">No filter devices found.</string>
+    <string name="ui_dev_school_ro">School sump: RO plant</string>
+    <string name="ui_dev_anganwadi_uv">Anganwadi: UV unit</string>
+    <string name="ui_dev_panchayat_ro">Panchayat: community RO</string>
+    <string name="ui_type_ro">RO plant</string>
+    <string name="ui_type_uv">UV unit</string>
+    <string name="ui_type_sediment">Sediment filter</string>
+    <string name="ui_type_community_ro">Community RO</string>
+    <string name="ui_status_urgent">Service urgent</string>
+    <string name="ui_status_soon">Service soon</string>
+    <string name="ui_status_ok">Status OK</string>
+    <string name="ui_item_cartridge">Sediment Cartridge</string>
+    <string name="ui_item_uv_lamp">UV Lamp</string>
+    <string name="ui_item_membrane">RO Membrane</string>
+    <string name="ui_installed_on">Installed on %1$s</string>
+    <string name="ui_days_left">%1$d days left</string>
+    <string name="ui_overdue_days">Overdue by %1$d days</string>
+    <string name="ui_next_service">Next service: %1$s</string>
+    <string name="ui_last_serviced">Last serviced: %1$s</string>
+    <string name="ui_mark_serviced">Mark as serviced</string>
+    <string name="ui_confirm_service_title">Confirm Service</string>
+    <string name="ui_confirm_service_msg">Mark %1$s as serviced today?</string>
+    <string name="ui_confirm_btn">Confirm</string>
+    <string name="ui_history_title">Service History</string>
+    <string name="ui_no_history">No previous service history recorded.</string>
+    <string name="ui_rep_problem_btn">Report a problem</string>
     <string-array name="ui_district_names">
         <item>Bagalkot</item>
         <item>Ballari</item>

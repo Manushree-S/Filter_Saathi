@@ -229,7 +229,7 @@
                         android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:background="@drawable/bg_btn_ghost"
-                        android:text="@string/ui_hero_check"
+                        android:text="@string/ui_hero_filters"
                         android:textColor="@color/hero_btn_text"
                         android:textSize="15sp"
                         android:textStyle="bold"
