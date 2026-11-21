@@ -2,6 +2,7 @@ package org.filtersaathi.app.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import org.filtersaathi.app.domain.engine.FilterCareRuleEngine
 import org.filtersaathi.app.domain.model.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -81,6 +82,83 @@ class FakeRepository @Inject constructor() {
         nitrateStatus = ReadingStatus.UNSAFE,
         warningKey = "ui_scan_warn"
     )
+
+    // --- Sample Filter Devices for "My Filters" ---
+    private val sampleDevices = listOf(
+        FilterDevice(
+            id = "DEV-101",
+            nameKey = "ui_dev_school_ro",
+            nameFallback = "School sump: RO plant",
+            typeKey = "ui_type_ro",
+            installDate = "2024-03-15",
+            items = listOf(
+                FilterItemLife("ui_item_cartridge", 90, "2026-10-20"),
+                FilterItemLife("ui_item_uv_lamp", 180, "2026-05-10"),
+                FilterItemLife("ui_item_membrane", 365, "2026-01-10")
+            ),
+            history = listOf(
+                ServiceHistoryEntry("2026-05-10", "ui_item_uv_lamp"),
+                ServiceHistoryEntry("2026-01-10", "ui_item_membrane")
+            )
+        ),
+        FilterDevice(
+            id = "DEV-102",
+            nameKey = "ui_dev_anganwadi_uv",
+            nameFallback = "Anganwadi: UV unit",
+            typeKey = "ui_type_uv",
+            installDate = "2024-06-01",
+            items = listOf(
+                FilterItemLife("ui_item_cartridge", 90, "2026-10-01"),
+                FilterItemLife("ui_item_uv_lamp", 180, "2026-08-01")
+            ),
+            history = listOf(
+                ServiceHistoryEntry("2026-08-01", "ui_item_uv_lamp")
+            )
+        ),
+        FilterDevice(
+            id = "DEV-103",
+            nameKey = "ui_dev_panchayat_ro",
+            nameFallback = "Panchayat: community RO",
+            typeKey = "ui_type_community_ro",
+            installDate = "2025-01-15",
+            items = listOf(
+                FilterItemLife("ui_item_cartridge", 90, "2026-10-25"),
+                FilterItemLife("ui_item_membrane", 365, "2026-02-01")
+            ),
+            history = listOf(
+                ServiceHistoryEntry("2026-02-01", "ui_item_membrane")
+            )
+        )
+    )
+
+    private val _filterDevices = MutableLiveData<List<FilterDevice>>(sampleDevices)
+    val filterDevices: LiveData<List<FilterDevice>> = _filterDevices
+
+    fun markItemServiced(deviceId: String, itemKey: String) {
+        val currentList = _filterDevices.value ?: return
+        val todayStr = FilterCareRuleEngine.getTodayString()
+
+        val updatedList = currentList.map { device ->
+            if (device.id == deviceId) {
+                val updatedItems = device.items.map { item ->
+                    if (item.itemKey == itemKey) {
+                        item.copy(lastServicedDate = todayStr)
+                    } else {
+                        item
+                    }
+                }
+                val updatedHistory = listOf(ServiceHistoryEntry(todayStr, itemKey)) + device.history
+                device.copy(items = updatedItems, history = updatedHistory)
+            } else {
+                device
+            }
+        }
+        _filterDevices.value = updatedList
+    }
+
+    fun getFilterDeviceById(deviceId: String): FilterDevice? {
+        return _filterDevices.value?.firstOrNull { it.id == deviceId }
+    }
 
     // 31 Karnataka district keys matching ui_district_keys order
     private val districtKeys = listOf(

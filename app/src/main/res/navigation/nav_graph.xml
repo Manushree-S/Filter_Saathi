@@ -83,9 +83,14 @@
         android:label="@string/ui_nav_scan" />
 
     <fragment
-        android:id="@+id/navigation_water_check"
-        android:name="org.filtersaathi.app.ui.watercheck.WaterCheckFragment"
-        android:label="@string/ui_nav_public" />
+        android:id="@+id/navigation_my_filters"
+        android:name="org.filtersaathi.app.ui.myfilters.MyFiltersFragment"
+        android:label="@string/ui_nav_filters" />
+
+    <fragment
+        android:id="@+id/navigation_filter_detail"
+        android:name="org.filtersaathi.app.ui.myfilters.FilterDetailFragment"
+        android:label="@string/ui_filters_title" />
 
     <fragment
         android:id="@+id/navigation_report"
