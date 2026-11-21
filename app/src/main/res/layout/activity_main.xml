@@ -138,20 +138,6 @@
                         android:textStyle="bold" />
                 </FrameLayout>
 
-                <!-- 3. Accessibility "Aa" Button -->
-                <TextView
-                    android:id="@+id/btnAccessibility"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:gravity="center"
-                    android:text="@string/ui_acc_symbol"
-                    android:textColor="@color/text_primary_light"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:contentDescription="@string/ui_acc" />
-
                 <!-- 4. Dark Mode Toggle -->
                 <FrameLayout
                     android:id="@+id/btnDarkModeToggle"
@@ -346,8 +332,8 @@
         android:background="@color/surface_card_light"
         app:elevation="8dp"
         app:itemActiveIndicatorStyle="@null"
-        app:itemIconTint="@color/primary_navy"
-        app:itemTextColor="@color/primary_navy"
+        app:itemIconTint="@color/sel_bottom_nav"
+        app:itemTextColor="@color/sel_bottom_nav"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

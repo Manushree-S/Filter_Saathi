@@ -6,6 +6,9 @@
     <color name="aqua">#14B8D4</color>
     <color name="accent_saffron">#EA7A12</color>
 
+    <color name="bottom_nav_selected">#EA7A12</color>
+    <color name="bottom_nav_unselected">#0F2A5C</color>
+
     <!-- Semantic Status Colours (Never use colour alone) -->
     <color name="status_success">#18803A</color>
     <color name="status_warning">#D99A0B</color>

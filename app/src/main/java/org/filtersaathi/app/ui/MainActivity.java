@@ -73,9 +73,6 @@ public class MainActivity extends AppCompatActivity {
             showNotificationsBottomSheet();
         });
 
-        // 3. Accessibility "Aa"
-        binding.btnAccessibility.setOnClickListener(v -> showAccessibilityBottomSheet());
-
         // 4. Dark Mode Toggle
         binding.btnDarkModeToggle.setOnClickListener(v -> toggleDarkMode());
 
