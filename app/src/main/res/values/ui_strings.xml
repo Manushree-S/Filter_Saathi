@@ -281,6 +281,19 @@
     <string name="ui_history_title">Service History</string>
     <string name="ui_no_history">No previous service history recorded.</string>
     <string name="ui_rep_problem_btn">Report a problem</string>
+    <string name="ui_hero_requests">My requests</string>
+    <string name="ui_nav_requests">My requests</string>
+    <string name="ui_requests_title">My requests</string>
+    <string name="ui_requests_signed_out_title">Sign in to see your requests</string>
+    <string name="ui_requests_signed_out_msg">Please register or log in to view your bookings and problem reports.</string>
+    <string name="ui_requests_empty_msg">No requests or reports found for your account.</string>
+    <string name="ui_filter_all">All</string>
+    <string name="ui_filter_requests">Requests</string>
+    <string name="ui_filter_reports">Reports</string>
+    <string name="ui_tag_request">Installation Request</string>
+    <string name="ui_tag_report">Problem Report</string>
+    <string name="ui_request_details_title">Request Details</string>
+    <string name="ui_your_device_title">Your device care</string>
     <string-array name="ui_district_names">
         <item>Bagalkot</item>
         <item>Ballari</item>

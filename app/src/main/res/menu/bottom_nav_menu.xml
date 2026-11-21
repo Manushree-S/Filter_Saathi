@@ -12,9 +12,9 @@
         android:icon="@drawable/ic_test_strip"
         android:title="@string/ui_nav_scan" />
     <item
-        android:id="@+id/navigation_my_filters"
-        android:icon="@drawable/ic_wrench"
-        android:title="@string/ui_nav_filters" />
+        android:id="@+id/navigation_my_requests"
+        android:icon="@drawable/ic_checklist"
+        android:title="@string/ui_nav_requests" />
     <item
         android:id="@+id/navigation_report"
         android:icon="@drawable/ic_report"
