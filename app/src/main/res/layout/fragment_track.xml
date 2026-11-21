@@ -1,0 +1,790 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="48dp">
+
+        <!-- Top Banner: Booked (green) or Saved offline (amber) -->
+        <LinearLayout
+            android:id="@+id/layoutTopBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:background="@color/alert_green_bg"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/ivBannerIcon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_check"
+                android:contentDescription="@null"
+                app:tint="@color/alert_green_text" />
+
+            <TextView
+                android:id="@+id/tvBannerMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/alert_green_text"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btnCloseBanner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:gravity="center"
+                android:text="@string/ui_close"
+                android:textColor="@color/alert_green_text"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <!-- Empty State (When no booking exists) -->
+        <LinearLayout
+            android:id="@+id/layoutEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="60dp"
+            android:paddingBottom="40dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_water_drop"
+                app:tint="@color/secondary_blue"
+                android:contentDescription="@string/ui_none" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/ui_none"
+                android:textColor="@color/text_primary_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/ui_hero_sub"
+                android:textColor="@color/text_secondary_light"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/btnEmptyBook"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:background="@drawable/bg_btn_saffron"
+                android:text="@string/ui_book_title"
+                android:textColor="@color/hero_btn_text"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <!-- Active Booking Content Container -->
+        <LinearLayout
+            android:id="@+id/layoutBookingContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:gravity="center_horizontal">
+
+            <!-- Track Card with Tricolour Top Bar -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardTrackHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/surface_card_light"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="3dp"
+                app:strokeColor="@color/surface_card_stroke_light"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- 5dp Tricolour top bar -->
+                    <LinearLayout
+                        android:id="@+id/topBarTricolour"
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/topbar_saffron" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/topbar_blue" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/topbar_green" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <!-- Step Indicator Row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="16dp">
+
+                            <!-- Step 1: Register (Done) -->
+                            <ImageView
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                android:background="@drawable/bg_step_done"
+                                android:src="@drawable/ic_check"
+                                android:padding="5dp"
+                                android:contentDescription="@null"
+                                app:tint="#FFFFFF" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/ui_s1"
+                                android:textColor="@color/text_secondary_light"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="2dp"
+                                android:layout_weight="1"
+                                android:layout_marginHorizontal="6dp"
+                                android:background="@color/status_success" />
+
+                            <!-- Step 2: Book (Done) -->
+                            <ImageView
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                android:background="@drawable/bg_step_done"
+                                android:src="@drawable/ic_check"
+                                android:padding="5dp"
+                                android:contentDescription="@null"
+                                app:tint="#FFFFFF" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/ui_s2"
+                                android:textColor="@color/text_secondary_light"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="2dp"
+                                android:layout_weight="1"
+                                android:layout_marginHorizontal="6dp"
+                                android:background="@color/status_success" />
+
+                            <!-- Step 3: Track (Active) -->
+                            <TextView
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                android:background="@drawable/bg_step_active"
+                                android:gravity="center"
+                                android:text="3"
+                                android:textColor="#FFFFFF"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="@string/ui_s3"
+                                android:textColor="@color/text_primary_light"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Title & Booking Details -->
+                        <TextView
+                            android:id="@+id/tvTrackTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ui_track_title"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvRequestNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/secondary_blue"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvBookingLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/text_secondary_light"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 6-Stage Vertical Stepper Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardStepper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/surface_card_light"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/surface_card_stroke_light"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <!-- Stage 1: Request received -->
+                    <LinearLayout
+                        android:id="@+id/layoutStage1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/ivStage1Indicator"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/bg_stage_pending"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            android:id="@+id/tvStage1Title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="14dp"
+                            android:text="@string/ui_stg1"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/viewLine1"
+                        android:layout_width="2dp"
+                        android:layout_height="22dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@color/divider_light" />
+
+                    <!-- Stage 2: Verified -->
+                    <LinearLayout
+                        android:id="@+id/layoutStage2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/ivStage2Indicator"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/bg_stage_pending"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            android:id="@+id/tvStage2Title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="14dp"
+                            android:text="@string/ui_stg2"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/viewLine2"
+                        android:layout_width="2dp"
+                        android:layout_height="22dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@color/divider_light" />
+
+                    <!-- Stage 3: Installer assigned -->
+                    <LinearLayout
+                        android:id="@+id/layoutStage3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/ivStage3Indicator"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/bg_stage_pending"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            android:id="@+id/tvStage3Title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="14dp"
+                            android:text="@string/ui_stg3"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/viewLine3"
+                        android:layout_width="2dp"
+                        android:layout_height="22dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@color/divider_light" />
+
+                    <!-- Stage 4: Site survey -->
+                    <LinearLayout
+                        android:id="@+id/layoutStage4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/ivStage4Indicator"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/bg_stage_pending"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            android:id="@+id/tvStage4Title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="14dp"
+                            android:text="@string/ui_stg4"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/viewLine4"
+                        android:layout_width="2dp"
+                        android:layout_height="22dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@color/divider_light" />
+
+                    <!-- Stage 5: Installation -->
+                    <LinearLayout
+                        android:id="@+id/layoutStage5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/ivStage5Indicator"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/bg_stage_pending"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            android:id="@+id/tvStage5Title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="14dp"
+                            android:text="@string/ui_stg5"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/viewLine5"
+                        android:layout_width="2dp"
+                        android:layout_height="22dp"
+                        android:layout_marginStart="12dp"
+                        android:background="@color/divider_light" />
+
+                    <!-- Stage 6: Live monitoring -->
+                    <LinearLayout
+                        android:id="@+id/layoutStage6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/ivStage6Indicator"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:src="@drawable/bg_stage_pending"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            android:id="@+id/tvStage6Title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="14dp"
+                            android:text="@string/ui_stg6"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Installer Card (From Stage 3) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardInstaller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/surface_card_light"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/surface_card_stroke_light"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/ui_installer_title"
+                            android:textColor="@color/text_primary_light"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvInstallerSampleTag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_sample_tag"
+                            android:text="@string/ui_sample_tag"
+                            android:textColor="@color/alert_amber_text"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvInstallerAvatar"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_avatar_circle"
+                            android:gravity="center"
+                            android:text="R"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="14dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvInstallerName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ui_installer_name"
+                                android:textColor="@color/text_primary_light"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvInstallerExp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="@string/ui_installer_exp"
+                                android:textColor="@color/text_secondary_light"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:id="@+id/tvInstallerPhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="+91 98765 43210"
+                                android:textColor="@color/secondary_blue"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Call Installer Button -->
+                    <LinearLayout
+                        android:id="@+id/btnCallInstaller"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_btn_saffron"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/ui_call">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_call"
+                            android:contentDescription="@null"
+                            app:tint="@color/hero_btn_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/ui_call"
+                            android:textColor="@color/hero_btn_text"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 5-Star Rating & Certificate Card (From Stage 6) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardRatingAndCert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/surface_card_light"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/surface_card_stroke_light"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/tvRateTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ui_rate_title"
+                        android:textColor="@color/text_primary_light"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- 5 Stars Row -->
+                    <LinearLayout
+                        android:id="@+id/layoutStars"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivStar1"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_star_outline"
+                            android:contentDescription="1 star"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <ImageView
+                            android:id="@+id/ivStar2"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_star_outline"
+                            android:contentDescription="2 stars"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <ImageView
+                            android:id="@+id/ivStar3"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_star_outline"
+                            android:contentDescription="3 stars"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <ImageView
+                            android:id="@+id/ivStar4"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_star_outline"
+                            android:contentDescription="4 stars"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <ImageView
+                            android:id="@+id/ivStar5"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_star_outline"
+                            android:contentDescription="5 stars"
+                            android:clickable="true"
+                            android:focusable="true" />
+                    </LinearLayout>
+
+                    <!-- Feedback thank you text -->
+                    <TextView
+                        android:id="@+id/tvRatingThanks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/ui_thanks"
+                        android:textColor="@color/status_success"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="16dp"
+                        android:background="@color/divider_light" />
+
+                    <!-- View Certificate Button -->
+                    <TextView
+                        android:id="@+id/btnViewCertificate"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_card_highlight_gradient"
+                        android:gravity="center"
+                        android:text="@string/ui_view_cert"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/ui_view_cert" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Actions Row (Demo controls) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnNextStage"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@drawable/bg_btn_saffron"
+                    android:text="@string/ui_next"
+                    android:textColor="@color/hero_btn_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/btnNewRequest"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_lang_toggle_container"
+                    android:text="@string/ui_new_req"
+                    android:textColor="@color/text_primary_light"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

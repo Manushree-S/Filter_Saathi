@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ui_district_keys" translatable="false">
+        <item>Bagalkot</item>
+        <item>Ballari</item>
+        <item>Belagavi</item>
+        <item>Bengaluru Rural</item>
+        <item>Bengaluru South</item>
+        <item>Bengaluru Urban</item>
+        <item>Bidar</item>
+        <item>Chamarajanagar</item>
+        <item>Chikkaballapura</item>
+        <item>Chikkamagaluru</item>
+        <item>Chitradurga</item>
+        <item>Dakshina Kannada</item>
+        <item>Davanagere</item>
+        <item>Dharwad</item>
+        <item>Gadag</item>
+        <item>Hassan</item>
+        <item>Haveri</item>
+        <item>Kalaburagi</item>
+        <item>Kodagu</item>
+        <item>Kolar</item>
+        <item>Koppal</item>
+        <item>Mandya</item>
+        <item>Mysuru</item>
+        <item>Raichur</item>
+        <item>Shivamogga</item>
+        <item>Tumakuru</item>
+        <item>Udupi</item>
+        <item>Uttara Kannada</item>
+        <item>Vijayanagara</item>
+        <item>Vijayapura</item>
+        <item>Yadgir</item>
+    </string-array>
+</resources>

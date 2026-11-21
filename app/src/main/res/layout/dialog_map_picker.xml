@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light">
+
+    <!-- osmdroid MapView -->
+    <org.osmdroid.views.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Fixed Centre Location Pin -->
+    <ImageView
+        android:id="@+id/ivCenterPin"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="19dp"
+        android:src="@drawable/ic_location"
+        android:contentDescription="@null"
+        app:tint="@color/accent_saffron" />
+
+    <!-- Top Navigation Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="top"
+        android:background="@color/surface_card_light"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp">
+
+        <ImageView
+            android:id="@+id/btnPickerBack"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/ui_back"
+            android:focusable="true"
+            android:src="@drawable/ic_arrow_down"
+            android:rotation="90"
+            app:tint="@color/text_primary_light" />
+
+        <TextView
+            android:id="@+id/tvPickerTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="@string/ui_picker_title"
+            android:textColor="@color/text_primary_light"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Recentre Floating Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabRecentre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="240dp"
+        android:contentDescription="@string/ui_re_center"
+        android:src="@drawable/ic_location"
+        app:backgroundTint="@color/surface_card_light"
+        app:elevation="6dp"
+        app:tint="@color/secondary_blue" />
+
+    <!-- Bottom Address Confirmation Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardPickerBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/surface_card_light"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:strokeColor="@color/surface_card_stroke_light"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Offline Map Tile Warning -->
+            <LinearLayout
+                android:id="@+id/layoutOfflineNotice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_sample_tag"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="8dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_warning"
+                    android:contentDescription="@null"
+                    app:tint="@color/alert_amber_text" />
+
+                <TextView
+                    android:id="@+id/tvOfflineNoticeText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="@string/ui_offline_map_notice"
+                    android:textColor="@color/alert_amber_text"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPickerAddressHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ui_picker_address_header"
+                android:textColor="@color/text_secondary_light"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:id="@+id/pbPickerLoading"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvPickerAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ui_picker_loading_address"
+                    android:textColor="@color/text_primary_light"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPickerPrivacyNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/ui_picker_privacy_text"
+                android:textColor="@color/text_tertiary_light"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/btnConfirmLocation"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_btn_saffron"
+                android:gravity="center"
+                android:text="@string/ui_picker_confirm_btn"
+                android:textColor="@color/hero_btn_text"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>

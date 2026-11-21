@@ -95,6 +95,10 @@ dependencies {
     // WorkManager
     implementation(libs.androidx.work.runtime.ktx)
 
+    // Location & Maps
+    implementation(libs.play.services.location)
+    implementation(libs.osmdroid.android)
+
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
 

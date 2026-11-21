@@ -73,4 +73,13 @@
         <item name="android:minHeight">48dp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
+
+    <!-- Certificate Card: Always pure white surface with dark text regardless of dark mode -->
+    <style name="Widget.FilterSaathi.Card.Certificate" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/certificate_stroke</item>
+        <item name="cardBackgroundColor">@color/certificate_bg</item>
+    </style>
 </resources>
