@@ -338,20 +338,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:navGraph="@navigation/nav_graph" />
 
-    <!-- Floating Speaker Button on Every Screen (Reads current screen aloud) -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabSpeaker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/ui_speak"
-        app:srcCompat="@drawable/ic_speaker"
-        app:backgroundTint="@color/accent_saffron"
-        app:tint="@color/hero_btn_text"
-        app:elevation="6dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <!-- 11. Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
@@ -359,6 +345,7 @@
         android:layout_height="wrap_content"
         android:background="@color/surface_card_light"
         app:elevation="8dp"
+        app:itemActiveIndicatorStyle="@null"
         app:itemIconTint="@color/primary_navy"
         app:itemTextColor="@color/primary_navy"
         app:labelVisibilityMode="labeled"

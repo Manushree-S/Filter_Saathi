@@ -75,49 +75,6 @@
             android:contentDescription="@string/ui_acc_hc" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider_light" />
 
-    <!-- 3. Read Aloud Button -->
-    <LinearLayout
-        android:id="@+id/btnReadAloud"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_btn_saffron"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:clickable="true"
-        android:focusable="true"
-        android:contentDescription="@string/ui_acc_read">
-
-        <ImageView
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:src="@drawable/ic_speaker"
-            android:contentDescription="@null"
-            app:tint="@color/hero_btn_text" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/ui_acc_read"
-            android:textColor="@color/hero_btn_text"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <!-- Voice Note -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="@string/ui_voice_note"
-        android:textColor="@color/text_secondary_light"
-        android:textSize="12sp" />
 
 </LinearLayout>
